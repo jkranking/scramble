@@ -2,10 +2,11 @@ function initMap(){
   $(document).ready(function() {
     var lat = Number($('.latitude').attr('id'))
     var lng = Number($('.longitude').attr('id'))
+    var zoom = Number($('.zoom').attr('id'))
     var myLatlng = {lat: lat, lng: lng};
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
+      zoom: zoom,
       center: myLatlng
     });
 
