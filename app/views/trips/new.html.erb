@@ -2,6 +2,12 @@
 <div class="latitude" id = "35.6550645689539"></div>
 <div class="zoom" id = "4"></div>
 
+<%= form_for @trip do |t| %>
+  <%= t.label "Name Your Trip:" %>
+  <%= t.text_field :name %>
+<% end %>
+
+</form>
 <div id="map" class="our-map"></div>
 
 <form>

@@ -20,15 +20,19 @@ var initMap = function(){
       event.preventDefault()
       trip.model.updateCenter()
 
+
+      var name = $('#trip_name').val()
+
       $.post({
         url: "/trips",
         data: {trip: {latitude: trip.model.center_lat,
                       longitude: trip.model.center_lng,
                       zoom: trip.model.zoom,
-                      user_id: 1},
+                      user_id: 1,
+                      name: name},
                 AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
       }).success(function(response){
-        alert(response)
+        alert('')
       })
       google.maps.event.removeListener(latLng);
       $('#submit-pings').hide()
