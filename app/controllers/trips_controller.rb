@@ -19,7 +19,7 @@ class TripsController < ApplicationController
   def get_pings
     @trip = Trip.find(params[:id])
     respond_to do |format|
-      format.xml { @trip.pings }
+      format.json { render json: @trip.pings }
     end
   end
 
