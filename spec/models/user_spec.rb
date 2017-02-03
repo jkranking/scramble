@@ -1,5 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    it { is_expected.to validate_presence_of :username }
+    it { is_expected.to validate_presence_of :email }
+    it { is_expected.to validate_presence_of :encrypted_password }
+  end
+
+  describe "associtions" do
+    it 'has many trips' do
+      should have_many(:trips)
+    end
+  end
 end
