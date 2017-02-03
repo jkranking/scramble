@@ -31,6 +31,8 @@ TripController.prototype.submitHandler = function(event) {
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(response){
     alert('trip saved!')
+  }).fail(function(){
+    alert('cannot save trip without pings!')
   })
 
   google.maps.event.removeListener(pingListener);

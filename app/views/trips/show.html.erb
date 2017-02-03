@@ -4,4 +4,9 @@
 
 <div id="map" class="our-map"></div>
 
+
+<script type="text/javascript">
+  var trip = <%==  @trip.to_json %>;
+</script>
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['maps_key']%>"></script>
