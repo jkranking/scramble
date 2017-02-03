@@ -3,13 +3,27 @@
   <head>
     <title>Scramble</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag 'application' %>
   </head>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%#= favicon_link_tag '' %>
+  </head>
   <body>
-    <%= yield %>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <% if notice %>
+        <div class="alert alert-success"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger"><%= alert %></div>
+      <% end %>
+      <div class="jumbotron">
+      <%= yield %>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['maps_key']%>"></script>
   </body>
 </html>

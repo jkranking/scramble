@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="well">
+    <h3 class="page-title">Hello <%= @user.username %></h3>
+    <h4 class="page-title"> <%= @user.email %></h4>
+    <h5><%= link_to "Edit Profile", edit_user_registration_path(@user) %></h5>
+  </div>
+</div>

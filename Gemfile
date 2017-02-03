@@ -14,6 +14,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'httparty'
 gem 'dotenv-rails'
 gem 'faker'
+gem 'devise', '~> 4.2'
 
 gem 'bootstrap-sass'
 
