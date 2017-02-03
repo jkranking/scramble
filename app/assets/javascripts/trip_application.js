@@ -1,27 +1,39 @@
-function TripController(view, model){
-  this.view = view,
-  this.model = model
-}
+function initMap(){
+  $(document).ready(function() {
+    var lat = Number($('.latitude').attr('id'))
+    var lng = Number($('.longitude').attr('id'))
+    var myLatlng = {lat: lat, lng: lng};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: myLatlng
+    });
+
+    var trip = new TripController(
+      new TripView,
+      new TripModel(map)
+    )
+
+    var addPing = $('#add-ping').click(trip.pingHandler.bind(trip))
+
+    $('#submit-pings').click(function handler(event) {
+      event.preventDefault()
+      trip.model.updateCenter()
+      $.post({
+        url: "/trips",
+        data: {trip: {latitude: trip.model.center_lat,
+                      longitude: trip.model.center_lng,
+                      zoom: trip.model.zoom,
+                      user_id: 1}}
+      }).success(function(response){
+        alert(response)
+      })
+      google.maps.event.removeListener(latLng);
+      $('#submit-pings').hide()
+      $('#add-ping').show()
+    })
 
 
-newMarker = function(location, map){
-  return new google.maps.Marker({
-    position: location,
-    map: map
   });
-}
-
-TripController.prototype.pingHandler = function(event) {
-  event.preventDefault()
-  // latLng is global
-  var pings = this.model.pings
-  latLng = google.maps.event.addListener(this.model.map, 'click', function (event) {
-    coordinates = event.latLng
-    var newPing = newMarker({lat: event.latLng.lat(), lng: event.latLng.lng()}, this)
-    pings.push(newPing)
-  })
-
-  $('#add-ping').hide()
-  $('#submit-pings').show()
 }
 
