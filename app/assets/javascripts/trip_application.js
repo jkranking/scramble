@@ -34,7 +34,7 @@ var initMap = function(){
                       name: name},
                 pings: trip.model.pings,
                 AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
-      }).success(function(response){
+      }).done(function(response){
         alert('')
       })
 
