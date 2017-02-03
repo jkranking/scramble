@@ -9,7 +9,7 @@ class TripsController < ApplicationController
 
   def create
     @trip = Trip.create(trip_params)
-    redirect_to trips_path
+    Ping.create_multiple_pings(@trip, pings)
   end
 
   def show
@@ -20,5 +20,9 @@ class TripsController < ApplicationController
 
   def trip_params
     params.require(:trip).permit(:user_id, :zoom, :latitude, :longitude, :name)
+  end
+
+  def pings
+    params.require(:pings)
   end
 end
