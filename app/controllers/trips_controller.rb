@@ -10,6 +10,7 @@ class TripsController < ApplicationController
   def create
     @trip = current_user.trips.create(trip_params)
     Ping.create_multiple_pings(@trip, pings)
+    redirect_to trips_path
   end
 
   def show
