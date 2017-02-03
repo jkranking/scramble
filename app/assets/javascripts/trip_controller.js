@@ -5,9 +5,9 @@ function TripController(view, model){
 
 TripController.prototype.pingHandler = function(event) {
   event.preventDefault()
-  // latLng is global
+  // pingListener is global
   var pings = this.model.pings
-  latLng = google.maps.event.addListener(this.model.map, 'click', function (event) {
+  pingListener = google.maps.event.addListener(this.model.map, 'click', function (event) {
     var coordinates = event.latLng
     newPing({lat: coordinates.lat(), lng: coordinates.lng()}, this)
     pings.push(new PingModel({lat: coordinates.lat(), lng: coordinates.lng()}))
@@ -30,10 +30,10 @@ TripController.prototype.submitHandler = function(event) {
             pings: this.model.pings,
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(response){
-    alert('')
+    alert('trip saved!')
   })
 
-  google.maps.event.removeListener(latLng);
+  google.maps.event.removeListener(pingListener);
   this.view.showAdd()
 }
 

@@ -15,7 +15,7 @@ var initMap = function(){
 
   trip.view.showAdd()
 
-  var addPing = $('#add-ping').click(trip.pingHandler.bind(trip))
+  $('#add-ping').click(trip.pingHandler.bind(trip))
 
   $('#submit-pings').click(trip.submitHandler.bind(trip))
 }
