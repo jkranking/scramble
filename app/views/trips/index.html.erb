@@ -1,1 +1,5 @@
-<h1>Hello World</h1>
+<ul>
+  <% @trips.each do |trip| %>
+    <li><%= trip.latitude %></li>
+  <% end %>
+</ul>
