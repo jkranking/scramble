@@ -30,6 +30,8 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rack', '~> 2.0.1'
   gem "rack_session_access"
+  gem "simplecov"
+  gem 'jasmine-rails'
 end
 
 group :development do
