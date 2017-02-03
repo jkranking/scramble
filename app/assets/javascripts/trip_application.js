@@ -26,7 +26,7 @@ function initMap(){
                       longitude: trip.model.center_lng,
                       zoom: trip.model.zoom,
                       user_id: 1}}
-      }).success(function(response){
+      }).done(function(response){
         alert(response)
       })
       google.maps.event.removeListener(latLng);
