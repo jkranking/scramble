@@ -10,6 +10,6 @@
 
   <body>
     <%= yield %>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?&ENV[maps_key]"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?&<%=ENV['maps_key']%>"></script>
   </body>
 </html>
