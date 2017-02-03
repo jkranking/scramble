@@ -1,40 +1,26 @@
-function initMap(){
-  $(document).ready(function() {
-    var lat = Number($('.latitude').attr('id'))
-    var lng = Number($('.longitude').attr('id'))
-    var zoom = Number($('.zoom').attr('id'))
-    var myLatlng = {lat: lat, lng: lng};
+var initMap = function(){
+  var mapURL = window.location.href;
+  var id = mapURL.match(/\d*$/)[0]
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: zoom,
-      center: myLatlng
-    });
+  map = setMap()
 
-    var trip = new TripController(
-      new TripView,
-      new TripModel(map)
-    )
+  if (id) {
+    loadPings(id, map)
+  }
 
-    var addPing = $('#add-ping').click(trip.pingHandler.bind(trip))
+  var trip = new TripController(
+    new TripView,
+    new TripModel(map)
+  )
 
-    $('#submit-pings').click(function handler(event) {
-      event.preventDefault()
-      trip.model.updateCenter()
-      $.post({
-        url: "/trips",
-        data: {trip: {latitude: trip.model.center_lat,
-                      longitude: trip.model.center_lng,
-                      zoom: trip.model.zoom,
-                      user_id: 1}}
-      }).done(function(response){
-        alert(response)
-      })
-      google.maps.event.removeListener(latLng);
-      $('#submit-pings').hide()
-      $('#add-ping').show()
-    })
+  trip.view.showAdd()
 
+  $('#add-ping').click(trip.pingHandler.bind(trip))
 
-  });
+  $('#submit-pings').click(trip.submitHandler.bind(trip))
 }
+
+
+
+
 

@@ -1,5 +1,5 @@
 <ul>
   <% @trips.each do |trip| %>
-    <li><%= trip.latitude %></li>
+    <li><%= link_to trip.try(:name), trip_path(trip) %></li>
   <% end %>
 </ul>
