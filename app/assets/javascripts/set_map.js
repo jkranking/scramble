@@ -10,13 +10,12 @@ var loadPings = function(id, map){
 }
 
 var setMap = function() {
-  var lat = Number($('.latitude').attr('id'))
-  var lng = Number($('.longitude').attr('id'))
-  var zoom = Number($('.zoom').attr('id'))
-  var myLatlng = {lat: lat, lng: lng};
+
+  var zoom = Number(trip.zoom)
+  var coordinates = {lat: Number(trip.latitude), lng: Number(trip.longitude)};
 
   return new google.maps.Map(document.getElementById('map'), {
     zoom: zoom,
-    center: myLatlng
+    center: coordinates
   });
 }

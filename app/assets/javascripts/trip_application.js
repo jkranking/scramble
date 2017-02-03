@@ -1,6 +1,5 @@
 var initMap = function(){
-  var mapURL = window.location.href;
-  var id = mapURL.match(/\d*$/)[0]
+  var id = window.trip.id
 
   map = setMap()
 

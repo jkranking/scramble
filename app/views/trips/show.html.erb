@@ -1,12 +1,7 @@
-<div class="longitude" id = "<%= @trip.longitude %>"></div>
-<div class="latitude" id = "<%= @trip.latitude %>"></div>
-<div class="zoom" id = "<%= @trip.zoom %>"></div>
-
 <div id="map" class="our-map"></div>
-
 
 <script type="text/javascript">
   var trip = <%==  @trip.to_json %>;
 </script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['maps_key']%>"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['maps_key']%>&callback=initMap"></script>
