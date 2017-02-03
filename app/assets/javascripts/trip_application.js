@@ -1,5 +1,4 @@
-function initMap(){
-  $(document).ready(function() {
+var initMap = function(){
     var lat = Number($('.latitude').attr('id'))
     var lng = Number($('.longitude').attr('id'))
     var zoom = Number($('.zoom').attr('id'))
@@ -20,12 +19,14 @@ function initMap(){
     $('#submit-pings').click(function handler(event) {
       event.preventDefault()
       trip.model.updateCenter()
+
       $.post({
         url: "/trips",
         data: {trip: {latitude: trip.model.center_lat,
                       longitude: trip.model.center_lng,
                       zoom: trip.model.zoom,
-                      user_id: 1}}
+                      user_id: 1},
+                AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
       }).success(function(response){
         alert(response)
       })
@@ -33,8 +34,5 @@ function initMap(){
       $('#submit-pings').hide()
       $('#add-ping').show()
     })
-
-
-  });
 }
 
