@@ -16,3 +16,10 @@ function PingModel(coordinates){
   this.lat = coordinates.lat
   this.lng = coordinates.lng
 }
+
+newPing = function(location, map){
+  return new google.maps.Marker({
+    position: location,
+    map: map
+  });
+}
