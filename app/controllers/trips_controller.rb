@@ -16,6 +16,13 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
   end
 
+  def get_pings
+    @trip = Trip.find(params[:id])
+    respond_to do |format|
+      format.xml { @trip.pings }
+    end
+  end
+
   private
 
   def trip_params

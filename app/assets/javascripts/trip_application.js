@@ -9,6 +9,9 @@ var initMap = function(){
       center: myLatlng
     });
 
+    var mapURL = window.location.href;
+    console.log(mapURL)
+    var id = mapURL.match(/\d*$/)[0]
     var trip = new TripController(
       new TripView,
       new TripModel(map)
@@ -39,5 +42,16 @@ var initMap = function(){
       $('#submit-pings').hide()
       $('#add-ping').show()
     })
+
+    $.get({
+      url: "/get_pings",
+      data: {id: id}
+    }).success(function(response){
+      console.log(response)
+    })
 }
+
+
+
+
 
