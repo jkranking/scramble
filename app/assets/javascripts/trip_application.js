@@ -20,7 +20,6 @@ var initMap = function(){
       event.preventDefault()
       trip.model.updateCenter()
 
-
       var name = $('#trip_name').val()
 
       $.post({
@@ -30,10 +29,12 @@ var initMap = function(){
                       zoom: trip.model.zoom,
                       user_id: 1,
                       name: name},
+                pings: trip.model.pings,
                 AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
       }).success(function(response){
         alert('')
       })
+
       google.maps.event.removeListener(latLng);
       $('#submit-pings').hide()
       $('#add-ping').show()

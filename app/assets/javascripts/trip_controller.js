@@ -18,7 +18,7 @@ TripController.prototype.pingHandler = function(event) {
   latLng = google.maps.event.addListener(this.model.map, 'click', function (event) {
     coordinates = event.latLng
     var newPing = newMarker({lat: event.latLng.lat(), lng: event.latLng.lng()}, this)
-    pings.push(newPing)
+    pings.push(new PingModel({lat: event.latLng.lat(), lng: event.latLng.lng()}))
   })
 
   $('#add-ping').hide()

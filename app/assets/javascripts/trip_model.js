@@ -13,6 +13,6 @@ TripModel.prototype.updateCenter = function(){
 }
 
 function PingModel(coordinates){
-  this.lat = coordinates.lat()
-  this.lng = coordinates.lng()
+  this.lat = coordinates.lat
+  this.lng = coordinates.lng
 }
