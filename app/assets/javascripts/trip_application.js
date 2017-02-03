@@ -30,7 +30,6 @@ var initMap = function(){
         data: {trip: {latitude: trip.model.center_lat,
                       longitude: trip.model.center_lng,
                       zoom: trip.model.zoom,
-                      user_id: 1,
                       name: name},
                 pings: trip.model.pings,
                 AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
@@ -43,12 +42,17 @@ var initMap = function(){
       $('#add-ping').show()
     })
 
-    $.get({
-      url: "/get_pings",
-      data: {id: id}
-    }).success(function(response){
-      console.log(response)
-    })
+    if ( id != "" ) {
+      $.get({
+        url: "/get_pings",
+        data: {id: id}
+      }).done(function(response){
+        response.forEach(function(ping){
+          newMarker({lat: Number(ping.lat), lng: Number(ping.long)}, map)
+        })
+        console.log(response)
+      })
+    }
 }
 
 

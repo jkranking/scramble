@@ -8,7 +8,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.create(trip_params)
+    @trip = current_user.trips.create(trip_params)
     Ping.create_multiple_pings(@trip, pings)
   end
 
@@ -26,7 +26,7 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:user_id, :zoom, :latitude, :longitude, :name)
+    params.require(:trip).permit(:zoom, :latitude, :longitude, :name)
   end
 
   def pings
