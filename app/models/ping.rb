@@ -5,9 +5,6 @@ class Ping < ApplicationRecord
 
   def self.create_multiple_pings(trip, pings)
     pings.each do |key, ping|
-      p ping
-      p '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
-      p ping["lng"]
       Ping.create(lat: ping["lat"], long: ping["lng"], trip_id: trip.id)
     end
   end
