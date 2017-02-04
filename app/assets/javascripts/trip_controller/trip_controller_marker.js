@@ -46,7 +46,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
 
 }
 
-TripController.prototype.cancel = function(event) {
+TripController.prototype.cancelNewMarker = function(event) {
   event.preventDefault()
 
   google.maps.event.removeListener(submitMarkerListener)

@@ -28,7 +28,7 @@ var initMap = function(){
 
   $('#add-marker').click(trip.markerHandler.bind(trip))
   $('#submit-marker').click(trip.submitMarkerHandler.bind(trip))
-  $('#cancel-marker').click(trip.cancel.bind(trip))
+  $('#cancel-marker').click(trip.cancelNewMarker.bind(trip))
 
   $('#edit-trip').click(trip.editTripHandler.bind(trip))
   $('#update-trip').click(trip.updateTripHandler.bind(trip))

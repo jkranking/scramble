@@ -8,17 +8,17 @@ TripModel.prototype.loadMarkersList = function(){
 
     var marker = newMarker({lat: Number(marker.lat), lng: Number(marker.lng)}, this.map)
 
-    // marker.addListener('click', function() {
-    //   infowindow.open(map, marker);
-    // });
-
-    marker.addListener('mouseover', function() {
+    marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
 
-    marker.addListener('mouseout', function() {
-      infowindow.close();
-    });
+    // marker.addListener('mouseover', function() {
+    //   infowindow.open(map, marker);
+    // });
+
+    // marker.addListener('mouseout', function() {
+    //   infowindow.close();
+    // });
 
     this.markers.push(marker)
   }.bind(this))
