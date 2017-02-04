@@ -27,7 +27,7 @@ function PingModel(coordinates){
 newPing = function(location, map){
   var circle ={
     path: google.maps.SymbolPath.CIRCLE,
-    fillColor: 'red',
+    fillColor: 'blue',
     fillOpacity: .4,
     scale: 3.5,
     strokeColor: 'white',
