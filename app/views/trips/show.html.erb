@@ -4,7 +4,6 @@
   <form>
     <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
   </form>
-
   <form>
     <button id="submit-marker" name="submit_marker" class="btn btn-success">Save Note</button>
   </form>
@@ -30,13 +29,16 @@
 <div class="col-md-9 maps-show">
 
   <div id="map" class="our-map"></div>
+  <div id="elevation_chart"></div>
 
 </div>
 
 <script type="text/javascript">
+
   var trip = <%==  @trip.to_json %>;
   var pings = <%==  @trip.pings.to_json %>;
   var markers = <%==  @trip.markers.to_json %>;
 </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['']%>&callback=initMap"></script>
+<script>google.load('visualization', '1', {packages: ['columnchart']})</script>
