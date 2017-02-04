@@ -29,7 +29,27 @@ TripModel.prototype.loadPingsList = function(){
 
 TripModel.prototype.loadMarkersList = function(){
   window.markers.forEach(function(marker){
-    this.markers.push(newMarker({lat: Number(marker.lat), lng: Number(marker.lng)}, this.map))
+    var contentString = marker.note;
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    var marker = newMarker({lat: Number(marker.lat), lng: Number(marker.lng)}, this.map)
+
+    // marker.addListener('click', function() {
+    //   infowindow.open(map, marker);
+    // });
+
+    marker.addListener('mouseover', function() {
+      infowindow.open(map, marker);
+    });
+
+    marker.addListener('mouseout', function() {
+      infowindow.close();
+    });
+
+    this.markers.push(marker)
   }.bind(this))
 }
 

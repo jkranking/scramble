@@ -122,6 +122,7 @@ TripController.prototype.cancel = function(event) {
   if (this.clicked) {
     var marker = this.model.markers.pop() //remove the placed marker
     marker.setMap(null)
+    labelIndex--
   } else {
     this.clicked = true
   }
