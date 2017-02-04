@@ -83,6 +83,8 @@ TripController.prototype.editTripHandler = function(event) {
     ping.setDraggable(true);
     ping.addListener('drag', that.addPolyline.bind(that));
   })
+
+  this.pingHandler(event)
 }
 
 TripController.prototype.updateTripHandler = function(event) {
@@ -103,6 +105,8 @@ TripController.prototype.updateTripHandler = function(event) {
   }).fail(function(){
     alert('something went wrong!')
   })
+
+  google.maps.event.removeListener(pingListener);
 
   this.model.pings.forEach(function(ping){
     ping.setDraggable(false);
