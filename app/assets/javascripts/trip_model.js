@@ -4,6 +4,7 @@ function TripModel(map){
   this.center_lng = map.getCenter().lng()
   this.zoom = map.getZoom()
   this.pings = []
+  this.polyline = null
 }
 
 TripModel.prototype.updateCenter = function(){
