@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :trips, only: [:new, :show, :index, :create]
+  resources :trips, only: [:new, :show, :index, :create] do
+    resources :markers, only: [:create]
+  end
   get '/get_pings' => 'trips#get_pings', defaults: { format: 'json' }
 
   devise_for :users, controllers: { registrations: 'users/registrations' }

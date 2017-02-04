@@ -1,14 +1,3 @@
-var loadPings = function(id, map, pings){
-  $.get({
-    url: "/get_pings",
-    data: {id: id}
-  }).done(function(response){
-    response.forEach(function(ping){
-      newPing({lat: Number(ping.lat), lng: Number(ping.lng)}, map)
-    })
-  })
-}
-
 var setMap = function() {
 
   var zoom = Number(trip.zoom)
