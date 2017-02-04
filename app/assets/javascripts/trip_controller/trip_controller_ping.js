@@ -123,9 +123,7 @@ TripController.prototype.updateTripHandler = function(event) {
 
   this.view.showAddMarkerAndEditTrip()
 
-  var thing = $._data($(google.maps.event).get(0), "events")
-  console.log('event', thing)
-
+  google.maps.event.removeListener(pingListener);
   this.model.pings.forEach(function(ping){
     google.maps.event.clearInstanceListeners(ping)
     ping.setDraggable(false);
