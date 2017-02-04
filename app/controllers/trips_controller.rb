@@ -25,6 +25,15 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
   end
 
+  def edit
+    @trip = Trip.find(params[:id])
+  end
+
+  def update
+    @trip = Trip.find(params[:id])
+    @trip.update(trip_params)
+  end
+
   def get_pings
     @trip = Trip.find(params[:id])
     respond_to do |format|

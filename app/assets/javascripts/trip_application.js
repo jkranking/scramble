@@ -25,9 +25,13 @@ var initMap = function(){
 
   $('#add-ping').click(trip.pingHandler.bind(trip))
   $('#submit-pings').click(trip.submitPingsHandler.bind(trip))
+
   $('#add-marker').click(trip.markerHandler.bind(trip))
   $('#submit-marker').click(trip.submitMarkerHandler.bind(trip))
   $('#cancel-marker').click(trip.cancel.bind(trip))
+
+  $('#edit-trip').click(trip.editTripHandler.bind(trip))
+  $('#update-trip').click(trip.submitTripHandler.bind(trip))
 }
 
 
