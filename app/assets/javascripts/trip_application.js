@@ -10,21 +10,18 @@ var initMap = function(){
     new TripModel(map)
   )
 
-  if (id) {
-    loadPings(id, map, trip.model.pings)
-  }
-
   if (pings) {
     trip.model.loadPingsList()
     trip.addPolyline()
   }
 
   trip.view.showAdd()
+  trip.view.showAddMarker()
 
   $('#add-ping').click(trip.pingHandler.bind(trip))
-
-  $('#submit-pings').click(trip.submitHandler.bind(trip))
-
+  $('#submit-pings').click(trip.submitPingsHandler.bind(trip))
+  $('#add-marker').click(trip.markerHandler.bind(trip))
+  $('#submit-marker').click(trip.submitMarkerHandler.bind(trip))
 }
 
 

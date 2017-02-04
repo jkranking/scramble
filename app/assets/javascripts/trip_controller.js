@@ -40,10 +40,8 @@ TripController.prototype.pingHandler = function(event) {
   this.view.showSubmit()
 }
 
-TripController.prototype.submitHandler = function(event) {
+TripController.prototype.submitPingsHandler = function(event) {
   event.preventDefault()
-  console.log(this.model.pings)
-  console.log(this.model.pings[1].getPosition().lat())
   this.model.updateCenter()
   var name = $('#trip_name').val()
 
@@ -53,7 +51,7 @@ TripController.prototype.submitHandler = function(event) {
                   longitude: this.model.center_lng,
                   zoom: this.model.zoom,
                   name: name},
-            pings: this.model.pings,
+            pings: this.model.simplePings(),
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(response){
     alert('trip saved!')
@@ -63,5 +61,38 @@ TripController.prototype.submitHandler = function(event) {
 
   google.maps.event.removeListener(pingListener);
   this.view.showAdd()
+}
+
+TripController.prototype.markerHandler = function(event) {
+  event.preventDefault()
+  var markers = this.model.markers
+
+  google.maps.event.addListenerOnce(this.model.map, 'click', function (event) {
+    var coordinates = event.latLng
+    var marker = newMarker({lat: coordinates.lat(), lng: coordinates.lng()}, this)
+    markers.push(marker)
+  })
+  this.view.showSubmitMarker()
+}
+
+TripController.prototype.submitMarkerHandler = function(event) {
+  event.preventDefault()
+  var id = window.trip.id
+  var marker = this.model.markers[0].getPosition()
+  var note = $('#new-note').val()
+  console.log($('#new-note').val())
+  $.post({
+    url: "/trips/" + id + "/markers",
+    data: {marker: {lat: marker.lat(),
+                  lng: marker.lng(),
+                  note: note},
+            AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
+  }).done(function(response){
+
+    alert('note saved!')
+  }).fail(function(){
+    alert('something went wrong!')
+  })
+
 }
 
