@@ -12,7 +12,7 @@ TripController.prototype.addPolyline = function(){
   var polyline = new google.maps.Polyline({
     path: polyPings,
     geodesic: true,
-    strokeColor: '#FF0000',
+    strokeColor: 'blue',
     strokeOpacity: 1.0,
     strokeWeight: 2
   });
