@@ -13,10 +13,6 @@ RSpec.describe "Routing to users", type: :routing do
     expect(delete: "/users/sign_out").to route_to("devise/sessions#destroy")
   end
 
-
-
-
-
   it 'routes get /users/password/new to devise/passwords#new' do
     expect(get: "/users/password/new").to route_to("devise/passwords#new")
   end
@@ -32,8 +28,6 @@ RSpec.describe "Routing to users", type: :routing do
   it 'routes post /users/password to devise/passwords#create' do
     expect(post: "/users/password").to route_to("devise/passwords#create")
   end
-
-
 
   it 'routes get /users/cancel to users/registrations#cancel' do
     expect(get: "/users/cancel").to route_to("users/registrations#cancel")
@@ -59,7 +53,7 @@ RSpec.describe "Routing to users", type: :routing do
     expect(post: "/users").to route_to("users/registrations#create")
   end
 
-  it 'routes get /users/1 to users#show' do
+  it 'routes get /users/1 to users/users#show' do
     expect(get: "/users/1").to route_to("users/users#show", id:"1")
   end
 end
