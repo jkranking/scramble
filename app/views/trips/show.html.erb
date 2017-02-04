@@ -2,6 +2,7 @@
 
 <script type="text/javascript">
   var trip = <%==  @trip.to_json %>;
+  var pings = <%==  @trip.pings.to_json %>;
 </script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['maps_key']%>&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&callback=initMap"></script>
