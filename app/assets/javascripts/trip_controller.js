@@ -25,10 +25,13 @@ TripController.prototype.pingHandler = function(event) {
   event.preventDefault()
   // pingListener is global
   var pings = this.model.pings
+  var that = this
+
   pingListener = google.maps.event.addListener(this.model.map, 'click', function (event) {
     var coordinates = event.latLng
     newPing({lat: coordinates.lat(), lng: coordinates.lng()}, this)
     pings.push(new PingModel({lat: coordinates.lat(), lng: coordinates.lng()}))
+    that.addPolyline()
   })
   this.view.showSubmit()
 }
