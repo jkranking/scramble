@@ -8,7 +8,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    if pings.length > 1
+    if pings.to_unsafe_hash.count > 1
       @trip = current_user.trips.create(trip_params)
       Ping.create_multiple_pings(@trip, pings)
       redirect_to trips_path
