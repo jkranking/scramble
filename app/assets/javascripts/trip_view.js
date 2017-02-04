@@ -14,4 +14,3 @@ TripView.prototype.showAdd = function(){
   $('#submit-pings').hide()
   $('#add-ping').show()
 }
-
