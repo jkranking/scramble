@@ -3,6 +3,21 @@ function TripController(view, model){
   this.model = model
 }
 
+TripController.prototype.addPolyline = function(){
+
+    // var polyline = new google.maps.Polyline({
+    //   path: this.model.pings,
+    //   geodesic: true,
+    //   strokeColor: '#FF0000',
+    //   strokeOpacity: 1.0,
+    //   strokeWeight: 2
+    // });
+
+    // polyline.setMap(map);
+
+}
+
+
 TripController.prototype.pingHandler = function(event) {
   event.preventDefault()
   // pingListener is global

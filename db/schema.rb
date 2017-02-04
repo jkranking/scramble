@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203191603) do
+ActiveRecord::Schema.define(version: 20170204002416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "pings", force: :cascade do |t|
     t.decimal  "lat",        null: false
-    t.decimal  "long",       null: false
+    t.decimal  "lng",        null: false
     t.integer  "trip_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

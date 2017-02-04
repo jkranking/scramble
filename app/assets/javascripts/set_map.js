@@ -1,10 +1,10 @@
-var loadPings = function(id, map){
+var loadPings = function(id, map, pings){
   $.get({
     url: "/get_pings",
     data: {id: id}
   }).done(function(response){
     response.forEach(function(ping){
-      newPing({lat: Number(ping.lat), lng: Number(ping.long)}, map)
+      newPing({lat: Number(ping.lat), lng: Number(ping.lng)}, map)
     })
   })
 }
