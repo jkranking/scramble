@@ -5,11 +5,14 @@ function TripController(view, model){
 
 TripController.prototype.addPolyline = function(){
   var polyPings = []
+
+  if (this.model.polyline) {  this.model.polyline.setMap(null) }
+    //add mouseUp listener
   this.model.pings.forEach(function(ping){
-    polyPings.push({lat: Number(ping.lat), lng: Number(ping.lng)})
+    polyPings.push({lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())})
   })
 
-  var polyline = new google.maps.Polyline({
+  this.model.polyline = new google.maps.Polyline({
     path: polyPings,
     geodesic: true,
     strokeColor: 'blue',
@@ -17,7 +20,7 @@ TripController.prototype.addPolyline = function(){
     strokeWeight: 2
   });
 
-  polyline.setMap(this.model.map)
+  this.model.polyline.setMap(this.model.map)
 }
 
 
@@ -29,8 +32,8 @@ TripController.prototype.pingHandler = function(event) {
 
   pingListener = google.maps.event.addListener(this.model.map, 'click', function (event) {
     var coordinates = event.latLng
-    newPing({lat: coordinates.lat(), lng: coordinates.lng()}, this)
-    pings.push(new PingModel({lat: coordinates.lat(), lng: coordinates.lng()}))
+    var ping = newPing({lat: coordinates.lat(), lng: coordinates.lng()}, this)
+    pings.push(ping)
     that.addPolyline()
   })
   this.view.showSubmit()
@@ -38,7 +41,8 @@ TripController.prototype.pingHandler = function(event) {
 
 TripController.prototype.submitHandler = function(event) {
   event.preventDefault()
-
+  console.log(this.model.pings)
+  console.log(this.model.pings[1].getPosition().lat())
   this.model.updateCenter()
   var name = $('#trip_name').val()
 
