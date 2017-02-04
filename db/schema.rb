@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170204002416) do
+ActiveRecord::Schema.define(version: 20170204025007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "markers", force: :cascade do |t|
+    t.integer  "trip_id",    null: false
+    t.decimal  "lat",        null: false
+    t.decimal  "lng",        null: false
+    t.text     "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "pings", force: :cascade do |t|
     t.decimal  "lat",        null: false
