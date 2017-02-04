@@ -32,7 +32,7 @@ TripController.prototype.submitHandler = function(event) {
   }).done(function(response){
     alert('trip saved!')
   }).fail(function(){
-    alert('cannot save trip without pings!')
+    alert('must have at least two pings to save!')
   })
 
   google.maps.event.removeListener(pingListener);
