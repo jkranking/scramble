@@ -1,6 +1,7 @@
 var initMap = function(){
   var id = window.trip.id
   var pings = window.pings
+  var markers = window.markers
 
   map = setMap()
   searchBox(map)
