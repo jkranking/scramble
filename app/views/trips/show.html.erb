@@ -1,4 +1,5 @@
 <div id="map" class="our-map"></div>
+<div id="elevation_chart"></div>
 
 <form>
   <button id="add-marker" name="add_marker">Add A Note</button>
@@ -26,9 +27,12 @@
 </div>
 
 <script type="text/javascript">
+
   var trip = <%==  @trip.to_json %>;
   var pings = <%==  @trip.pings.to_json %>;
   var markers = <%==  @trip.markers.to_json %>;
 </script>
 
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&callback=initMap"></script>
+<script>google.load('visualization', '1', {packages: ['columnchart']})</script>
