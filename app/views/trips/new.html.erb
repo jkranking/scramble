@@ -4,6 +4,7 @@
 <% end %>
 
 </form>
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
 <div id="map" class="our-map"></div>
 
 <form>
@@ -14,7 +15,7 @@
   <button id="submit-pings" name="submit_ping">Submit Pings</button>
 </form>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&libraries=places&callback=initMap"></script>
 
 <script type="text/javascript">
   var trip = <%== {"latitude":"35.6550645689539", "longitude":"-122.958984375", "zoom":"4"}.to_json %>;
