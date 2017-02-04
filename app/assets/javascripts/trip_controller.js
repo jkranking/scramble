@@ -3,14 +3,35 @@ function TripController(view, model){
   this.model = model
 }
 
+TripController.prototype.addPolyline = function(){
+  var polyPings = []
+  this.model.pings.forEach(function(ping){
+    polyPings.push({lat: Number(ping.lat), lng: Number(ping.lng)})
+  })
+
+  var polyline = new google.maps.Polyline({
+    path: polyPings,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+
+  polyline.setMap(this.model.map)
+}
+
+
 TripController.prototype.pingHandler = function(event) {
   event.preventDefault()
   // pingListener is global
   var pings = this.model.pings
+  var that = this
+
   pingListener = google.maps.event.addListener(this.model.map, 'click', function (event) {
     var coordinates = event.latLng
     newPing({lat: coordinates.lat(), lng: coordinates.lng()}, this)
     pings.push(new PingModel({lat: coordinates.lat(), lng: coordinates.lng()}))
+    that.addPolyline()
   })
   this.view.showSubmit()
 }
