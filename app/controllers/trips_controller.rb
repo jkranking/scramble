@@ -8,12 +8,16 @@ class TripsController < ApplicationController
   end
 
   def create
-    if pings.to_unsafe_hash.count > 1
+    if pings.to_unsafe_hash.count > 1 && user_signed_in?
       @trip = current_user.trips.create(trip_params)
       Ping.create_multiple_pings(@trip, pings)
-      redirect_to trips_path
+      respond_to do |format|
+        format.json { render json: @trip }
+      end
     else
-      status 402
+      respond_to do |format|
+        format.json { render :json => { :error_message => 'not enough pings or not signed in' }, :status => 403 }
+      end
     end
   end
 
