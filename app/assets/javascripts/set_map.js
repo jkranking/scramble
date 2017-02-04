@@ -5,6 +5,7 @@ var setMap = function() {
 
   return new google.maps.Map(document.getElementById('map'), {
     zoom: zoom,
-    center: coordinates
+    center: coordinates,
+    mapTypeId: 'terrain'
   });
 }
