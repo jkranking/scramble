@@ -16,7 +16,10 @@
   <ul id="note-container" style="list-style-type: none;">
     <% unless @trip.markers.empty? %>
       <% @trip.markers.each_with_index do |marker, i| %>
-        <li class="marker" id = "marker-<%=marker.id%>"><%= i + 1%>. <%= marker.note %><br> lat: <%= marker.lat %><br> lng: <%= marker.lng %></li>
+        <b><li class="marker" id = "marker-<%=marker.id%>"><%= i + 1%>.</b>
+          <%= marker.note %>
+          <blockquote class="blockquote">lat: <%= marker.lat %><br>
+          lng: <%= marker.lng %></blockquote></li>
       <% end %>
     <% else %>
       You Have No Notes For This Trip.
