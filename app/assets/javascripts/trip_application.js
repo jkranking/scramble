@@ -31,7 +31,7 @@ var initMap = function(){
   $('#cancel-marker').click(trip.cancel.bind(trip))
 
   $('#edit-trip').click(trip.editTripHandler.bind(trip))
-  $('#update-trip').click(trip.submitTripHandler.bind(trip))
+  $('#update-trip').click(trip.updateTripHandler.bind(trip))
 }
 
 

@@ -32,6 +32,8 @@ class TripsController < ApplicationController
   def update
     @trip = Trip.find(params[:id])
     @trip.update(trip_params)
+    @trip.pings.destroy_all
+    Ping.create_multiple_pings(@trip, pings)
   end
 
   def get_pings

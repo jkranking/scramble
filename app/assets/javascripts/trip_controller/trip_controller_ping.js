@@ -74,3 +74,38 @@ TripController.prototype.pingHandler = function(event) {
   })
   this.view.showSubmit()
 }
+
+TripController.prototype.editTripHandler = function(event) {
+  event.preventDefault()
+  var that = this
+
+  this.model.pings.forEach(function(ping){
+    ping.setDraggable(true);
+    ping.addListener('drag', that.addPolyline.bind(that));
+  })
+}
+
+TripController.prototype.updateTripHandler = function(event) {
+  event.preventDefault()
+  this.model.updateCenter()
+  //var name = $('#trip_name').val() //name update is not yet a featr
+
+  $.ajax({
+    type: 'PUT',
+    url: "/trips/" + window.trip.id,
+    data: {trip: {latitude: this.model.center_lat,
+                  longitude: this.model.center_lng,
+                  zoom: this.model.zoom},
+            pings: this.model.simplePings(),
+            AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
+  }).done(function(updated_trip){
+    alert('trip updated!')
+  }).fail(function(){
+    alert('something went wrong!')
+  })
+
+  this.model.pings.forEach(function(ping){
+    ping.setDraggable(false);
+  }.bind(this))
+
+}
