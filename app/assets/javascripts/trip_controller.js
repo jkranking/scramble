@@ -4,17 +4,20 @@ function TripController(view, model){
 }
 
 TripController.prototype.addPolyline = function(){
+  var polyPings = []
+  this.model.pings.forEach(function(ping){
+    polyPings.push({lat: Number(ping.lat), lng: Number(ping.lng)})
+  })
 
-    // var polyline = new google.maps.Polyline({
-    //   path: this.model.pings,
-    //   geodesic: true,
-    //   strokeColor: '#FF0000',
-    //   strokeOpacity: 1.0,
-    //   strokeWeight: 2
-    // });
+  var polyline = new google.maps.Polyline({
+    path: polyPings,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
 
-    // polyline.setMap(map);
-
+  polyline.setMap(this.model.map)
 }
 
 

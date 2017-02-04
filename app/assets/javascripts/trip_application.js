@@ -1,5 +1,6 @@
 var initMap = function(){
   var id = window.trip.id
+  var pings = window.pings
 
   map = setMap()
 
@@ -12,7 +13,11 @@ var initMap = function(){
     loadPings(id, map, trip.model.pings)
   }
 
-  trip.model.loadPings()
+  if (pings) {
+    trip.model.loadPingsList()
+    trip.addPolyline()
+  }
+
   trip.view.showAdd()
 
   $('#add-ping').click(trip.pingHandler.bind(trip))

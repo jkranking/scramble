@@ -12,9 +12,9 @@ TripModel.prototype.updateCenter = function(){
   this.zoom = this.map.getZoom()
 }
 
-TripModel.prototype.loadPings = function(){
+TripModel.prototype.loadPingsList = function(){
   window.pings.forEach(function(ping){
-    this.pings.push(ping)
+    this.pings.push(new PingModel(ping))
   }.bind(this))
 }
 
