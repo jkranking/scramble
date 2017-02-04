@@ -9,4 +9,6 @@ RSpec.describe Trip, type: :model do
   it { is_expected.to validate_numericality_of :latitude }
   it { is_expected.to validate_numericality_of :longitude }
   it { is_expected.to validate_numericality_of :user_id }
+  it { is_expected.to have_many :markers }
+  it { is_expected.to have_many :pings }
 end
