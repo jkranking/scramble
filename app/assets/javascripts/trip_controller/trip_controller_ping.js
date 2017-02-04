@@ -71,6 +71,14 @@ TripController.prototype.pingHandler = function(event) {
     pings.push(ping)
     ping.addListener('drag', that.addPolyline.bind(that));
     that.addPolyline()
+
+    google.maps.event.addListener(ping, "rightclick", function (point) {
+       this.setMap(null);
+       var index = that.model.pings.indexOf(this)
+       that.model.pings.splice(index, 1)
+       that.addPolyline()
+      });
+
   })
   this.view.showSubmit()
 }
@@ -82,15 +90,22 @@ TripController.prototype.editTripHandler = function(event) {
   this.model.pings.forEach(function(ping){
     ping.setDraggable(true);
     ping.addListener('drag', that.addPolyline.bind(that));
+    google.maps.event.addListener(ping, "rightclick", function (point) {
+       this.setMap(null);
+       var index = that.model.pings.indexOf(this)
+       that.model.pings.splice(index, 1)
+       that.addPolyline()
+      });
   })
 
   this.pingHandler(event)
+  this.view.showUpdateTrip()
 }
 
 TripController.prototype.updateTripHandler = function(event) {
   event.preventDefault()
   this.model.updateCenter()
-  //var name = $('#trip_name').val() //name update is not yet a featr
+  //var name = $('#trip_name').val() //name update is not yet a feature
 
   $.ajax({
     type: 'PUT',
@@ -106,9 +121,13 @@ TripController.prototype.updateTripHandler = function(event) {
     alert('something went wrong!')
   })
 
-  google.maps.event.removeListener(pingListener);
+  this.view.showAddMarkerAndEditTrip()
+
+  var thing = $._data($(google.maps.event).get(0), "events")
+  console.log('event', thing)
 
   this.model.pings.forEach(function(ping){
+    google.maps.event.clearInstanceListeners(ping)
     ping.setDraggable(false);
   }.bind(this))
 

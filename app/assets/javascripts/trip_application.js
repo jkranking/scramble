@@ -21,7 +21,7 @@ var initMap = function(){
   }
 
   trip.view.showAdd()
-  trip.view.showAddMarker()
+  trip.view.showAddMarkerAndEditTrip()
 
   $('#add-ping').click(trip.pingHandler.bind(trip))
   $('#submit-pings').click(trip.submitPingsHandler.bind(trip))

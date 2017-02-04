@@ -36,7 +36,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
 
   ).done(function(response){
     $('#note-container').append('<li>' + marker.getLabel() + '. ' + note + '</li>')
-    controller.view.showAddMarker()
+    controller.view.showAddMarkerAndEditTrip()
     alert('note saved!')
   }
 
@@ -50,7 +50,7 @@ TripController.prototype.cancel = function(event) {
   event.preventDefault()
 
   google.maps.event.removeListener(submitMarkerListener)
-  this.view.showAddMarker()
+  this.view.showAddMarkerAndEditTrip()
   if (this.clicked) {
     var marker = this.model.markers.pop() //remove the placed marker
     marker.setMap(null)
