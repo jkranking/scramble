@@ -8,9 +8,23 @@
   <button id="submit-marker" name="submit_marker">Save Note</button>
 </form>
 
+
+<div class="container">
+  <ul id="note-container">
+    <% unless @trip.markers.empty? %>
+      <% @trip.markers.each_with_index do |marker, i| %>
+        <li class="marker" id = "marker-<%=marker.id%>"><%= i + 1%>. <%= marker.note %></li>
+      <% end %>
+    <% else %>
+      You Have No Notes For This Trip.
+    <% end %>
+  </ul>
+</div>
+
 <script type="text/javascript">
   var trip = <%==  @trip.to_json %>;
   var pings = <%==  @trip.pings.to_json %>;
+  var markers = <%==  @trip.markers.to_json %>;
 </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&callback=initMap"></script>

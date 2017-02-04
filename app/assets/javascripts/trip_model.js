@@ -27,6 +27,12 @@ TripModel.prototype.loadPingsList = function(){
   }.bind(this))
 }
 
+TripModel.prototype.loadMarkersList = function(){
+  window.markers.forEach(function(marker){
+    this.markers.push(newMarker({lat: Number(marker.lat), lng: Number(marker.lng)}, this.map))
+  }.bind(this))
+}
+
 function PingModel(coordinates){
   this.lat = coordinates.lat
   this.lng = coordinates.lng

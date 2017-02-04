@@ -18,16 +18,17 @@ TripView.prototype.showAdd = function(){
 TripView.prototype.showSubmitMarker = function(){
   $('#add-marker').hide()
   $('#submit-marker').show()
-  $('.jumbotron').append(noteForm())
+  $(noteForm()).insertAfter($('#add-marker'))
 }
 
 TripView.prototype.showAddMarker = function(){
   $('#submit-marker').hide()
   $('#add-marker').show()
+  $('#note-form').remove()
 }
 
 function noteForm(){
-  return '<div class="form-group">' +
+  return '<div class="form-group" id="note-form">' +
              '<label for="note">Note:</label>' +
              '<textarea class="form-control" rows="5" id="new-note"></textarea>' +
          '</div>'

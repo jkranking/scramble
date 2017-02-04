@@ -15,6 +15,10 @@ var initMap = function(){
     trip.addPolyline()
   }
 
+  if (markers) {
+    trip.model.loadMarkersList()
+  }
+
   trip.view.showAdd()
   trip.view.showAddMarker()
 
