@@ -23,9 +23,21 @@ function PingModel(coordinates){
   this.lng = coordinates.lng
 }
 
+
 newPing = function(location, map){
+  var circle ={
+    path: google.maps.SymbolPath.CIRCLE,
+    fillColor: 'red',
+    fillOpacity: .4,
+    scale: 3.5,
+    strokeColor: 'white',
+    strokeWeight: 1
+  };
+
   return new google.maps.Marker({
     position: location,
-    map: map
+    map: map,
+    icon: circle,
+    draggable: true // this lets you drag the pings but doesn't redraw polyline
   });
 }
