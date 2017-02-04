@@ -34,6 +34,7 @@ TripController.prototype.pingHandler = function(event) {
     var coordinates = event.latLng
     var ping = newPing({lat: coordinates.lat(), lng: coordinates.lng()}, this)
     pings.push(ping)
+    ping.addListener('drag', that.addPolyline.bind(that));
     that.addPolyline()
   })
   this.view.showSubmit()
