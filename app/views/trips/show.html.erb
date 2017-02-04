@@ -1,5 +1,13 @@
 <div id="map" class="our-map"></div>
 
+<form>
+  <button id="add-marker" name="add_marker">Add A Note</button>
+</form>
+
+<form>
+  <button id="submit-marker" name="submit_marker">Save Note</button>
+</form>
+
 <script type="text/javascript">
   var trip = <%==  @trip.to_json %>;
   var pings = <%==  @trip.pings.to_json %>;
