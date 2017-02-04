@@ -56,8 +56,9 @@ TripController.prototype.submitPingsHandler = function(event) {
                   name: name},
             pings: this.model.simplePings(),
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
-  }).done(function(response){
+  }).done(function(saved_trip){
     alert('trip saved!')
+    window.location.href = "/trips/" + saved_trip.id;
   }).fail(function(){
     alert('must have at least two pings to save!')
   })
