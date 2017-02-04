@@ -18,11 +18,13 @@ TripView.prototype.showAdd = function(){
 TripView.prototype.showSubmitMarker = function(){
   $('#add-marker').hide()
   $('#submit-marker').show()
+  $('#cancel-marker').show()
   $(noteForm()).insertAfter($('#add-marker'))
 }
 
 TripView.prototype.showAddMarker = function(){
   $('#submit-marker').hide()
+  $('#cancel-marker').hide()
   $('#add-marker').show()
   $('#note-form').remove()
 }

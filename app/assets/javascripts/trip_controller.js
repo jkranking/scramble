@@ -73,7 +73,8 @@ TripController.prototype.markerHandler = function(event) {
   this.clicked = false
   var that = this
 
-  google.maps.event.addListenerOnce(this.model.map, 'click', function (event) {
+  //submitMarkerListener is global so is can be removed on a cancel
+  submitMarkerListener = google.maps.event.addListenerOnce(this.model.map, 'click', function (event) {
     var coordinates = event.latLng
     var marker = newMarker({lat: coordinates.lat(), lng: coordinates.lng()}, this)
     markers.push(marker)
@@ -111,5 +112,18 @@ TripController.prototype.submitMarkerHandler = function(event) {
     alert('something went wrong!')
   })
 
+}
+
+TripController.prototype.cancel = function(event) {
+  event.preventDefault()
+
+  google.maps.event.removeListener(submitMarkerListener)
+  this.view.showAddMarker()
+  if (this.clicked) {
+    var marker = this.model.markers.pop() //remove the placed marker
+    marker.setMap(null)
+  } else {
+    this.clicked = true
+  }
 }
 
