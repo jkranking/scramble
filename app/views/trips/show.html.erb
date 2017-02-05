@@ -33,6 +33,6 @@
   var markers = <%==  @trip.markers.to_json %>;
 </script>
 
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&callback=initMap"></script>
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&callback=initMap"></script>
+

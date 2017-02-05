@@ -31,7 +31,6 @@ var initMap = function(){
   trip.model.pings.forEach(function(ping){
     path.push({lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())})
   })
-  console.log(path)
 
   var elevator = new google.maps.ElevationService;
   trip.displayPathElevation(path, elevator, map);
