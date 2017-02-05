@@ -24,15 +24,16 @@ TripController.prototype.plotElevation = function(elevations, status) {
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Sample');
         data.addColumn('number', 'Elevation');
+        // data.addColumn('number', 'Distance');
         for (var i = 0; i < elevations.length; i++) {
-          data.addRow(['', elevations[i].elevation]);
+          data.addRow(['', (elevations[i].elevation * 3.28084)]);
         }
 
         // Draw the chart using the data within its DIV.
         chart.draw(data, {
           height: 150,
           legend: 'none',
-          titleY: 'Elevation (m)'
+          titleY: 'Elevation (f)',
         });
       }
 
