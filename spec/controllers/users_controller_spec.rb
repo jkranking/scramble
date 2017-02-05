@@ -26,24 +26,24 @@ RSpec.describe Users::UsersController, type: :controller do
     end
   end
 
-  describe "#trips_index" do
-    let(:user) { create(:user) }
-    let(:trip) { create(:trip) }
-    it 'responds with a status of 200' do
-      get :trips_index, params: {id: user.id}
-      expect(response).to have_http_status 200
-    end
+  # describe "#trips_index" do
+  #   let(:user) { create(:user) }
+  #   let(:trip) { create(:trip) }
+  #   it 'responds with a status of 200' do
+  #     get :trips_index, params: {id: user.id}
+  #     expect(response).to have_http_status 200
+  #   end
 
-    it 'renders the :trips_index template' do
-      get :trips_index, params: {id: user.id}
-      expect(response).to render_template("users/trips_index.html.erb")
-    end
+  #   it 'renders the :trips_index template' do
+  #     get :trips_index, params: {id: user.id}
+  #     expect(response).to render_template("users/trips_index.html.erb")
+  #   end
 
-    it 'assigns the users trips as @trips' do
-      get :trips_index, params: {id: user.id}
-      expect(assigns(:trip)).to eq(user.trips)
-    end
-  end
+  #   it 'assigns the users trips as @trips' do
+  #     get :trips_index, params: {id: user.id}
+  #     expect(assigns(:trip)).to eq(user.trips)
+  #   end
+  # end
 end
 
 # def trips_index
