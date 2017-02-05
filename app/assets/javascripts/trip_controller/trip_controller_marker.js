@@ -39,10 +39,10 @@ TripController.prototype.submitMarkerHandler = function(event) {
     the_marker.setDraggable(false)
     var marker = the_marker
 
-    $('#note-container').append('<b><li class="marker">' + marker.getLabel() + '.</b> ' + note + '<blockquote class="blockquote">' + marker.getPosition().lat() + '<br>' + marker.getPosition().lng() + '</blockquote></li>')
+    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<blockquote class="blockquote">lat: ' + marker.getPosition().lat() + '<br>lng: ' + marker.getPosition().lng() + '</blockquote></li>')
     controller.view.showAddMarkerAndEditTrip()
 
-    var label = marker.getLabel()--
+    var label = (marker.getLabel() - 1)
 
     var content = contentString({note: note, id: response.id}, label)
 
@@ -112,6 +112,7 @@ TripController.prototype.updateMarker = function(event) {
   ).done(function(response){
     marker.setDraggable(false)
     $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label))
+    console.log('marker', $('#marker-' + marker_id).html())
     $('#marker-' + marker_id).html(replaceListItem(marker_label, note_content,  coordinates))
     alert('note updated!')
   }
