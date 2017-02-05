@@ -14,12 +14,14 @@
   </form>
 
   <form>
-    <button id="edit-trip" name="edit_trip" class="btn btn-success">Edit Trip</button>
+    <button id="edit-trip" name="edit_trip" class="btn btn-sm btn-success">Edit Trip</button>
   </form>
 
   <form>
     <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
   </form>
+
+  <h3>Trip Notes:</h3>
 
   <ul id="note-container" style="list-style-type: none;">
     <% unless @trip.markers.empty? %>
