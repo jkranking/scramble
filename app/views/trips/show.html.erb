@@ -1,37 +1,43 @@
-<div id="map" class="our-map"></div>
-<div id="elevation_chart"></div>
+<div class="col-md-3 notes-show">
+  <h3><%= @trip.name %></h3>
+  <hr>
+  <form>
+    <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
+  </form>
 
-<form>
-  <button id="add-marker" name="add_marker">Add A Note</button>
-</form>
+  <form>
+    <button id="submit-marker" name="submit_marker" class="btn btn-success">Save Note</button>
+  </form>
 
-<form>
-  <button id="submit-marker" name="submit_marker">Save Note</button>
-</form>
+  <form>
+    <button id="cancel-marker" name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
+  </form>
 
-<form>
-  <button id="cancel-marker" name="cancel_marker">Cancel Note</button>
-</form>
+  <form>
+    <button id="edit-trip" name="edit_trip" class="btn btn-success">Edit Trip</button>
+  </form>
 
-<form>
-  <button id="edit-trip" name="edit_trip">Edit Trip</button>
-</form>
+  <form>
+    <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
+  </form>
 
-<form>
-  <button id="update-trip" name="update_trip">Update Trip</button>
-</form>
-
-
-<div class="container">
-  <ul id="note-container">
+  <ul id="note-container" style="list-style-type: none;">
     <% unless @trip.markers.empty? %>
       <% @trip.ordered_markers_by_created_at.each_with_index do |marker, i| %>
-        <li class="marker" id = "marker-<%=marker.id%>"><%= i + 1%>. <%= marker.note %> lat: <%= marker.lat %>, lng: <%= marker.lng %></li>
+        <b><li class="marker" id = "marker-<%=marker.id%>"><%= i + 1%>.</b>
+          <%= marker.note %>
+          <blockquote class="blockquote">lat: <%= marker.lat %><br>
+          lng: <%= marker.lng %></blockquote></li>
       <% end %>
     <% else %>
       You Have No Notes For This Trip.
     <% end %>
   </ul>
+</div>
+
+<div class="col-md-9 maps-show">
+  <div id="map" class="our-map"></div>
+  <div id="elevation_chart"></div>
 </div>
 
 <script type="text/javascript">
@@ -41,7 +47,6 @@
   var markers = <%==  @trip.ordered_markers_by_created_at.to_json %>;
 </script>
 
-
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['']%>&callback=initMap"></script>

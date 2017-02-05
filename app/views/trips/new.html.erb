@@ -16,12 +16,9 @@
   <button id="submit-pings" name="submit_ping">Submit Pings</button>
 </form>
 
-
-
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&libraries=places&callback=initMap"></script>
-
+<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['']%>&libraries=places&callback=initMap"></script>
 
 <script type="text/javascript">
   var trip = <%== {"latitude":"35.6550645689539", "longitude":"-122.958984375", "zoom":"4"}.to_json %>;
