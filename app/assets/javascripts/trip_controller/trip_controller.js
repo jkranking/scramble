@@ -5,4 +5,3 @@ function TripController(view, model){
   this.model = model,
   this.clicked = true
 }
-
