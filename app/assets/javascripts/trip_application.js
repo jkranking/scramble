@@ -20,13 +20,7 @@ var initMap = function(){
   if (pings) {
     trip.model.loadPingsList()
     trip.addPolyline()
-
-    var path = trip.model.pings.map(function(ping){
-      return {lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())}
-    })
-
-    var elevator = new google.maps.ElevationService;
-    trip.displayPathElevation(path, elevator, map);
+    trip.setElevationGraph()
   }
 
   if (markers) {

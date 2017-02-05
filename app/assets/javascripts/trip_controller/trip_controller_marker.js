@@ -59,3 +59,18 @@ TripController.prototype.cancelNewMarker = function(event) {
     this.clicked = true
   }
 }
+
+
+TripController.prototype.editMarker = function(event) {
+  event.preventDefault()
+
+  google.maps.event.removeListener(submitMarkerListener)
+  this.view.showAddMarkerAndEditTrip()
+  if (this.clicked) {
+    var marker = this.model.markers.pop() //remove the placed marker
+    marker.setMap(null)
+    labelIndex--
+  } else {
+    this.clicked = true
+  }
+}

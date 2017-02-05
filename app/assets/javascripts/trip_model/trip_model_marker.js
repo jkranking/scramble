@@ -12,6 +12,8 @@ TripModel.prototype.loadMarkersList = function(){
       infowindow.open(map, marker);
     });
 
+
+    //alternate way of displaying the info windows
     // marker.addListener('mouseover', function() {
     //   infowindow.open(map, marker);
     // });
@@ -34,4 +36,10 @@ newMarker = function(location, map){
     label: labelIndex.toString(),
     draggable: true // this lets you drag the pings
   });
+}
+
+function contentString(marker){
+  return '<div class=info-window-content>' +
+  '<div class="note-content">' + marker.note = '</div>' +
+  '<a class="edit" href="/edit"'
 }
