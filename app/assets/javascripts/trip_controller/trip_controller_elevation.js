@@ -36,6 +36,3 @@ TripController.prototype.plotElevation = function(elevations, status) {
           titleY: 'Elevation (f)',
         });
       }
-
-
-
