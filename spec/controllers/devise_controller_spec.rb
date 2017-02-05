@@ -1,5 +1,5 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-describe TripsController do
+# describe do
 
-end
+# end
