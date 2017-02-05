@@ -6,6 +6,7 @@
 </form>
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
 <div id="map" class="our-map"></div>
+<div id="elevation_chart"></div>
 
 <form>
   <button id="add-ping" name="add_ping">Add Trail Point</button>
@@ -14,6 +15,8 @@
 <form>
   <button id="submit-pings" name="submit_ping">Submit Pings</button>
 </form>
+
+<script>google.load('visualization', '1', {packages: ['columnchart']})</script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['']%>&libraries=places&callback=initMap"></script>
 

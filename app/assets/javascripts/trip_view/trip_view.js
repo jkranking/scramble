@@ -17,16 +17,30 @@ TripView.prototype.showAdd = function(){
 
 TripView.prototype.showSubmitMarker = function(){
   $('#add-marker').hide()
+  $('#edit-trip').hide()
+  $('#update-trip').hide()
   $('#submit-marker').show()
   $('#cancel-marker').show()
   $(noteForm()).insertAfter($('#add-marker'))
 }
 
-TripView.prototype.showAddMarker = function(){
+TripView.prototype.showAddMarkerAndEditTrip = function(){
   $('#submit-marker').hide()
   $('#cancel-marker').hide()
-  $('#add-marker').show()
   $('#note-form').remove()
+  $('#update-trip').hide()
+
+  $('#add-marker').show()
+  $('#edit-trip').show()
+}
+
+TripView.prototype.showUpdateTrip = function(){
+  $('#submit-marker').hide()
+  $('#cancel-marker').hide()
+  $('#add-marker').hide()
+  $('#note-form').remove()
+  $('#edit-trip').hide()
+  $('#update-trip').show()
 }
 
 function noteForm(){

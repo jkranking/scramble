@@ -15,9 +15,18 @@ var initMap = function(){
   )
 
 
+
+
   if (pings) {
     trip.model.loadPingsList()
     trip.addPolyline()
+
+    var path = trip.model.pings.map(function(ping){
+      return {lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())}
+    })
+
+    var elevator = new google.maps.ElevationService;
+    trip.displayPathElevation(path, elevator, map);
   }
 
   if (markers) {
@@ -25,23 +34,20 @@ var initMap = function(){
   }
 
   trip.view.showAdd()
-  trip.view.showAddMarker()
+  trip.view.showAddMarkerAndEditTrip()
 
-  var path = []
-  trip.model.pings.forEach(function(ping){
-    path.push({lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())})
-  })
-  console.log(path)
 
-  var elevator = new google.maps.ElevationService;
-  trip.displayPathElevation(path, elevator, map);
 
 
   $('#add-ping').click(trip.pingHandler.bind(trip))
   $('#submit-pings').click(trip.submitPingsHandler.bind(trip))
+
   $('#add-marker').click(trip.markerHandler.bind(trip))
   $('#submit-marker').click(trip.submitMarkerHandler.bind(trip))
-  $('#cancel-marker').click(trip.cancel.bind(trip))
+  $('#cancel-marker').click(trip.cancelNewMarker.bind(trip))
+
+  $('#edit-trip').click(trip.editTripHandler.bind(trip))
+  $('#update-trip').click(trip.updateTripHandler.bind(trip))
 }
 
 

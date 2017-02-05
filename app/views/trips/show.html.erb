@@ -4,12 +4,21 @@
   <form>
     <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
   </form>
+
   <form>
     <button id="submit-marker" name="submit_marker" class="btn btn-success">Save Note</button>
   </form>
-  <br>
+
   <form>
     <button id="cancel-marker" name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
+  </form>
+
+  <form>
+    <button id="edit-trip" name="edit_trip" class="btn btn-success">Edit Trip</button>
+  </form>
+
+  <form>
+    <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
   </form>
 
   <ul id="note-container" style="list-style-type: none;">
@@ -27,10 +36,8 @@
 </div>
 
 <div class="col-md-9 maps-show">
-
   <div id="map" class="our-map"></div>
   <div id="elevation_chart"></div>
-
 </div>
 
 <script type="text/javascript">
@@ -41,4 +48,5 @@
 </script>
 
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['']%>&callback=initMap"></script>
