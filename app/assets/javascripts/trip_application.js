@@ -1,7 +1,10 @@
 var initMap = function(){
+
   var id = window.trip.id
   var pings = window.pings
   var markers = window.markers
+
+
 
   map = setMap()
   searchBox(map)
@@ -11,9 +14,19 @@ var initMap = function(){
     new TripModel(map)
   )
 
+
+
+
   if (pings) {
     trip.model.loadPingsList()
     trip.addPolyline()
+
+    var path = trip.model.pings.map(function(ping){
+      return {lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())}
+    })
+
+    var elevator = new google.maps.ElevationService;
+    trip.displayPathElevation(path, elevator, map);
   }
 
   if (markers) {
@@ -22,6 +35,9 @@ var initMap = function(){
 
   trip.view.showAdd()
   trip.view.showAddMarkerAndEditTrip()
+
+
+
 
   $('#add-ping').click(trip.pingHandler.bind(trip))
   $('#submit-pings').click(trip.submitPingsHandler.bind(trip))
