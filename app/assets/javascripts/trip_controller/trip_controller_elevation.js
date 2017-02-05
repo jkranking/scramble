@@ -39,7 +39,6 @@ TripController.prototype.plotElevation = function(elevations, status) {
 }
 
 function cumulativeElevation(elevations) {
-  console.log(elevations[250].elevation)
 
   var cumulativeGain = 0
   for (i = 0; i < elevations.length - 1; i++){
@@ -50,7 +49,22 @@ function cumulativeElevation(elevations) {
       cumulativeGain += (toElevation - fromElevation)
     }
   }
-  console.log(cumulativeGain * 3.28084)
+
+  // these should be there own functions (actually we should rethink where a lot of this goes)
+
+  var highPoint = elevations.slice().sort(function(a,b){
+    return b.elevation - a.elevation
+  })
+
+  var gain = (cumulativeGain * 3.28084).toFixed(0)
+    $("#gain").text("elevation gain: " + gain + " ft")
+
+  var start = (elevations[0].elevation * 3.28084).toFixed(0)
+    $("#starting-point").text("starting elevation: " + start + " ft")
+
+  var summit = (highPoint[0].elevation * 3.28084).toFixed(0)
+    $("#high-point").text("high point: " + summit + " ft")
+
 }
 
 
