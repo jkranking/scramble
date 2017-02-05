@@ -39,7 +39,7 @@ TripModel.prototype.calculateDistance = function(){
     var pingCoordinates = this.pings.map(function(ping){
       return {lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())}
     })
-    // console.log(pingCoordinates)
+
     var pingDistance = []
     for (i = 0; i < pingCoordinates.length - 1; i++){
       var a = new google.maps.LatLng(pingCoordinates[i].lat, pingCoordinates[i].lng)
@@ -52,17 +52,3 @@ TripModel.prototype.calculateDistance = function(){
     })
     console.log(totalDistance * 0.000621371192)
 }
-
-
-
-
-// var a = new google.maps.LatLng(46.49082901981415,-118.30078125);
-// var b = new google.maps.LatLng(47.60523713135211,-122.32177734375);
-// var distance = google.maps.geometry.spherical.computeDistanceBetween(a,b);
-
-
-
-
-
-
-
