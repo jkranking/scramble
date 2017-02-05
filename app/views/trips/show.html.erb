@@ -24,7 +24,7 @@
   <ul id="note-container" style="list-style-type: none;">
     <% unless @trip.markers.empty? %>
       <% @trip.ordered_markers_by_created_at.each_with_index do |marker, i| %>
-        <b><li class="marker" id = "marker-<%=marker.id%>"><%= i + 1%>.</b>
+        <li class="marker" id = "marker-<%=marker.id%>"><b><%= i + 1%>.</b>
           <%= marker.note %>
           <blockquote class="blockquote">lat: <%= marker.lat %><br>
           lng: <%= marker.lng %></blockquote></li>
