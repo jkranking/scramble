@@ -10,6 +10,11 @@ class MarkersController < ApplicationController
     @marker.update(marker_params)
   end
 
+  def destroy
+    @marker = Marker.find(params[:id])
+    @marker.destroy
+  end
+
   private
 
   def marker_params

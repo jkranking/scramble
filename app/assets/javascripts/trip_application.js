@@ -46,6 +46,7 @@ var initMap = function(){
 
   $('#map').on('click', '.edit-marker', trip.editMarker.bind(trip))
   $('#map').on('click', '.update-marker', trip.updateMarker.bind(trip))
+  $('#map').on('click', '.delete-marker', trip.deleteMarker.bind(trip))
 }
 
 

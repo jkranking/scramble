@@ -8,7 +8,7 @@ TripController.prototype.markerHandler = function(event) {
   //submitMarkerListener is global so is can be removed on a cancel
   submitMarkerListener = google.maps.event.addListenerOnce(this.model.map, 'click', function (event) {
     var coordinates = event.latLng
-    var marker = newMarker({lat: coordinates.lat(), lng: coordinates.lng()}, this)
+    var marker = newMarker({lat: coordinates.lat(), lng: coordinates.lng()}, this, true)
     markers.push(marker)
     that.clicked = true
   })
@@ -35,6 +35,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
   }
 
   ).done(function(response){
+    marker.setDraggable(false)
     $('#note-container').append('<b><li class="marker">' + marker.getLabel() + '.</b> ' + note + '<blockquote class="blockquote">' + marker.getPosition().lat() + '<br>' + marker.getPosition().lng() + '</blockquote></li>')
     controller.view.showAddMarkerAndEditTrip()
     alert('note saved!')
@@ -68,6 +69,8 @@ TripController.prototype.editMarker = function(event) {
   var marker_label = marker.attr('id').match(/\d+$/)[0]
   var note_content = $('#note-content-' + marker_label).html()
   $('#note-' + marker_label).html(editNoteForm(note_content, marker_label, marker_id))
+  marker = this.model.markers[marker_label]
+  marker.setDraggable(true)
 }
 
 TripController.prototype.updateMarker = function(event) {
@@ -92,6 +95,7 @@ TripController.prototype.updateMarker = function(event) {
   }
 
   ).done(function(response){
+    marker.setDraggable(false)
     $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label))
     alert('note updated!')
   }
@@ -99,5 +103,27 @@ TripController.prototype.updateMarker = function(event) {
   ).fail(function(){
     alert('something went wrong!')
   })
-  // $('#note-' + marker_label).html(editNoteForm(note_content, marker_label, marker_id))
+}
+
+TripController.prototype.deleteMarker = function(event) {
+  event.preventDefault()
+
+  var markers = this.model.markers
+
+  var marker = $(event.target)
+  var marker_id = marker.attr('href').match(/\d+$/)[0]
+  var marker_label = marker.attr('id').match(/\d+$/)[0]
+  var note_content = $('#note-content-' + marker_label).html()
+
+  $.ajax({
+    type: 'DELETE',
+    url: "/trips/" + window.trip.id + "/markers/" + marker_id,
+  }).done(function(){
+    var marker = markers[marker_label]
+    marker.setMap(null)
+    $('#marker-' + marker_id).remove()
+    alert('deleted!')
+  }).fail(function(){
+    alert('something went wrong with the deletion!')
+  })
 }

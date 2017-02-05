@@ -1,7 +1,8 @@
 var contentString = function(marker, label){
   return '<div class=info-window-content id="note-' + label + '">' +
   '<div class="note-content" id="note-content-' + label + '">' + marker.note + '</div>' +
-    '<a id="marker-' + label + '" class="edit-marker" href="/trips/' + window.trip.id + '/markers/' + marker.id +'">Edit</a>' +
+    '<a id="edit-marker-' + label + '" class="edit-marker" href="/trips/' + window.trip.id + '/markers/' + marker.id +'">Edit</a>' +
+    '<a id="delete-marker-' + label + '" class="delete-marker" href="/trips/' + window.trip.id + '/markers/' + marker.id +'">Delete</a>' +
   '</div>'
 }
 
@@ -21,7 +22,7 @@ TripModel.prototype.loadMarkersList = function(){
       content: content
     });
 
-    var marker = newMarker({lat: Number(marker.lat), lng: Number(marker.lng)}, this.map)
+    var marker = newMarker({lat: Number(marker.lat), lng: Number(marker.lng)}, this.map, false)
 
     marker.addListener('click', function() {
       infowindow.open(map, marker);
@@ -43,12 +44,12 @@ TripModel.prototype.loadMarkersList = function(){
 
 var labelIndex = 0
 
-newMarker = function(location, map){
+newMarker = function(location, map, draggable){
   labelIndex++
   return new google.maps.Marker({
     position: location,
     map: map,
     label: labelIndex.toString(),
-    draggable: true // this lets you drag the pings
+    draggable: draggable // this lets you drag the pings
   });
 }

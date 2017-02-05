@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :trips do
-    resources :markers, only: [:create, :update, :delete]
+    resources :markers, only: [:create, :update, :destroy]
   end
   get '/get_pings' => 'trips#get_pings', defaults: { format: 'json' }
 
