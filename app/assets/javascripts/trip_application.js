@@ -42,6 +42,10 @@ var initMap = function(){
 
   $('#edit-trip').click(trip.editTripHandler.bind(trip))
   $('#update-trip').click(trip.updateTripHandler.bind(trip))
+
+
+  $('#map').on('click', '.edit-marker', trip.editMarker.bind(trip))
+  $('#map').on('click', '.update-marker', trip.updateMarker.bind(trip))
 }
 
 

@@ -63,14 +63,41 @@ TripController.prototype.cancelNewMarker = function(event) {
 
 TripController.prototype.editMarker = function(event) {
   event.preventDefault()
+  var marker = $(event.target)
+  var marker_id = marker.attr('href').match(/\d+$/)[0]
+  var marker_label = marker.attr('id').match(/\d+$/)[0]
+  var note_content = $('#note-content-' + marker_label).html()
+  $('#note-' + marker_label).html(editNoteForm(note_content, marker_label, marker_id))
+}
 
-  google.maps.event.removeListener(submitMarkerListener)
-  this.view.showAddMarkerAndEditTrip()
-  if (this.clicked) {
-    var marker = this.model.markers.pop() //remove the placed marker
-    marker.setMap(null)
-    labelIndex--
-  } else {
-    this.clicked = true
+TripController.prototype.updateMarker = function(event) {
+  event.preventDefault()
+  var marker = $(event.target)
+  var marker_id = marker.attr('href').match(/\d+$/)[0]
+  var marker_label = marker.attr('id').match(/\d+$/)[0]
+
+  marker = this.model.markers[marker_label]
+  var coordinates = marker.getPosition()
+  console.log('label', marker_label)
+  var note_content = $('#update-note-' + marker_label).val()
+  console.log('note', note_content)
+
+  $.ajax({
+    type: 'PUT',
+    url: "/trips/" + window.trip.id + "/markers/" + marker_id,
+    data: {marker: {note: note_content,
+                  lat: coordinates.lat(),
+                  lng: coordinates.lng()},
+            AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }
+
+  ).done(function(response){
+    $('#note-container').append('<li>' + marker.getLabel() + '. ' + note + '</li>')
+    alert('note updated!')
+  }
+
+  ).fail(function(){
+    alert('something went wrong!')
+  })
+  // $('#note-' + marker_label).html(editNoteForm(note_content, marker_label, marker_id))
 }

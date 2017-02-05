@@ -5,6 +5,11 @@ class MarkersController < ApplicationController
     redirect_to trip_path(@trip)
   end
 
+  def update
+    @marker = Marker.find(params[:id])
+    @marker.update(marker_params)
+  end
+
   private
 
   def marker_params
