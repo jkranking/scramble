@@ -7,7 +7,7 @@
         <%= link_to trip.try(:name), trip_path(trip) %>
       </div>
       <div class="map-pic">
-        <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= trip.latitude %>,<%= trip.longitude%>&zoom=<%= trip.zoom %>&size=600x300&maptype=terrain&path=geodesic:true|<%=static_path(trip)%>&key=">
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= trip.latitude %>,<%= trip.longitude%>&zoom=<%= trip.zoom %>&size=600x300&maptype=terrain&path=geodesic:true|<%=static_path(trip)%>&key=<%=ENV['STATIC_MAPS_KEY']%>">
       </div>
     </li>
   <% end %>
