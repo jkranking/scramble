@@ -39,8 +39,10 @@ TripController.prototype.pingHandler = function(event) {
     pings.push(ping)
     ping.addListener('drag', that.addPolyline.bind(that));
     ping.addListener('dragend', that.setElevationGraph.bind(that));
+    ping.addListener('dragend', that.model.calculateDistance.bind(that.model))
     that.addPolyline()
     that.setElevationGraph()
+    that.model.calculateDistance()
 
     google.maps.event.addListener(ping, "rightclick", function (point) {
        this.setMap(null);
@@ -48,6 +50,7 @@ TripController.prototype.pingHandler = function(event) {
        that.model.pings.splice(index, 1)
        that.addPolyline()
        that.setElevationGraph()
+       that.model.calculateDistance()
       });
 
   })
@@ -86,12 +89,14 @@ TripController.prototype.editTripHandler = function(event) {
     ping.setDraggable(true);
     ping.addListener('drag', that.addPolyline.bind(that));
     ping.addListener('dragend', that.setElevationGraph.bind(that));
+    ping.addListener('dragend', that.model.calculateDistance.bind(that.model))
     google.maps.event.addListener(ping, "rightclick", function (point) {
        this.setMap(null);
        var index = that.model.pings.indexOf(this)
        that.model.pings.splice(index, 1)
        that.addPolyline()
        that.setElevationGraph();
+       trip.model.calculateDistance()
       });
   })
 

@@ -40,6 +40,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
     var marker = the_marker
 
     $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<blockquote class="blockquote">lat: ' + marker.getPosition().lat() + '<br>lng: ' + marker.getPosition().lng() + '</blockquote></li>')
+
     controller.view.showAddMarkerAndEditTrip()
 
     var label = (marker.getLabel() - 1)

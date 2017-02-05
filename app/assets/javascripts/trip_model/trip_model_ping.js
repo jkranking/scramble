@@ -36,6 +36,7 @@ newPing = function(location, map, draggable){
 }
 
 TripModel.prototype.calculateDistance = function(){
+  if (this.pings.length <= 1){return}
   var pingCoordinates = this.pings.map(function(ping){
     return {lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())}
   })
