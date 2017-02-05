@@ -49,3 +49,27 @@ function noteForm(){
              '<textarea class="form-control" rows="5" id="new-note"></textarea>' +
          '</div>'
 }
+
+TripView.prototype.showElevationChart = function(chart, data){
+  chart.draw(data, {
+    height: 150,
+    legend: 'none',
+    titleY: 'Elevation (f)',
+  });
+}
+
+TripView.prototype.showElevation = function(cumulativeGain, elevations){
+  var gain = (cumulativeGain * 3.28084).toFixed(0)
+  $("#gain").text("elevation gain: " + gain + " ft")
+
+  var start = (elevations[0].elevation * 3.28084).toFixed(0)
+  $("#starting-point").text("starting elevation: " + start + " ft")
+
+  var highPoint = elevations.slice().sort(function(a,b){
+    return b.elevation - a.elevation
+  })
+
+  var summit = (highPoint[0].elevation * 3.28084).toFixed(0)
+  $("#high-point").text("high point: " + summit + " ft")
+}
+
