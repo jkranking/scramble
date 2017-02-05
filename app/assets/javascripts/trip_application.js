@@ -4,8 +4,6 @@ var initMap = function(){
   var pings = window.pings
   var markers = window.markers
 
-
-
   map = setMap()
   searchBox(map)
 
@@ -13,9 +11,6 @@ var initMap = function(){
     new TripView,
     new TripModel(map)
   )
-
-
-
 
   if (pings) {
     trip.model.loadPingsList()
@@ -30,8 +25,9 @@ var initMap = function(){
   trip.view.showAdd()
   trip.view.showAddMarkerAndEditTrip()
 
-
-
+if (pings) {
+  trip.model.calculateDistance()
+}
 
   $('#add-ping').click(trip.pingHandler.bind(trip))
   $('#submit-pings').click(trip.submitPingsHandler.bind(trip))
