@@ -1,11 +1,20 @@
-<ul>
+<div class="list-group">
+  <h1>My Trips</h1>
+  <hr>
   <% @trips.each do |trip| %>
-    <li>
-      <div class="trip-link">
-        <%= link_to trip.try(:name), trip_path(trip) %></div>
-      <div class="map-pic">
-
-      <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= trip.latitude %>,<%= trip.longitude%>&zoom=<%= trip.zoom %>&size=600x300&maptype=terrain&path=geodesic:true|<%=static_path(trip)%>&key="></div>
-    </li>
+    <%= link_to trip_path(trip) do %>
+      <ul style="list-style-type: none;">
+        <li class="list-item">
+          <div class="map-pic col-md-10">
+            <div class="col-md-3">
+              <h4><%= trip.name %></h4>
+            </div>
+            <div class="col-md-8">
+              <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= trip.latitude %>,<%= trip.longitude%>&zoom=<%= trip.zoom %>&size=600x300&maptype=terrain&path=geodesic:true|<%=static_path(trip)%>&key=">
+            </div>
+          </div>
+        </li>
+      </ul>
+    <% end %>
   <% end %>
-</ul>
+</div>
