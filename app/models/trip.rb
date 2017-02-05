@@ -5,7 +5,7 @@ class Trip < ApplicationRecord
   has_many :markers
 
   def ordered_markers_by_created_at
-    markers.order("created_at DESC")
+    markers.order("created_at ASC")
   end
 
   validates_presence_of :latitude, :longitude, :user_id, :zoom, :name

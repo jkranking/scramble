@@ -23,6 +23,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
   var controller = this
   var id = window.trip.id
   var marker = this.model.markers.slice(-1)[0]
+  var the_marker = marker
   var coordinates = marker.getPosition()
   var note = $('#new-note').val()
 
@@ -35,9 +36,24 @@ TripController.prototype.submitMarkerHandler = function(event) {
   }
 
   ).done(function(response){
-    marker.setDraggable(false)
-    $('#note-container').append('<b><li class="marker">' + marker.getLabel() + '.</b> ' + note + '<blockquote class="blockquote">' + marker.getPosition().lat() + '<br>' + marker.getPosition().lng() + '</blockquote></li>')
+    the_marker.setDraggable(false)
+    var marker = the_marker
+
+    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<blockquote class="blockquote">lat: ' + marker.getPosition().lat() + '<br>lng: ' + marker.getPosition().lng() + '</blockquote></li>')
+
     controller.view.showAddMarkerAndEditTrip()
+
+    var label = (marker.getLabel() - 1)
+
+    var content = contentString({note: note, id: response.id}, label)
+
+    var infowindow = new google.maps.InfoWindow({
+      content: content
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
     alert('note saved!')
   }
 
@@ -97,6 +113,7 @@ TripController.prototype.updateMarker = function(event) {
   ).done(function(response){
     marker.setDraggable(false)
     $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label))
+    console.log('marker', $('#marker-' + marker_id).html())
     $('#marker-' + marker_id).html(replaceListItem(marker_label, note_content,  coordinates))
     alert('note updated!')
   }
