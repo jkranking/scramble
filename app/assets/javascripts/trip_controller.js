@@ -103,8 +103,13 @@ TripController.prototype.submitMarkerHandler = function(event) {
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }
 
+  // <b><li class="marker" id = "marker-<%=marker.id%>"><%= i + 1%>.</b>
+  //   <%= marker.note %>
+  //   <blockquote class="blockquote">lat: <%= marker.lat %><br>
+  //   lng: <%= marker.lng %></blockquote></li>
+
   ).done(function(response){
-    $('#note-container').append('<li>' + marker.getLabel() + '. ' + note + '</li>')
+    $('#note-container').append('<b><li class="marker">' + marker.getLabel() + '.</b> ' + note + '<blockquote class="blockquote">' + marker.lat + '<br>' + marker.lng + '</blockquote></li>')
     controller.view.showAddMarker()
     alert('note saved!')
   }
@@ -166,14 +171,3 @@ TripController.prototype.plotElevation = function(elevations, status) {
           titleY: 'Elevation (m)'
         });
       }
-
-
-
-
-
-
-
-
-
-
-
