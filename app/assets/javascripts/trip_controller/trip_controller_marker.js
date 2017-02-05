@@ -35,7 +35,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
   }
 
   ).done(function(response){
-    $('#note-container').append('<li>' + marker.getLabel() + '. ' + note + '</li>')
+    $('#note-container').append('<b><li class="marker">' + marker.getLabel() + '.</b> ' + note + '<blockquote class="blockquote">' + marker.getPosition().lat() + '<br>' + marker.getPosition().lng() + '</blockquote></li>')
     controller.view.showAddMarkerAndEditTrip()
     alert('note saved!')
   }
