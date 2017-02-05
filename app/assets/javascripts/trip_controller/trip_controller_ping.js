@@ -1,10 +1,9 @@
 TripController.prototype.addPolyline = function(){
-  var polyPings = []
 
   if (this.model.polyline) {  this.model.polyline.setMap(null) }
     //add mouseUp listener
-  this.model.pings.forEach(function(ping){
-    polyPings.push({lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())})
+  var polyPings = this.model.pings.map(function(ping){
+    return {lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())}
   })
 
   this.model.polyline = new google.maps.Polyline({
@@ -17,7 +16,16 @@ TripController.prototype.addPolyline = function(){
 
   this.model.polyline.setMap(this.model.map)
 }
+TripController.prototype.setElevationGraph = function(){
+  if (this.model.pings.length > 1) {
+    var polyPings = this.model.pings.map(function(ping){
+      return {lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())}
+    })
 
+    var elevator = new google.maps.ElevationService;
+    this.displayPathElevation(polyPings, elevator, map)
+  }
+}
 
 TripController.prototype.pingHandler = function(event) {
   event.preventDefault()
@@ -30,7 +38,18 @@ TripController.prototype.pingHandler = function(event) {
     var ping = newPing({lat: coordinates.lat(), lng: coordinates.lng()}, this, true)
     pings.push(ping)
     ping.addListener('drag', that.addPolyline.bind(that));
+    ping.addListener('dragend', that.setElevationGraph.bind(that));
     that.addPolyline()
+    that.setElevationGraph()
+
+    google.maps.event.addListener(ping, "rightclick", function (point) {
+       this.setMap(null);
+       var index = that.model.pings.indexOf(this)
+       that.model.pings.splice(index, 1)
+       that.addPolyline()
+       that.setElevationGraph()
+      });
+
   })
   this.view.showSubmit()
 }
@@ -59,30 +78,6 @@ TripController.prototype.submitPingsHandler = function(event) {
   this.view.showAdd()
 }
 
-TripController.prototype.pingHandler = function(event) {
-  event.preventDefault()
-  // pingListener is global
-  var pings = this.model.pings
-  var that = this
-
-  pingListener = google.maps.event.addListener(this.model.map, 'click', function (event) {
-    var coordinates = event.latLng
-    var ping = newPing({lat: coordinates.lat(), lng: coordinates.lng()}, this, true)
-    pings.push(ping)
-    ping.addListener('drag', that.addPolyline.bind(that));
-    that.addPolyline()
-
-    google.maps.event.addListener(ping, "rightclick", function (point) {
-       this.setMap(null);
-       var index = that.model.pings.indexOf(this)
-       that.model.pings.splice(index, 1)
-       that.addPolyline()
-      });
-
-  })
-  this.view.showSubmit()
-}
-
 TripController.prototype.editTripHandler = function(event) {
   event.preventDefault()
   var that = this
@@ -90,11 +85,13 @@ TripController.prototype.editTripHandler = function(event) {
   this.model.pings.forEach(function(ping){
     ping.setDraggable(true);
     ping.addListener('drag', that.addPolyline.bind(that));
+    ping.addListener('dragend', that.setElevationGraph.bind(that));
     google.maps.event.addListener(ping, "rightclick", function (point) {
        this.setMap(null);
        var index = that.model.pings.indexOf(this)
        that.model.pings.splice(index, 1)
        that.addPolyline()
+       that.setElevationGraph();
       });
   })
 
