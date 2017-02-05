@@ -98,6 +98,7 @@ TripController.prototype.updateMarker = function(event) {
     marker.setDraggable(false)
     $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label))
     $('#marker-' + marker_id).html(replaceListItem(marker_label, note_content,  coordinates))
+
   }
 
   ).fail(function(){
