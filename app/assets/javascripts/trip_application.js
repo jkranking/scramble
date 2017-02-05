@@ -4,8 +4,6 @@ var initMap = function(){
   var pings = window.pings
   var markers = window.markers
 
-
-
   map = setMap()
   searchBox(map)
 
@@ -13,9 +11,6 @@ var initMap = function(){
     new TripView,
     new TripModel(map)
   )
-
-
-
 
   if (pings) {
     trip.model.loadPingsList()
@@ -35,15 +30,6 @@ var initMap = function(){
 
   trip.view.showAdd()
   trip.view.showAddMarkerAndEditTrip()
-
-<<<<<<< HEAD
-  var path = []
-  trip.model.pings.forEach(function(ping){
-    path.push({lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())})
-  })
-=======
->>>>>>> master
-
 
 
   $('#add-ping').click(trip.pingHandler.bind(trip))
