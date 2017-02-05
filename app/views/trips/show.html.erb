@@ -1,5 +1,11 @@
 <div class="col-md-3 notes-show">
   <h3><%= @trip.name %></h3>
+  <ul>
+    <li id="distance"></li>
+    <li id="gain"></li>
+    <li id="starting-point"></li>
+    <li id="high-point"></li>
+  </ul>
   <hr>
   <form>
     <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
@@ -51,4 +57,4 @@
 
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&callback=initMap&libraries=geometry"></script>

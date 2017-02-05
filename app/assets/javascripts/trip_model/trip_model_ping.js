@@ -34,3 +34,22 @@ newPing = function(location, map, draggable){
     draggable: draggable // this lets you drag the pings but doesn't redraw polyline
   });
 }
+
+TripModel.prototype.calculateDistance = function(){
+  var pingCoordinates = this.pings.map(function(ping){
+    return {lat: Number(ping.getPosition().lat()), lng: Number(ping.getPosition().lng())}
+  })
+
+  var pingDistance = []
+  for (i = 0; i < pingCoordinates.length - 1; i++){
+    var a = new google.maps.LatLng(pingCoordinates[i].lat, pingCoordinates[i].lng)
+    var b = new google.maps.LatLng(pingCoordinates[i+1].lat, pingCoordinates[i+1].lng)
+    pingDistance.push(google.maps.geometry.spherical.computeDistanceBetween(a,b))
+  }
+
+  var totalDistance = pingDistance.reduce(function(a,b){
+    return a + b
+  })
+  var distance = (totalDistance * 0.000621371192).toFixed(2)
+  $("#distance").text("distance: " + distance + " mi")
+}
