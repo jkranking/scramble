@@ -92,7 +92,7 @@ TripController.prototype.updateMarker = function(event) {
   }
 
   ).done(function(response){
-    $('#note-container').append('<li>' + marker.getLabel() + '. ' + note + '</li>')
+    $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label))
     alert('note updated!')
   }
 
