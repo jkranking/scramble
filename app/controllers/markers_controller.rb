@@ -1,8 +1,10 @@
 class MarkersController < ApplicationController
   def create
     @trip = Trip.find(params[:trip_id])
-    @trip.markers.create(marker_params)
-    redirect_to trip_path(@trip)
+    @marker = @trip.markers.create(marker_params)
+    respond_to do |format|
+      format.json { render json: @marker }
+    end
   end
 
   def update
