@@ -13,6 +13,14 @@
   <button id="cancel-marker" name="cancel_marker">Cancel Note</button>
 </form>
 
+<form>
+  <button id="edit-trip" name="edit_trip">Edit Trip</button>
+</form>
+
+<form>
+  <button id="update-trip" name="update_trip">Update Trip</button>
+</form>
+
 
 <div class="container">
   <ul id="note-container">
@@ -34,5 +42,5 @@
 </script>
 
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&callback=initMap"></script>
 
+<script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&callback=initMap"></script>
