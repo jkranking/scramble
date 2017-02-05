@@ -34,6 +34,7 @@ group :development, :test do
   gem "rack_session_access"
   gem "simplecov"
   gem 'jasmine-rails'
+  gem 'jasmine-jquery-rails'
 end
 
 group :development do

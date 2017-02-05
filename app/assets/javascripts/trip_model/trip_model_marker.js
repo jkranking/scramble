@@ -13,12 +13,14 @@ function editNoteForm(content, label, id){
              '<a id="marker-' + label + '" class="update-marker" href="/trips/' + window.trip.id + '/markers/' + id +'"">Update</a>' +
          '</div>'
 }
+
 function replaceListItem(label, note, marker){
   label++
   return '<b>' + label + '.</b>' + note +
     '<blockquote class="blockquote">lat: ' + marker.lat() + '<br>' +
     'lng: ' + marker.lng() + '</blockquote>'
 }
+
 TripModel.prototype.loadMarkersList = function(){
   window.markers.forEach(function(marker, i){
     var content = contentString(marker, i)

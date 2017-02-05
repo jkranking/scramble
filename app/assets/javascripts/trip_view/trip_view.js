@@ -1,9 +1,5 @@
 function TripView(){}
 
-// TripView.prototype.render = function(){
-//   'do it'
-// }
-
 TripView.prototype.showSubmit = function(){
   $('#add-ping').hide()
   $('#submit-pings').show()
@@ -29,7 +25,6 @@ TripView.prototype.showAddMarkerAndEditTrip = function(){
   $('#cancel-marker').hide()
   $('#note-form').remove()
   $('#update-trip').hide()
-
   $('#add-marker').show()
   $('#edit-trip').show()
 }

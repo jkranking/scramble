@@ -1,4 +1,4 @@
-var setMap = function() {
+var setMap = function(trip) {
 
   var zoom = Number(trip.zoom)
   var coordinates = {lat: Number(trip.latitude), lng: Number(trip.longitude)};
