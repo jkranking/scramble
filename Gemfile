@@ -16,6 +16,8 @@ gem 'dotenv-rails'
 gem 'faker'
 gem 'devise', '~> 4.2'
 
+gem 'paperclip', "~> 4.2"
+
 gem 'bootstrap-sass'
 
 group :development, :test do
@@ -35,7 +37,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console'
+  #gem 'web-console'
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

@@ -116,4 +116,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include(Shoulda::Matchers::ActiveModel, type: :model)
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
+
+  config.web_console.development_only = false #this might need to be turned off
 end
