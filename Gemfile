@@ -17,7 +17,9 @@ gem 'faker'
 gem 'devise', '~> 4.2'
 gem 'rails_12factor', group: :production
 
+gem 'rmagick'
 gem 'paperclip', "~> 4.2"
+gem 'remotipart'
 
 gem 'bootstrap-sass'
 

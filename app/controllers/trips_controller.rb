@@ -29,6 +29,7 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @photo = Photo.new
     @users_trip = (@trip.user == current_user && user_signed_in?)
   end
 

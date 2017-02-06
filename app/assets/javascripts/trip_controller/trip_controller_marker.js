@@ -32,6 +32,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
     data: {marker: {lat: coordinates.lat(),
                   lng: coordinates.lng(),
                   note: note},
+                  photo: $('#photo_image').val(),
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }
 

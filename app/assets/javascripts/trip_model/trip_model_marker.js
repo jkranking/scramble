@@ -2,12 +2,18 @@ var contentString = function(marker, label){
   var content = '<div class=info-window-content id="note-' + label + '">' +
   '<div class="note-content" id="note-content-' + label + '">' + marker.note + '</div>'
   if (window.users_trip) {
-   content += '<a id="edit-marker-' + label + '" class="edit-marker" href="/trips/' + window.trip.id + '/markers/' + marker.id +'">Edit</a>' +
-    '<a id="delete-marker-' + label + '" class="delete-marker" href="/trips/' + window.trip.id + '/markers/' + marker.id +'">Delete</a>' +
-  '</div>'
+   content += editDeleteButtons(marker.id, label)
   }
+
   return content
 }
+
+var editDeleteButtons = function(marker_id, label){
+  return '<a id="edit-marker-' + label + '" class="edit-marker" href="/trips/' + window.trip.id + '/markers/' + marker_id +'">Edit</a>' +
+    '<a id="delete-marker-' + label + '" class="delete-marker" href="/trips/' + window.trip.id + '/markers/' + marker_id +'">Delete</a>' +
+  '</div>'
+}
+
 
 function editNoteForm(content, label, id){
   return '<div class="form-group" id="note-form-' + label + '">' +
@@ -27,12 +33,14 @@ function replaceListItem(label, note, marker){
 TripModel.prototype.loadMarkersList = function(){
   window.markers.forEach(function(marker, i){
     var content = contentString(marker, i)
+    var marker_id = marker.id
 
     var infowindow = new google.maps.InfoWindow({
       content: content
     });
 
     var marker = newMarker({lat: Number(marker.lat), lng: Number(marker.lng)}, this.map, false)
+
 
     marker.addListener('click', function() {
       infowindow.open(map, marker);

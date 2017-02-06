@@ -15,6 +15,7 @@ TripView.prototype.showSubmitMarker = function(){
   $('#add-marker').hide()
   $('#edit-trip').hide()
   $('#update-trip').hide()
+  $('#upload-photo').show()
   $('#submit-marker').show()
   $('#cancel-marker').show()
   $(noteForm()).insertAfter($('#add-marker'))
@@ -22,6 +23,7 @@ TripView.prototype.showSubmitMarker = function(){
 
 TripView.prototype.showAddMarkerAndEditTrip = function(){
   $('#submit-marker').hide()
+  $('#upload-photo').hide()
   $('#cancel-marker').hide()
   $('#note-form').remove()
   $('#update-trip').hide()

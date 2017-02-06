@@ -7,24 +7,36 @@
     <li id="high-point"></li>
   </ul>
   <hr>
-  <form class="user-button">
-    <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
+  <form class="user-button" id="add-marker">
+    <button name="add_marker" class="btn btn-success">Add A Note</button>
   </form>
 
-  <form class="user-button">
-    <button id="submit-marker" name="submit_marker" class="btn btn-success">Save Note</button>
+  <form class="user-button" id="submit-marker">
+    <button name="submit_marker" class="btn btn-success">Save Note</button>
   </form>
 
-  <form class="user-button">
-    <button id="cancel-marker" name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
+  <div id="upload-photo">
+    <%= form_for @photo, :html => { :multipart => true }, remote: true do |f| %>
+
+      <div class="form-group">
+        <%= f.label :image %>
+        <%= f.file_field :image, id: "image-upload" %>
+      </div>
+
+      <%= f.submit 'Upload', class: 'btn btn-primary', id: 'photo-upload-button' %>
+    <% end %>
+  </div>
+
+  <form class="user-button" id="cancel-marker">
+    <button  name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
   </form>
 
-  <form class="user-button">
-    <button id="edit-trip" name="edit_trip" class="btn btn-sm btn-success">Edit Trip</button>
+  <form class="user-button" id="edit-trip">
+    <button name="edit_trip" class="btn btn-sm btn-success">Edit Trip</button>
   </form>
 
-  <form class="user-button">
-    <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
+  <form class="user-button" id="update-trip">
+    <button name="update_trip" class="btn btn-success">Update Trip</button>
   </form>
 
   <h3>Trip Notes:</h3>
