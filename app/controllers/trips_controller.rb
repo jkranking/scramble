@@ -3,9 +3,16 @@ class TripsController < ApplicationController
     @trips = Trip.all
   end
 
+  def user_trips_index
+    user = User.find(params[:user_id])
+    @trips = user.trips
+    render '/trips/user_trips_index.html.erb'
+  end
+
   def new
     @trip = Trip.new
   end
+
 
   def create
     if user_signed_in?
