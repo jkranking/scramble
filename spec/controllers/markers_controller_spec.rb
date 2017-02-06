@@ -1,35 +1,56 @@
 require 'rails_helper'
 
-RSpec.describe MarkersController, type: :controller do
+describe MarkersController do
+  before :each do
+    @user = create(:user)
+    @trip = create(:trip, user_id: @user.id)
+    @attributes = attributes_for(:marker)
+  end
+
   describe "#create" do
-    before :each do
-      @user = create(:user)
+
+    it 'responds with a status of 401 if user not logged in' do
+      post :create, params: {marker: @attributes, trip_id: @trip.id}, format: :json
+      expect(response).to have_http_status 401
+    end
+
+    it 'creates a marker when given proper params' do
       sign_in(@user)
-      @attributes = attributes_for(trip.marker)
-      @attributes[:user_id] = @user.id
+      expect{post :create, params: {marker: @attributes, trip_id: @trip.id}, format: :json}.to change{Marker.count}.from(0).to(1)
+    end
+  end
+
+  describe "#update" do
+
+    it 'responds with a status of 401 if user is not the trip owner' do
+      @marker = create(:marker, trip_id: @trip.id)
+      put :update, params: {marker: @attributes, id: @marker.id, trip_id: @trip.id}, format: :json
+      expect(response).to have_http_status 401
     end
 
-    # let (:pings) { {"0"=>{"lat"=>"65.90165338613072", "lng"=>"-95.526123046875"}, "1"=>{"lat"=>"65.87472467098549", "lng"=>"-94.647216796875"}, "2"=>{"lat"=>"65.82078234733756", "lng"=>"-93.680419921875"}, "3"=>{"lat"=>"65.54936668811528", "lng"=>"-93.746337890625"}, "4"=>{"lat"=>"65.63109034100295", "lng"=>"-95.877685546875"}, "5"=>{"lat"=>"64.46332329319623", "lng"=>"-96.251220703125"}} }
+    it 'updates a trip when given proper params and user is the trip owner' do
+      sign_in(@user)
+      @marker = create(:marker, trip_id: @trip.id)
+      @attributes["note"] = "WORST TRIP NEVER"
+      put :update, params: {marker: @attributes, id: @marker.id, trip_id: @trip.id}, format: :json
+      expect(Marker.find(@marker.id).note).to eq ("WORST TRIP NEVER")
+    end
+  end
 
+  describe "#destroy" do
 
-    # validates_presence_of :lat, :lng, :trip_id, :note
-    let(:trip) {}
-    let(:marker) {create(:marker)}
-
-    it 'responds with a status of 403 if user not logged in' do
-      sign_out(@user)
-      post :create, params: {marker: @attributes}, format: :json
-      expect(response).to have_http_status 403
+    it 'responds with a status of 401 if user is not the trip owner' do
+      @marker = create(:marker, trip_id: @trip.id)
+      delete :destroy, params: {marker: @attributes, id: @marker.id, trip_id: @trip.id}, format: :json
+      expect(response).to have_http_status 401
     end
 
-    xit 'creates a trip' do
-      expect{post :create, params: {trip: @attributes, pings: pings}, format: :json}.to change{Trip.count}.from(0).to(1)
-    end
-
-    xit '#get_pings' do
-      post :create, params: {trip: @attributes, pings: pings}, format: :json
-      get :get_pings, params: { id: Trip.last.id }
-      expect(response.body).to include "65.90165338613072"
+    it 'destroys a trip when given proper params and user is the trip owner' do
+      sign_in(@user)
+      @marker = create(:marker, trip_id: @trip.id)
+      @attributes["note"] = "WORST TRIP NEVER"
+      delete :destroy, params: {marker: @attributes, id: @marker.id, trip_id: @trip.id}, format: :json
+      expect(Marker.find_by_id(@marker.id)).to be_nil
     end
   end
 end

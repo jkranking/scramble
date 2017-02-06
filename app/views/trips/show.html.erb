@@ -7,23 +7,23 @@
     <li id="high-point"></li>
   </ul>
   <hr>
-  <form>
+  <form class="user-button">
     <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
   </form>
 
-  <form>
+  <form class="user-button">
     <button id="submit-marker" name="submit_marker" class="btn btn-success">Save Note</button>
   </form>
 
-  <form>
+  <form class="user-button">
     <button id="cancel-marker" name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
   </form>
 
-  <form>
+  <form class="user-button">
     <button id="edit-trip" name="edit_trip" class="btn btn-sm btn-success">Edit Trip</button>
   </form>
 
-  <form>
+  <form class="user-button">
     <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
   </form>
 
@@ -38,7 +38,7 @@
           lng: <%= marker.lng %></blockquote></li>
       <% end %>
     <% else %>
-      You Have No Notes For This Trip.
+      <span class="no-note">You Have No Notes For This Trip.</span>
     <% end %>
   </ul>
 </div>
@@ -52,6 +52,7 @@
   var trip = <%==  @trip.to_json %>;
   var pings = <%==  @trip.pings.to_json %>;
   var markers = <%==  @trip.ordered_markers_by_created_at.to_json %>;
+  var users_trip = <%==  (@users_trip).to_json %>
 </script>
 
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>

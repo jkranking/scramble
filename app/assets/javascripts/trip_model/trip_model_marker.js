@@ -1,9 +1,12 @@
 var contentString = function(marker, label){
-  return '<div class=info-window-content id="note-' + label + '">' +
-  '<div class="note-content" id="note-content-' + label + '">' + marker.note + '</div>' +
-    '<a id="edit-marker-' + label + '" class="edit-marker" href="/trips/' + window.trip.id + '/markers/' + marker.id +'">Edit</a>' +
+  var content = '<div class=info-window-content id="note-' + label + '">' +
+  '<div class="note-content" id="note-content-' + label + '">' + marker.note + '</div>'
+  if (window.users_trip) {
+   content += '<a id="edit-marker-' + label + '" class="edit-marker" href="/trips/' + window.trip.id + '/markers/' + marker.id +'">Edit</a>' +
     '<a id="delete-marker-' + label + '" class="delete-marker" href="/trips/' + window.trip.id + '/markers/' + marker.id +'">Delete</a>' +
   '</div>'
+  }
+  return content
 }
 
 function editNoteForm(content, label, id){
@@ -13,12 +16,14 @@ function editNoteForm(content, label, id){
              '<a id="marker-' + label + '" class="update-marker" href="/trips/' + window.trip.id + '/markers/' + id +'"">Update</a>' +
          '</div>'
 }
+
 function replaceListItem(label, note, marker){
   label++
   return '<b>' + label + '.</b>' + note +
     '<blockquote class="blockquote">lat: ' + marker.lat() + '<br>' +
     'lng: ' + marker.lng() + '</blockquote>'
 }
+
 TripModel.prototype.loadMarkersList = function(){
   window.markers.forEach(function(marker, i){
     var content = contentString(marker, i)
