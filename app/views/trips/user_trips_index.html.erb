@@ -8,6 +8,8 @@
           <li class="list-item">
             <div class="col-md-3" id="trip-list-text">
               <h4><%= trip.name %></h4>
+
+              <!-- I think this should be commented out -->
               <ul style="list-style-type: none; padding-left: 8px;">
                 <% trip.markers.each do |marker| %>
                   <li><%= marker.note %></li>
