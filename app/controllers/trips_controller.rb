@@ -37,9 +37,15 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find(params[:id])
-    @trip.update(trip_params)
-    @trip.pings.destroy_all
-    Ping.create_multiple_pings(@trip, pings)
+    if @trip.user == current_user
+      @trip.update(trip_params)
+      @trip.pings.destroy_all
+      Ping.create_multiple_pings(@trip, pings)
+    else
+      respond_to do |format|
+        format.json { render :json => { :error_message => 'You don\'t have permission to alter this trip' }, :status => 401 }
+      end
+    end
   end
 
   def get_pings

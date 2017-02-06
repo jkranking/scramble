@@ -16,6 +16,7 @@ TripController.prototype.addPolyline = function(){
 
   this.model.polyline.setMap(this.model.map)
 }
+
 TripController.prototype.setElevationGraph = function(){
   if (this.model.pings.length > 1) {
     var polyPings = this.model.pings.map(function(ping){
