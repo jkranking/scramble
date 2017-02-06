@@ -8,15 +8,21 @@ class TripsController < ApplicationController
   end
 
   def create
-    if pings.to_unsafe_hash.count > 1 && user_signed_in?
-      @trip = current_user.trips.create(trip_params)
-      Ping.create_multiple_pings(@trip, pings)
-      respond_to do |format|
-        format.json { render json: @trip }
+    if user_signed_in?
+      if pings.to_unsafe_hash.count > 1
+        @trip = current_user.trips.create(trip_params)
+        Ping.create_multiple_pings(@trip, pings)
+        respond_to do |format|
+          format.json { render json: @trip }
+        end
+      else
+        respond_to do |format|
+          format.json { render :json => { :error_message => 'You must have at least two pings to save your trip' }, :status => 422 }
+        end
       end
     else
       respond_to do |format|
-        format.json { render :json => { :error_message => 'not enough pings or not signed in' }, :status => 403 }
+        format.json { render :json => { :error_message => 'You must be signed in to save your trip' }, :status => 401 }
       end
     end
   end

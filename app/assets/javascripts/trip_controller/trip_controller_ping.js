@@ -73,8 +73,8 @@ TripController.prototype.submitPingsHandler = function(event) {
   }).done(function(saved_trip){
     alert('trip saved!')
     window.location.href = "/trips/" + saved_trip.id;
-  }).fail(function(){
-    alert('must have at least two pings to save!')
+  }).fail(function(response){
+    alert(response.responseJSON.error_message)
   })
 
   google.maps.event.removeListener(pingListener);
