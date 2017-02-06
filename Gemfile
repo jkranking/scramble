@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.0'
+gem 'puma'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
@@ -16,6 +16,8 @@ gem 'dotenv-rails'
 gem 'faker'
 gem 'devise', '~> 4.2'
 gem 'rails_12factor', group: :production
+
+gem 'paperclip', "~> 4.2"
 
 gem 'bootstrap-sass'
 
@@ -32,7 +34,15 @@ group :development, :test do
   gem 'rack', '~> 2.0.1'
   gem "rack_session_access"
   gem "simplecov"
+
   gem 'jasmine-rails'
+  gem 'jasmine-jquery-rails'
+
+  gem 'teaspoon'
+
+  gem 'magic_lamp'
+
+  gem "teaspoon-jasmine"
 end
 
 group :development do

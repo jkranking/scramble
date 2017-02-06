@@ -16,6 +16,7 @@ TripController.prototype.addPolyline = function(){
 
   this.model.polyline.setMap(this.model.map)
 }
+
 TripController.prototype.setElevationGraph = function(){
   if (this.model.pings.length > 1) {
     var polyPings = this.model.pings.map(function(ping){
@@ -73,8 +74,8 @@ TripController.prototype.submitPingsHandler = function(event) {
   }).done(function(saved_trip){
     alert('trip saved!')
     window.location.href = "/trips/" + saved_trip.id;
-  }).fail(function(){
-    alert('must have at least two pings to save!')
+  }).fail(function(response){
+    alert(response.responseJSON.error_message)
   })
 
   google.maps.event.removeListener(pingListener);

@@ -36,6 +36,8 @@ TripController.prototype.submitMarkerHandler = function(event) {
   }
 
   ).done(function(response){
+    $('.no-note').remove()
+
     the_marker.setDraggable(false)
     var marker = the_marker
 
