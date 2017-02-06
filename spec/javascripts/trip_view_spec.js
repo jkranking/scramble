@@ -1,16 +1,9 @@
 describe('TripView', function(){
-  var map;
-  var model;
-  var view;
-  var trip = {"latitude":"47.455951443369976", "longitude":"-122.047119140625", "zoom":"7"}
 
-  var assign_stubbed_map = function() {
-    view = new TripView
-    //spyOn(subject, 'setMap').andReturn(map);
-  }
+  var view;
 
   beforeEach(function(){
-    assign_stubbed_map()
+    view = new TripView
   })
 
   it('establishes a view', function(){
@@ -18,102 +11,147 @@ describe('TripView', function(){
   })
 
   describe('view.showSubmit()', function(){
-    it ('calls the hide function', function(){
-      $.fn.hide = jasmine.createSpy('hide spy')
-      view.showSubmit()
-      expect($.fn.hide).toHaveBeenCalled()
+
+    beforeEach(function(){
+      MagicLamp.load("trips/new")
     })
 
-    it ('calls the show function', function(){
-      $.fn.show = jasmine.createSpy('show spy')
+    it ('hides #add-ping button', function(){
       view.showSubmit()
-      expect($.fn.show).toHaveBeenCalled()
+      expect($('#add-ping').is(':visible')).toBe(false)
+    })
+
+    it ('shows #submit-pings button', function(){
+      view.showSubmit()
+      expect($('#submit-pings').is(':visible')).toBe(true)
     })
   })
 
   describe('view.showAdd()', function(){
-    it ('calls the hide function', function(){
-      $.fn.hide = jasmine.createSpy('hide spy')
-      view.showAdd()
-      expect($.fn.hide).toHaveBeenCalled()
+
+    beforeEach(function(){
+      MagicLamp.load("trips/new")
     })
 
-    it ('calls the show function', function(){
-      $.fn.show = jasmine.createSpy('show spy')
+    it ('hides #submit-pings button', function(){
       view.showAdd()
-      expect($.fn.show).toHaveBeenCalled()
+      expect($('#submit-pings').is(':visible')).toBe(false)
     })
+
+    it ('shows #add-pings button', function(){
+      view.showAdd()
+      expect($('#add-ping').is(':visible')).toBe(true)
+    })
+
   })
 
   describe('view.showSubmitMarker()', function(){
-    it ('calls the hide function', function(){
-      $.fn.hide = jasmine.createSpy('hide spy')
-      view.showSubmitMarker()
-      expect($.fn.hide).toHaveBeenCalled()
+
+    beforeEach(function(){
+      MagicLamp.load("trips/show")
     })
 
-    it ('calls the show function', function(){
-      $.fn.show = jasmine.createSpy('show spy')
+    it ('hides the add-marker button', function(){
       view.showSubmitMarker()
-      expect($.fn.show).toHaveBeenCalled()
+      expect($('#add-marker').is(':visible')).toBe(false)
     })
 
-
-    it ('calls the insertAfter function', function(){
-      $.fn.insertAfter = jasmine.createSpy('insertAfter spy')
+    it ('hides the submit-marker button', function(){
       view.showSubmitMarker()
-      expect($.fn.insertAfter).toHaveBeenCalled()
+      expect($('#submit-marker').is(':visible')).toBe(true)
     })
 
-    it ('calls the noteForm function', function(){
-      noteForm = jasmine.createSpy('noteForm spy')
+    it ('inserts a new note text field', function(){
       view.showSubmitMarker()
-      expect(noteForm).toHaveBeenCalled()
+      expect($('#note-form').length).toBe(1)
+    })
+
+    it ('hides the update-trip button', function(){
+      view.showSubmitMarker()
+      expect($('#update-trip').is(':visible')).toBe(false)
+    })
+
+    it ('shows the cancel-marker button', function(){
+      view.showSubmitMarker()
+      expect($('#cancel-marker').is(':visible')).toBe(true)
+    })
+
+    it ('hides the edit-trip button', function(){
+      view.showSubmitMarker()
+      expect($('#edit-trip').is(':visible')).toBe(false)
     })
   })
 
   describe('view.showAddMarkerAndEditTrip()', function(){
-    it ('calls the hide function', function(){
-      $.fn.hide = jasmine.createSpy('hide spy')
-      view.showAddMarkerAndEditTrip()
-      expect($.fn.hide).toHaveBeenCalled()
+    beforeEach(function(){
+      MagicLamp.load("trips/show")
     })
 
-    it ('calls the show function', function(){
-      $.fn.show = jasmine.createSpy('show spy')
+    it ('shows the add-marker button', function(){
       view.showAddMarkerAndEditTrip()
-      expect($.fn.show).toHaveBeenCalled()
+      expect($('#add-marker').is(':visible')).toBe(true)
     })
 
-
-    it ('calls the remove function', function(){
-      $.fn.remove = jasmine.createSpy('remove spy')
+    it ('hides the submit-marker button', function(){
       view.showAddMarkerAndEditTrip()
-      expect($.fn.remove).toHaveBeenCalled()
+      expect($('#submit-marker').is(':visible')).toBe(false)
+    })
+
+    it ('removes a new note text field', function(){
+      view.showAddMarkerAndEditTrip()
+      expect($('#note-form').length).toBe(0)
+    })
+
+    it ('hides the update-trip button', function(){
+      view.showAddMarkerAndEditTrip()
+      expect($('#update-trip').is(':visible')).toBe(false)
+    })
+
+    it ('hides the cancel-marker button', function(){
+      view.showAddMarkerAndEditTrip()
+      expect($('#cancel-marker').is(':visible')).toBe(false)
+    })
+
+    it ('shows the edit-trip button', function(){
+      view.showAddMarkerAndEditTrip()
+      expect($('#edit-trip').is(':visible')).toBe(true)
     })
   })
 
   describe('view.showUpdateTrip()', function(){
-    it ('calls the hide function', function(){
-      $.fn.hide = jasmine.createSpy('hide spy')
-      view.showUpdateTrip()
-      expect($.fn.hide).toHaveBeenCalled()
+    beforeEach(function(){
+      MagicLamp.load("trips/show")
     })
 
-    it ('calls the show function', function(){
-      $.fn.show = jasmine.createSpy('show spy')
+    it ('hides the add-marker button', function(){
       view.showUpdateTrip()
-      expect($.fn.show).toHaveBeenCalled()
+      expect($('#add-marker').is(':visible')).toBe(false)
     })
 
-
-    it ('calls the remove function', function(){
-      $.fn.remove = jasmine.createSpy('remove spy')
+    it ('hides the submit-marker button', function(){
       view.showUpdateTrip()
-      expect($.fn.remove).toHaveBeenCalled()
+      expect($('#submit-marker').is(':visible')).toBe(false)
+    })
+
+    it ('removes a new note text field', function(){
+      view.showUpdateTrip()
+      expect($('#note-form').length).toBe(0)
+    })
+
+    it ('shows the update-trip button', function(){
+      view.showUpdateTrip()
+      expect($('#update-trip').is(':visible')).toBe(true)
+    })
+
+    it ('hides the cancel-marker button', function(){
+      view.showUpdateTrip()
+      expect($('#cancel-marker').is(':visible')).toBe(false)
+    })
+
+    it ('hides the edit-trip button', function(){
+      view.showUpdateTrip()
+      expect($('#edit-trip').is(':visible')).toBe(false)
     })
   })
-
-
 
 })
