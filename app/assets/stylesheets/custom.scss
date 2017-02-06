@@ -13,6 +13,14 @@
   }
 }
 
+.container {
+  width: 80%;
+}
+
+.row {
+  padding: 0 15px;
+}
+
 .field_with_errors {
   @extend .has-error;
   .form-control {
@@ -32,10 +40,6 @@ div.maps-show {
 
 .blockquote {
   font-size: 10pt;
-}
-
-.container {
-  width: 80%;
 }
 
 #brand {
@@ -59,7 +63,7 @@ div.maps-show {
   text-decoration: none;
 }
 
-.user-view-ul {
+.style-ul {
   list-style-type: none;
   padding-left: 8px;
 }
