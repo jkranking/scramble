@@ -29,6 +29,7 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @users_trip = (@trip.user == current_user && user_signed_in?)
   end
 
   def edit
