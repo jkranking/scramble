@@ -37,7 +37,7 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find(params[:id])
-    if @trip.user == current_user
+    if user_signed_in? && @trip.user == current_user
       @trip.update(trip_params)
       @trip.pings.destroy_all
       Ping.create_multiple_pings(@trip, pings)

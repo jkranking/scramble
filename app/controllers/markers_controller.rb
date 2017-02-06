@@ -1,20 +1,39 @@
 class MarkersController < ApplicationController
   def create
     @trip = Trip.find(params[:trip_id])
-    @marker = @trip.markers.create(marker_params)
-    respond_to do |format|
-      format.json { render json: @marker }
+    if user_signed_in? && @trip.user == current_user
+      @marker = @trip.markers.create(marker_params)
+      respond_to do |format|
+        format.json { render json: @marker }
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => { :error_message => 'You don\'t have permission to add a note to this trip' }, :status => 401 }
+      end
     end
   end
 
   def update
+
     @marker = Marker.find(params[:id])
-    @marker.update(marker_params)
+    if user_signed_in? && @marker.trip.user == current_user
+      @marker.update(marker_params)
+    else
+      respond_to do |format|
+        format.json { render :json => { :error_message => 'You don\'t have permission to edit a note from this trip' }, :status => 401 }
+      end
+    end
   end
 
   def destroy
     @marker = Marker.find(params[:id])
-    @marker.destroy
+    if user_signed_in? && @marker.trip.user == current_user
+      @marker.destroy
+    else
+      respond_to do |format|
+        format.json { render :json => { :error_message => 'You don\'t have permission to remove a note from this trip' }, :status => 401 }
+      end
+    end
   end
 
   private
