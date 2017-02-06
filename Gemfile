@@ -15,6 +15,7 @@ gem 'httparty'
 gem 'dotenv-rails'
 gem 'faker'
 gem 'devise', '~> 4.2'
+gem 'rails_12factor', group: :production
 
 gem 'paperclip', "~> 4.2"
 

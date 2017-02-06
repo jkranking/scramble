@@ -1,13 +1,13 @@
 <h1>All Trips</h1>
 
-<ul style="list-style-type: none;">
+<ul class="trip-list" style="list-style-type: none;">
   <% @trips.each do |trip| %>
     <li>
       <div class="trip-link">
         <%= link_to trip.try(:name), trip_path(trip) %>
       </div>
       <div class="map-pic">
-        <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= trip.latitude %>,<%= trip.longitude%>&zoom=<%= trip.zoom %>&size=600x300&maptype=terrain&path=geodesic:true|<%=static_path(trip)%>&key=">
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= trip.latitude %>,<%= trip.longitude%>&zoom=<%= trip.zoom %>&size=600x300&maptype=terrain&path=geodesic:true|<%=static_path(trip)%>&key=<%=ENV['STATIC_MAPS_KEY']%>">
       </div>
     </li>
   <% end %>
