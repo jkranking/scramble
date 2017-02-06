@@ -43,7 +43,8 @@ TripController.prototype.pingHandler = function(event) {
     ping.addListener('dragend', that.model.calculateDistance.bind(that.model))
     that.addPolyline()
     that.setElevationGraph()
-    that.model.calculateDistance()
+    var distance = that.model.calculateDistance()
+    that.view.showDistance(distance)
 
     google.maps.event.addListener(ping, "rightclick", function (point) {
        this.setMap(null);
