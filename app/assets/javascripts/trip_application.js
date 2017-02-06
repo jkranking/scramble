@@ -4,7 +4,7 @@ var initMap = function(){
   var pings = window.pings
   var markers = window.markers
 
-  map = setMap()
+  map = setMap(window.trip)
   searchBox(map)
 
   var trip = new TripController(
