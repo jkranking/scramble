@@ -27,6 +27,7 @@ div.maps-show {
 
 #note-container {
   padding-left: 15px;
+  list-style-type: none;
 }
 
 .blockquote {
@@ -58,6 +59,12 @@ div.maps-show {
   text-decoration: none;
 }
 
-.static-map {
-  overflow: hidden; // a temporary fix, it doesn't resize the image, just makes it not over flow its boundry
+.user-view-ul {
+  list-style-type: none;
+  padding-left: 8px;
+}
+
+#elevation-details-list{
+  list-style-type: none;
+  padding-left: 10px;
 }
