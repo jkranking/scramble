@@ -4,6 +4,7 @@ RSpec.describe "Routing to trips", type: :routing do
   it 'routes get / to trips#index' do
     expect(get: "/").to route_to("trips#index")
   end
+  
   it 'routes post /trips to trips#create' do
     expect(post: "/trips").to route_to("trips#create")
   end

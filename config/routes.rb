@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+  mount MagicLamp::Genie, at: "/magic_lamp" if defined?(MagicLamp)
+
   resources :trips do
     resources :markers, only: [:create, :update, :destroy]
   end

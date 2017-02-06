@@ -4,7 +4,7 @@ var initMap = function(){
   var pings = window.pings
   var markers = window.markers
 
-  map = setMap()
+  map = setMap(window.trip)
   searchBox(map)
 
   var trip = new TripController(
@@ -22,7 +22,7 @@ var initMap = function(){
   if (markers) {
     trip.model.loadMarkersList()
   }
-
+  if (!window.users_trip) { $('.user-button').remove()  }
   trip.view.showAdd()
   trip.view.showAddMarkerAndEditTrip()
 
