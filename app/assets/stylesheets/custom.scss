@@ -53,3 +53,11 @@ div.maps-show {
 #trip-list-text {
   color: #333333;
 }
+
+.list-group a:hover {
+  text-decoration: none;
+}
+
+.static-map {
+  overflow: hidden; // a temporary fix, it doesn't resize the image, just makes it not over flow its boundry
+}
