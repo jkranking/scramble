@@ -51,6 +51,7 @@ TripModel.prototype.calculateDistance = function(){
   var totalDistance = pingDistance.reduce(function(a,b){
     return a + b
   })
+
   var distance = (totalDistance * 0.000621371192).toFixed(2)
-  $("#distance").text("distance: " + distance + " mi")
+  return distance
 }

@@ -62,13 +62,15 @@ TripController.prototype.submitPingsHandler = function(event) {
   event.preventDefault()
   this.model.updateCenter()
   var name = $('#trip_name').val()
+  var distance = this.model.calculateDistance().toString()
 
   $.post({
     url: "/trips",
     data: {trip: {latitude: this.model.center_lat,
                   longitude: this.model.center_lng,
                   zoom: this.model.zoom,
-                  name: name},
+                  name: name,
+                  distance: distance},
             pings: this.model.simplePings(),
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(saved_trip){
@@ -109,13 +111,15 @@ TripController.prototype.updateTripHandler = function(event) {
   event.preventDefault()
   this.model.updateCenter()
   //var name = $('#trip_name').val() //name update is not yet a feature
+  var distance = this.model.calculateDistance().toString()
 
   $.ajax({
     type: 'PUT',
     url: "/trips/" + window.trip.id,
     data: {trip: {latitude: this.model.center_lat,
                   longitude: this.model.center_lng,
-                  zoom: this.model.zoom},
+                  zoom: this.model.zoom,
+                  distance: distance},
             pings: this.model.simplePings(),
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(updated_trip){
