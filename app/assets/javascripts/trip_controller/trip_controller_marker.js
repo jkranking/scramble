@@ -36,6 +36,8 @@ TripController.prototype.submitMarkerHandler = function(event) {
   }
 
   ).done(function(response){
+    $('.no-note').remove()
+
     the_marker.setDraggable(false)
     var marker = the_marker
 
@@ -60,7 +62,6 @@ TripController.prototype.submitMarkerHandler = function(event) {
   ).fail(function(){
     alert('something went wrong!')
   })
-
 }
 
 TripController.prototype.cancelNewMarker = function(event) {
@@ -76,7 +77,6 @@ TripController.prototype.cancelNewMarker = function(event) {
     this.clicked = true
   }
 }
-
 
 TripController.prototype.editMarker = function(event) {
   event.preventDefault()

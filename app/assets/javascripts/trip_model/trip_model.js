@@ -1,11 +1,11 @@
 function TripModel(map){
   this.map = map
-  this.center_lat = map.getCenter().lat()
-  this.center_lng = map.getCenter().lng()
-  this.zoom = map.getZoom()
+  this.center_lat = null
+  this.center_lng = null
+  this.zoom = null
+  this.polyline = null
   this.pings = []
   this.markers = []
-  this.polyline = null
 }
 
 TripModel.prototype.updateCenter = function(){
