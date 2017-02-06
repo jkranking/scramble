@@ -1,0 +1,2 @@
+class BadgesImage < ApplicationRecord
+end
