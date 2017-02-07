@@ -23,7 +23,6 @@ class TripsController < ApplicationController
     if user_signed_in?
       if pings.to_unsafe_hash.count > 1
         @trip = current_user.trips.create(trip_params)
-        p current_user.badges.all
           if !BadgesUser.exists?(badge_id: 1, user_id: current_user)
             BadgesUser.create(badge_id: 1, user_id: current_user.id)
             # flash_message = "You earned your first badge!"
