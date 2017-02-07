@@ -12,6 +12,7 @@
         <div id="trip-list-text">
           <h3><%= trip.name %></h3>
           <ul class="style-ul">
+            <li>Submitted by: <%= trip.user.username %></li>
             <li>Distance: <%= trip.distance %></li>
           </ul>
         </div>
