@@ -127,6 +127,7 @@ TripController.prototype.updateTripHandler = function(event) {
             pings: this.model.simplePings(),
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(updated_trip){
+    // $('#flash-alerts').html('<h1> IT WORKS<?h1>')
     $('#trip-name').html('<h3>' + name + '</h3>')
     alert('Trip updated!')
   }).fail(function(){
