@@ -4,6 +4,7 @@ var initMap = function(){
   var pings = window.pings
   var markers = window.markers
   var rated = window.user_rated
+  var rating = window.rating
 
   map = setMap(window.trip)
   searchBox(map)
@@ -52,6 +53,10 @@ if (!rated) {
     })
   })
 } else {
+  var starLabel = $("input[id=" + rating + "]")
+
+  $(starLabel).click()
+
   $(".stars label").click(function(event){
     var form = $(event.target)
     var star = form.attr('for')
