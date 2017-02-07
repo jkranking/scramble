@@ -23,7 +23,7 @@ var initMap = function(){
   if (markers) {
     trip.model.loadMarkersList()
   }
-  if (!window.users_trip) { $('.user-button').remove()  }
+
   trip.view.showAdd()
   trip.view.showAddMarkerAndEditTrip()
 
