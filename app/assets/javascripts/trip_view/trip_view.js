@@ -14,6 +14,7 @@ TripView.prototype.showAdd = function(){
 TripView.prototype.showSubmitMarker = function(){
   $('#add-marker').hide()
   $('#edit-trip').hide()
+  $('#delete-trip').hide()
   $('#update-trip').hide()
   $('#submit-marker').show()
   $('#cancel-marker').show()
@@ -27,6 +28,7 @@ TripView.prototype.showAddMarkerAndEditTrip = function(){
   $('#update-trip').hide()
   $('#add-marker').show()
   $('#edit-trip').show()
+  $('#delete-trip').show()
 }
 
 TripView.prototype.showUpdateTrip = function(){
@@ -35,6 +37,7 @@ TripView.prototype.showUpdateTrip = function(){
   $('#add-marker').hide()
   $('#note-form').remove()
   $('#edit-trip').hide()
+  $('#delete-trip').hide()
   $('#update-trip').show()
 }
 
