@@ -88,6 +88,8 @@ TripController.prototype.submitPingsHandler = function(event) {
 TripController.prototype.editTripHandler = function(event) {
   event.preventDefault()
   var that = this
+  var name = $('#trip-name').children('h3').html()
+  $('#trip-name').html('<textarea class="form-control">' + name + '</textarea>')
 
   this.model.pings.forEach(function(ping){
     ping.setDraggable(true);
@@ -100,7 +102,7 @@ TripController.prototype.editTripHandler = function(event) {
        that.model.pings.splice(index, 1)
        that.addPolyline()
        that.setElevationGraph();
-       trip.model.calculateDistance()
+       that.model.calculateDistance()
       });
   })
 
@@ -111,7 +113,7 @@ TripController.prototype.editTripHandler = function(event) {
 TripController.prototype.updateTripHandler = function(event) {
   event.preventDefault()
   this.model.updateCenter()
-  //var name = $('#trip_name').val() //name update is not yet a feature
+  var name = $('#trip-name').children('textarea').val()
   var distance = this.model.calculateDistance().toString()
 
   $.ajax({
@@ -120,10 +122,12 @@ TripController.prototype.updateTripHandler = function(event) {
     data: {trip: {latitude: this.model.center_lat,
                   longitude: this.model.center_lng,
                   zoom: this.model.zoom,
+                  name: name,
                   distance: distance},
             pings: this.model.simplePings(),
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(updated_trip){
+    $('#trip-name').html('<h3>' + name + '</h3>')
     alert('trip updated!')
   }).fail(function(){
     alert('something went wrong!')
