@@ -1,0 +1,7 @@
+<h3>Scramble Badges</h3>
+<% @badges.each do |badge| %>
+  <div class="well">
+    <img class="big-badge" src="/assets/badge<%= badge.image_id %>.png"></a>
+    <h3><%= badge.description%></h3>
+  </div>
+<%end%>
