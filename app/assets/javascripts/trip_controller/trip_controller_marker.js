@@ -21,33 +21,43 @@ TripController.prototype.submitMarkerHandler = function(event) {
   if (!this.clicked){ alert('please set a location before saving your note'); return}
 
   var controller = this
-  var id = window.trip.id
+  var trip_id = window.trip.id
   var marker = this.model.markers.slice(-1)[0]
   var the_marker = marker
   var coordinates = marker.getPosition()
   var note = $('#new-note').val()
+  var photo_id
+  if (window.photo) { photo_id = window.photo.id }
 
   $.post({
-    url: "/trips/" + id + "/markers",
+    url: "/trips/" + trip_id + "/markers",
     data: {marker: {lat: coordinates.lat(),
                   lng: coordinates.lng(),
                   note: note},
+                  photo: photo_id,
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }
 
   ).done(function(response){
     $('.no-note').remove()
 
+    var img_url =  $('.uploaded-photo').attr('src')
+    if (img_url) {
+      img_url = '<img class="li-trip-photo" src="' + img_url + '">'
+    } else {
+      img_url = ''
+    }
+    $('.uploaded-photo-section').remove()
     the_marker.setDraggable(false)
     var marker = the_marker
 
-    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<blockquote class="blockquote">lat: ' + marker.getPosition().lat() + '<br>lng: ' + marker.getPosition().lng() + '</blockquote></li>')
+    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + img_url + '<blockquote class="blockquote">lat: ' + marker.getPosition().lat() + '<br>lng: ' + marker.getPosition().lng() + '</blockquote></li>')
 
     controller.view.showAddMarkerAndEditTrip()
 
     var label = (marker.getLabel() - 1)
 
-    var content = contentString({note: note, id: response.id}, label)
+    var content = contentString({note: note, id: response.id}, label, img_url)
 
     var infowindow = new google.maps.InfoWindow({
       content: content
@@ -66,7 +76,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
 
 TripController.prototype.cancelNewMarker = function(event) {
   event.preventDefault()
-
+  $('.uploaded-photo-section').remove()
   google.maps.event.removeListener(submitMarkerListener)
   this.view.showAddMarkerAndEditTrip()
   if (this.clicked) {
@@ -97,9 +107,7 @@ TripController.prototype.updateMarker = function(event) {
 
   marker = this.model.markers[marker_label]
   var coordinates = marker.getPosition()
-  console.log('label', marker_label)
   var note_content = $('#update-note-' + marker_label).val()
-  console.log('note', note_content)
 
   $.ajax({
     type: 'PUT',
@@ -113,7 +121,6 @@ TripController.prototype.updateMarker = function(event) {
   ).done(function(response){
     marker.setDraggable(false)
     $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label))
-    console.log('marker', $('#marker-' + marker_id).html())
     $('#marker-' + marker_id).html(replaceListItem(marker_label, note_content,  coordinates))
     alert('note updated!')
   }
