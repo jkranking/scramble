@@ -6,6 +6,7 @@
   width: 100%;
   max-width: 80px;
   display: block;
+}
 
 #delete-trip a, #delete-trip a:hover, #delete-trip a:link {
   color: white;
