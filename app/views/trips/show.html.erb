@@ -1,5 +1,7 @@
+<% current_users_trip = users_trip(@trip) %>
+
 <div class="col-md-3 notes-show">
-  <h3><%= @trip.name %></h3>
+  <div id="trip-name"><h3><%= @trip.name %></h3></div>
 
   <table class="table trip-details">
     <tbody>
@@ -20,40 +22,50 @@
       </tr>
     </tbody>
   </table>
+  <% if current_users_trip %>
+    <div class="buttons">
+      <form class="user-button">
+        <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
+      </form>
 
-  <form class="user-button">
-    <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
-  </form>
+      <form class="user-button">
+        <button id="submit-marker" name="submit_marker" class="btn btn-success">Save Note</button>
+      </form>
 
+      <div id="upload-photo" class="user-button">
+        <%= form_for @photo, :html => { :multipart => true }, remote: true do |f| %>
 
-  <div id="upload-photo" class="user-button">
-    <%= form_for @photo, :html => { :multipart => true }, remote: true do |f| %>
+          <div id="image-form">
+            <%= f.label :image %>
+            <%= f.file_field :image, id: "image-upload" %>
 
-      <div id="image-form">
-        <%= f.label :image %>
-        <%= f.file_field :image, id: "image-upload" %>
-
-      <%= f.submit 'Upload', class: 'btn btn-primary', id: 'photo-upload-button' %>
+          <%= f.submit 'Upload', class: 'btn btn-primary', id: 'photo-upload-button' %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <form class="user-button" id="submit-marker">
-    <button name="submit_marker" class="btn btn-success">Save Note</button>
-  </form>
+      <form class="user-button" id="submit-marker">
+        <button name="submit_marker" class="btn btn-success">Save Note</button>
+      </form>
 
-  <form class="user-button" id="cancel-marker">
-    <button  name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
-  </form>
+      <form class="user-button" id="cancel-marker">
+        <button  name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
+      </form>
 
-  <form class="user-button" id="edit-trip">
-    <button name="edit_trip" class="btn btn-sm btn-success">Edit Trip</button>
-  </form>
+      <form class="user-button" id="edit-trip">
+        <button name="edit_trip" class="btn btn-sm btn-success">Edit Trip</button>
+      </form>
 
-  <form class="user-button" id="update-trip">
-    <button name="update_trip" class="btn btn-success">Update Trip</button>
-  </form>
+      <form class="user-button">
 
+        <button id="delete-trip" name="update_trip" class="btn btn-sm btn-success"><%= link_to 'Delete Trip', url_for(action: :destroy ,id: @trip.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
+      </form>
+
+      <form class="user-button">
+        <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
+      </form>
+    </div>
+  <% end %>
   <hr>
 
   <h3>Trip Notes:</h3>
@@ -70,7 +82,11 @@
           lng: <%= marker.lng %></blockquote></li>
       <% end %>
     <% else %>
-      <span class="no-note">You Have No Notes For This Trip.</span>
+      <% if current_users_trip %>
+        <span class="no-note">You Have No Notes For This Trip.</span>
+      <% else %>
+        <span class="no-note">There Are No Notes For This Trip.</span>
+      <% end %>
     <% end %>
   </ul>
 </div>
