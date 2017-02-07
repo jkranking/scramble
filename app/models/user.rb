@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+   devise :omniauthable, :omniauth_providers => [:facebook]
+
   has_many :trips
   has_many :badges_users
   has_many :badges, :through => :badges_users
