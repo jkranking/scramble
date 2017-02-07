@@ -92,7 +92,7 @@ div.maps-show {
 }
 
 div.stars {
-  width: 270px;
+  width: 120px;
   display: inline-block;
 }
 
@@ -100,8 +100,8 @@ input.star { display: none; }
 
 label.star {
   float: right;
-  padding: 10px;
-  font-size: 36px;
+  padding: 2px;
+  font-size: 20px;
   color: #444;
   transition: all .2s;
 }
@@ -119,7 +119,7 @@ input.star-5:checked ~ label.star:before {
 
 input.star-1:checked ~ label.star:before { color: #F62; }
 
-label.star:hover { transform: rotate(-15deg) scale(1.3); }
+label.star:hover { transform: scale(1.2); }
 
 label.star:before {
   content: '\f006';

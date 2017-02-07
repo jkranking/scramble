@@ -1,6 +1,21 @@
 <div class="col-md-3 notes-show">
   <h3><%= @trip.name %></h3>
 
+<div class="stars">
+  <form>
+    <input class="star star-5" id="5" type="radio" name="star"/>
+    <label class="star star-5" for="5"></label>
+    <input class="star star-4" id="4" type="radio" name="star"/>
+    <label class="star star-4" for="4"></label>
+    <input class="star star-3" id="3" type="radio" name="star"/>
+    <label class="star star-3" for="3"></label>
+    <input class="star star-2" id="2" type="radio" name="star"/>
+    <label class="star star-2" for="2"></label>
+    <input class="star star-1" id="1" type="radio" name="star"/>
+    <label class="star star-1" for="1"></label>
+  </form>
+</div>
+
   <table class="table trip-details">
     <tbody>
       <tr>
