@@ -5,6 +5,6 @@ module RatingHelper
 
   def rating(trip)
     trip_rating = trip.trip_ratings.find_by(user_id: current_user.id)
-    trip_rating.rating
+    trip_rating.try(:rating)
   end
 end

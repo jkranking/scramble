@@ -62,6 +62,7 @@ div.maps-show {
 }
 
 #trip-list-text {
+  font-size: 14px;
   color: #333333;
 }
 
@@ -124,3 +125,27 @@ label.star:before {
  .add-new-ping {
    margin-top: 10px;
  }
+
+// Method 2) Using a Sprite
+.star-ratings-sprite {
+  float: left;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+  font-size: 0;
+  height: 21px;
+  line-height: 0;
+  overflow: hidden;
+  text-indent: -999em;
+  width: 110px;
+  margin: 0 auto;
+
+  &-rating {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+    background-position: 0 100%;
+    float: left;
+    height: 21px;
+    display:block;
+  }
+
+}
+
+

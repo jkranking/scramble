@@ -44,59 +44,6 @@ var initMap = function(){
   $('#map').on('click', '.update-marker', trip.updateMarker.bind(trip))
   $('#map').on('click', '.delete-marker', trip.deleteMarker.bind(trip))
 
-
-if (!rated) {
-  $(".stars label").click(function(event){
-    var form = $(event.target)
-    var star = form.attr('for')
-    $.post('/ratings', {rating :star, trip_id :id}, function() {
-    })
-  })
-} else {
-  var starLabel = $("input[id=" + rating + "]")
-
-  $(starLabel).click()
-
-  $(".stars label").click(function(event){
-    var form = $(event.target)
-    var star = form.attr('for')
-    $.ajax({
-      type: 'PUT',
-      url: "/ratings",
-      data: {rating :star, trip_id :id}
-    })
-  })
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  trip.addRating(rated, rating, id)
 
 }
-
-
-
-
-
-
