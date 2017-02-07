@@ -13,6 +13,15 @@
   }
 }
 
+.container {
+  width: 80%;
+}
+
+.list-container {
+  width: 100%;
+  padding: 0;
+}
+
 .field_with_errors {
   @extend .has-error;
   .form-control {
@@ -27,14 +36,11 @@ div.maps-show {
 
 #note-container {
   padding-left: 15px;
+  list-style-type: none;
 }
 
 .blockquote {
   font-size: 10pt;
-}
-
-.container {
-  width: 80%;
 }
 
 #brand {
@@ -59,12 +65,22 @@ div.maps-show {
   color: #333333;
 }
 
-.list-group a:hover {
-  text-decoration: none;
+.style-ul {
+  list-style-type: none;
+  padding-left: 8px;
+}
+
+#elevation-details-list{
+  list-style-type: none;
+  padding-left: 10px;
 }
 
 .static-map {
-  overflow: hidden; // a temporary fix, it doesn't resize the image, just makes it not over flow its boundry
+  margin-bottom: 25px;
+}
+
+.map-pic {
+  padding-bottom: 15px;
 }
 
 .blockquote {
