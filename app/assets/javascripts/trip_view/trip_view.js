@@ -38,6 +38,10 @@ TripView.prototype.showUpdateTrip = function(){
   $('#update-trip').show()
 }
 
+TripView.prototype.showDistance = function(distance){
+  $("#distance").text("distance: " + distance + " mi")
+}
+
 function noteForm(){
   return '<div class="form-group" id="note-form">' +
              '<label for="note">Note:</label>' +
