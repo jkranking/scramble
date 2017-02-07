@@ -1,12 +1,26 @@
 <div class="col-md-3 notes-show">
   <h3><%= @trip.name %></h3>
-  <ul id="elevation-details-list">
-    <li id="distance"></li>
-    <li id="gain"></li>
-    <li id="starting-point"></li>
-    <li id="high-point"></li>
-  </ul>
-  <hr>
+
+  <table class="table trip-details">
+    <tbody>
+      <tr>
+        <td id="distance"></td>
+      </tr>
+      <tr>
+        <td id="gain"></td>
+      </tr>
+      <tr>
+        <td id="starting-point"></td>
+      </tr>
+      <tr>
+        <td id="high-point"></td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
   <form class="user-button">
     <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
   </form>
@@ -26,6 +40,8 @@
   <form class="user-button">
     <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
   </form>
+
+  <hr>
 
   <h3>Trip Notes:</h3>
 
