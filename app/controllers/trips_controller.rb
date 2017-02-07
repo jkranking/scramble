@@ -86,7 +86,7 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:zoom, :latitude, :longitude, :name)
+    params.require(:trip).permit(:zoom, :latitude, :longitude, :name, :distance)
   end
 
   def pings
