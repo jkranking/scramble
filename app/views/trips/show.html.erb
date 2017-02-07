@@ -1,6 +1,6 @@
 <div class="col-md-3 notes-show">
   <h3><%= @trip.name %></h3>
-  <ul>
+  <ul id="elevation-details-list">
     <li id="distance"></li>
     <li id="gain"></li>
     <li id="starting-point"></li>
@@ -29,7 +29,7 @@
 
   <h3>Trip Notes:</h3>
 
-  <ul id="note-container" style="list-style-type: none;">
+  <ul id="note-container">
     <% unless @trip.markers.empty? %>
       <% @trip.ordered_markers_by_created_at.each_with_index do |marker, i| %>
         <li class="marker" id = "marker-<%=marker.id%>"><b><%= i + 1%>.</b>
@@ -44,8 +44,8 @@
 </div>
 
 <div class="col-md-9 maps-show">
-  <div id="map" class="our-map"></div>
-  <div id="elevation_chart"></div>
+  <div id="map" class="our-map img-responsive>"></div>
+  <div class="img-responsive" id="elevation_chart"></div>
 </div>
 
 <script type="text/javascript">
