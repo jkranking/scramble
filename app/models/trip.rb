@@ -3,6 +3,7 @@ class Trip < ApplicationRecord
   belongs_to :user
   has_many :pings
   has_many :markers
+  has_many :trip_ratings
 
   def ordered_markers_by_created_at
     markers.order("created_at ASC")
