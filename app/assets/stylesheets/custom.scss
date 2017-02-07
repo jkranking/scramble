@@ -17,8 +17,9 @@
   width: 80%;
 }
 
-.row {
-  padding: 0 15px;
+.list-container {
+  width: 100%;
+  padding: 0;
 }
 
 .field_with_errors {
@@ -71,4 +72,8 @@ div.maps-show {
 #elevation-details-list{
   list-style-type: none;
   padding-left: 10px;
+}
+
+.static-map {
+  margin-bottom: 25px;
 }
