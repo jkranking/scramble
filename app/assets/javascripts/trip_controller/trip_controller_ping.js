@@ -75,7 +75,7 @@ TripController.prototype.submitPingsHandler = function(event) {
             pings: this.model.simplePings(),
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(saved_trip){
-    alert('trip saved!')
+    alert('Trip saved!')
     window.location.href = "/trips/" + saved_trip.id;
   }).fail(function(response){
     alert(response.responseJSON.error_message)
@@ -128,9 +128,9 @@ TripController.prototype.updateTripHandler = function(event) {
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(updated_trip){
     $('#trip-name').html('<h3>' + name + '</h3>')
-    alert('trip updated!')
+    alert('Trip updated!')
   }).fail(function(){
-    alert('something went wrong!')
+    alert('Something went wrong!')
   })
 
   this.view.showAddMarkerAndEditTrip()
