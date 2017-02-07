@@ -42,6 +42,11 @@ div.maps-show {
   margin-top: -22px;
 }
 
+#home {
+  margin-left: -20px;
+  font-size: 20px;
+}
+
 #add-marker {
   margin-bottom: 10px;
 }
@@ -60,4 +65,12 @@ div.maps-show {
 
 .static-map {
   overflow: hidden; // a temporary fix, it doesn't resize the image, just makes it not over flow its boundry
+}
+
+.blockquote {
+  font-size: 12px;
+}
+
+.trip-details {
+  font-size: 12px;
 }
