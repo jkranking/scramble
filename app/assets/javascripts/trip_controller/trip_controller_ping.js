@@ -102,7 +102,7 @@ TripController.prototype.editTripHandler = function(event) {
        that.model.pings.splice(index, 1)
        that.addPolyline()
        that.setElevationGraph();
-       trip.model.calculateDistance()
+       that.model.calculateDistance()
       });
   })
 
