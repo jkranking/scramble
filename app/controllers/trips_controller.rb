@@ -56,6 +56,16 @@ class TripsController < ApplicationController
     end
   end
 
+  def destroy
+    @trip = Trip.find(params[:id])
+    if (user_signed_in? && current_user == @trip.user)
+      @trip.destroy
+      redirect_to user_trips_path(current_user)
+    else
+      redirect_to trip_path(@trip)
+    end
+  end
+
   def get_pings
     @trip = Trip.find(params[:id])
     respond_to do |format|

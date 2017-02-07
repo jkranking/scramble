@@ -1,5 +1,5 @@
 <div class="col-md-3 notes-show">
-  <h3><%= @trip.name %></h3>
+  <div id="trip-name"><h3><%= @trip.name %></h3></div>
 
   <table class="table trip-details">
     <tbody>
@@ -21,25 +21,32 @@
     </tbody>
   </table>
 
-  <form class="user-button">
-    <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
-  </form>
+  <div class="container buttons">
+    <form class="user-button">
+      <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
+    </form>
 
-  <form class="user-button">
-    <button id="submit-marker" name="submit_marker" class="btn btn-success">Save Note</button>
-  </form>
+    <form class="user-button">
+      <button id="submit-marker" name="submit_marker" class="btn btn-success">Save Note</button>
+    </form>
 
-  <form class="user-button">
-    <button id="cancel-marker" name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
-  </form>
+    <form class="user-button">
+      <button id="cancel-marker" name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
+    </form>
 
-  <form class="user-button">
-    <button id="edit-trip" name="edit_trip" class="btn btn-sm btn-success">Edit Trip</button>
-  </form>
+    <form class="user-button">
+      <button id="edit-trip" name="edit_trip" class="btn btn-sm btn-success">Edit Trip</button>
+    </form>
 
-  <form class="user-button">
-    <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
-  </form>
+    <form class="user-button">
+
+      <button id="delete-trip" name="update_trip" class="btn btn-sm btn-success"><%= link_to 'Delete Trip', url_for(action: :destroy ,id: @trip.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
+    </form>
+
+    <form class="user-button">
+      <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
+    </form>
+  </div>
 
   <hr>
 

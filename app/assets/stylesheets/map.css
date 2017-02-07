@@ -1,3 +1,13 @@
 .our-map {
   height: 600px;
 }
+
+#delete-trip a, #delete-trip a:hover, #delete-trip a:link {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#edit-trip {
+  display: inline-block;
+}
