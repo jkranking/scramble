@@ -16,7 +16,8 @@ var initMap = function(){
     trip.model.loadPingsList()
     trip.addPolyline()
     trip.setElevationGraph()
-    trip.model.calculateDistance()
+    var distance = trip.model.calculateDistance()
+    trip.view.showDistance(distance)
   }
 
   if (markers) {
