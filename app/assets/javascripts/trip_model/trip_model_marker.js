@@ -1,15 +1,15 @@
 var contentString = function(marker, label, img_url){
   var content = '<div class=info-window-content id="note-' + label + '">' +
-  '<div class="note-content" id="note-content-' + label + '">' + marker.note + '</div>' + '<div class="image"><img class="li-trip-photo" src="' + img_url + '"></div>'
+  '<div class="note-content container" id="note-content-' + label + '">' + marker.note + '</div><div class="trip-image">' + img_url + '</div>'
   if (window.users_trip) {
    content += editDeleteButtons(marker.id, label)
   }
 
-  return content
+  return content + '</div>'
 }
 
 var editDeleteButtons = function(marker_id, label){
-  return '<a id="edit-marker-' + label + '" class="edit-marker" href="/trips/' + window.trip.id + '/markers/' + marker_id +'">Edit</a>' +
+  return '<div class="container"><a id="edit-marker-' + label + '" class="edit-marker" href="/trips/' + window.trip.id + '/markers/' + marker_id +'">Edit</a>' +
     '<a id="delete-marker-' + label + '" class="delete-marker" href="/trips/' + window.trip.id + '/markers/' + marker_id +'">Delete</a>' +
   '</div>'
 }
@@ -34,7 +34,7 @@ TripModel.prototype.loadMarkersList = function(){
   window.markers.forEach(function(marker, i){
     var img_url = ''
 
-    if (marker.photo) { img_url = marker.photo.image_url }
+    if (marker.photo) { img_url = '<img class="li-trip-photo" src="' + marker.photo.image_url  + '">' }
 
     var content = contentString(marker, i, img_url)
     var marker_id = marker.id

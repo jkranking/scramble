@@ -27,7 +27,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
   var coordinates = marker.getPosition()
   var note = $('#new-note').val()
   var photo_id
-  if (window.photo) { photo = window.photo.id }
+  if (window.photo) { photo_id = window.photo.id }
 
   $.post({
     url: "/trips/" + trip_id + "/markers",
@@ -42,6 +42,12 @@ TripController.prototype.submitMarkerHandler = function(event) {
     $('.no-note').remove()
 
     var img_url =  $('.uploaded-photo').attr('src')
+    if (img_url) {
+      img_url =' <img class="li-trip-photo" src="' + img_url + '">'
+    } else {
+      img_url = ''
+    }
+    $('.uploaded-photo-section').remove()
     the_marker.setDraggable(false)
     var marker = the_marker
 
@@ -70,7 +76,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
 
 TripController.prototype.cancelNewMarker = function(event) {
   event.preventDefault()
-
+  $('.uploaded-photo-section').remove()
   google.maps.event.removeListener(submitMarkerListener)
   this.view.showAddMarkerAndEditTrip()
   if (this.clicked) {
