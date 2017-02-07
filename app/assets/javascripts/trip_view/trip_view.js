@@ -41,6 +41,10 @@ TripView.prototype.showUpdateTrip = function(){
   $('#update-trip').show()
 }
 
+TripView.prototype.showDistance = function(distance){
+  $("#distance").text("Distance: " + distance + " mi")
+}
+
 function noteForm(){
   return '<div class="form-group" id="note-form">' +
              '<label for="note">Note:</label>' +
@@ -58,16 +62,16 @@ TripView.prototype.showElevationChart = function(chart, data){
 
 TripView.prototype.showElevation = function(cumulativeGain, elevations){
   var gain = (cumulativeGain * 3.28084).toFixed(0)
-  $("#gain").text("elevation gain: " + gain + " ft")
+  $("#gain").text("Elevation gain: " + gain + " ft")
 
   var start = (elevations[0].elevation * 3.28084).toFixed(0)
-  $("#starting-point").text("starting elevation: " + start + " ft")
+  $("#starting-point").text("Starting elevation: " + start + " ft")
 
   var highPoint = elevations.slice().sort(function(a,b){
     return b.elevation - a.elevation
   })
 
   var summit = (highPoint[0].elevation * 3.28084).toFixed(0)
-  $("#high-point").text("high point: " + summit + " ft")
+  $("#high-point").text("High point: " + summit + " ft")
 }
 

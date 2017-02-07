@@ -43,7 +43,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
 
     var img_url =  $('.uploaded-photo').attr('src')
     if (img_url) {
-      img_url =' <img class="li-trip-photo" src="' + img_url + '">'
+      img_url = '<img class="li-trip-photo" src="' + img_url + '">'
     } else {
       img_url = ''
     }
@@ -51,7 +51,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
     the_marker.setDraggable(false)
     var marker = the_marker
 
-    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<img class="li-trip-photo" src="' + img_url + '"><blockquote class="blockquote">lat: ' + marker.getPosition().lat() + '<br>lng: ' + marker.getPosition().lng() + '</blockquote></li>')
+    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + img_url + '<blockquote class="blockquote">lat: ' + marker.getPosition().lat() + '<br>lng: ' + marker.getPosition().lng() + '</blockquote></li>')
 
     controller.view.showAddMarkerAndEditTrip()
 
@@ -121,7 +121,6 @@ TripController.prototype.updateMarker = function(event) {
   ).done(function(response){
     marker.setDraggable(false)
     $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label))
-    console.log('marker', $('#marker-' + marker_id).html())
     $('#marker-' + marker_id).html(replaceListItem(marker_label, note_content,  coordinates))
     alert('note updated!')
   }

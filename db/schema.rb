@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20170207001907) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.string   "name",       default: "BEST TRIP EVER"
+    t.string   "distance"
   end
 
   create_table "users", force: :cascade do |t|
