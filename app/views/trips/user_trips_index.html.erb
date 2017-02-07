@@ -9,13 +9,10 @@
     <%= link_to trip_path(trip) do %>
       <div class="static-map col-md-4">
         <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= trip.latitude %>,<%= trip.longitude%>&zoom=<%= trip.zoom %>&size=600x300&maptype=terrain&path=geodesic:true|<%=static_path(trip)%>&key=<%=ENV['STATIC_MAPS_KEY']%>">
-        <div>
-          <h4 id="trip-list-text"><%= trip.name %></h4>
+        <div id="trip-list-text">
+          <h3><%= trip.name %></h3>
           <ul class="style-ul">
-            <!-- needs different details here -->
-            <!-- <% trip.markers.each do |marker| %>
-              <li><%= marker.note %></li>
-            <% end %> -->
+            <li>Distance: <%= trip.distance %></li>
           </ul>
         </div>
       </div>
