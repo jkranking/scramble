@@ -7,22 +7,18 @@
 <div class="row">
   <% @trips.each do |trip| %>
     <%= link_to trip_path(trip) do %>
-      <ul style="list-style-type: none; padding-left: 0;">
-        <li class="list-item">
-          <div class="static-map col-md-4">
-            <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= trip.latitude %>,<%= trip.longitude%>&zoom=<%= trip.zoom %>&size=600x300&maptype=terrain&path=geodesic:true|<%=static_path(trip)%>&key=<%=ENV['STATIC_MAPS_KEY']%>">
-            <div>
-              <h4 id="trip-list-text"><%= trip.name %></h4>
-              <ul class="style-ul">
-                <!-- needs different details here -->
-                <!-- <% trip.markers.each do |marker| %>
-                  <li><%= marker.note %></li>
-                <% end %> -->
-              </ul>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <div class="static-map col-md-4">
+        <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= trip.latitude %>,<%= trip.longitude%>&zoom=<%= trip.zoom %>&size=600x300&maptype=terrain&path=geodesic:true|<%=static_path(trip)%>&key=<%=ENV['STATIC_MAPS_KEY']%>">
+        <div>
+          <h4 id="trip-list-text"><%= trip.name %></h4>
+          <ul class="style-ul">
+            <!-- needs different details here -->
+            <!-- <% trip.markers.each do |marker| %>
+              <li><%= marker.note %></li>
+            <% end %> -->
+          </ul>
+        </div>
+      </div>
     <% end %>
   <% end %>
 </div>
