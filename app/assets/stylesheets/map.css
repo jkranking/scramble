@@ -17,3 +17,7 @@
 #edit-trip {
   display: inline-block;
 }
+
+.trip-name-edit {
+  font-size: 1.5em;
+}
