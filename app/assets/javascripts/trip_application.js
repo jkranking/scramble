@@ -3,6 +3,7 @@ var initMap = function(){
   var id = window.trip.id
   var pings = window.pings
   var markers = window.markers
+  var rated = window.user_rated
 
   map = setMap(window.trip)
   searchBox(map)
@@ -43,51 +44,26 @@ var initMap = function(){
   $('#map').on('click', '.delete-marker', trip.deleteMarker.bind(trip))
 
 
+if (!rated) {
+  $(".stars label").click(function(event){
+    var form = $(event.target)
+    var star = form.attr('for')
+    $.post('/ratings', {rating :star, trip_id :id}, function() {
+    })
+  })
+} else {
+  $(".stars label").click(function(event){
+    var form = $(event.target)
+    var star = form.attr('for')
+    $.ajax({
+      type: 'PUT',
+      url: "/ratings",
+      data: {rating :star, trip_id :id}
+    })
+  })
+}
 
 
-$(".stars label").click(function(event){
-  var form = $(event.target)
-  var star = form.attr('for')
-
-  // console.log(id)
-  $.post('/ratings', {rating :star, trip_id :id}, function() {
-  }) 
-})
-
-
-
-
-
-
-  // $(".post-container").on('submit', ".inline", function(event){
-  //   event.preventDefault()
-  //   var $url = $(event.target).attr('action')
-  //   var form = $(event.target)
-  //   $.post($url, function(response) {
-  //     response = JSON.parse(response)
-  //     var $article = $("article#" + response.id)
-  //     $($article).find('.upvote-button').css('color', 'green')
-  //     $($article).find('.points').text(response.votes)
-  //   }) 
-
-
-
-
-
-
-    // <article id="<%= post.id %>">
-    //   <form method="post" action='/posts/<%= post.id %>/vote' class="inline">
-    //     <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button upvote-button"></button>
-    //   </form>
-    //   <h2><a href='/post/<%= post.id %>'><%= post.title %></a></h2>
-    //   <p>
-    //     <span class='points'><%= post.points %></span>
-    //     <span class='username'><%= post.username %></span>
-    //     <span class='timestamp'><%= post.time_since_creation %></span>
-    //     <span class='comment-count'><%= post.comment_count %></span>
-    //     <a class="delete" href='/posts/<%= post.id %>'></a>
-    //   </p>
-    //   </article>
 
 
 

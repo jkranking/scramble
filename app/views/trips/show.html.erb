@@ -93,10 +93,12 @@
 </div>
 
 <script type="text/javascript">
+
   var trip = <%==  @trip.to_json %>;
   var pings = <%==  @trip.pings.to_json %>;
   var markers = <%==  @trip.ordered_markers_by_created_at.to_json %>;
   var users_trip = <%==  (@users_trip).to_json %>
+  var user_rated = <%== has_user_given_rating?(@trip).to_json %>;
 </script>
 
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>
