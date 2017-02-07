@@ -21,3 +21,10 @@
 .trip-name-edit {
   font-size: 1.5em;
 }
+
+.facebook-blue {
+  color: white;
+  background-color: #3B5998;
+  margin-top: 20px;
+  font-family: "Lucida Grande";
+}
