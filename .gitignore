@@ -19,3 +19,5 @@
 
 #Ignore SimpleCov files
 /coverage/*
+#Ignore Uploaded Photos
+/public/system/*

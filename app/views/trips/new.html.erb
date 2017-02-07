@@ -1,20 +1,25 @@
-<%= form_for @trip do |t| %>
-  <%= t.label "Name Your Trip:" %>
-  <%= t.text_field :name %>
-<% end %>
+<div class="col-md-3 new-form">
+  <div id="trip-name-new">
+    <%= form_for @trip do |t| %>
+      <%= t.label "Name Your Trip:" %>
+      <%= t.text_field :name, :html => {:class => "form-control"} %>
+    <% end %>
+  </div>
+  <form class="user-button" >
+    <button id="add-ping" name="add_ping" class="btn btn-success add-new-ping">Add Trail Point</button>
+  </form>
+
+  <form class="user-button">
+    <button id="submit-pings" name="submit_ping" class="btn btn-success add-new-ping">Submit Pings</button>
+  </form>
+</div>
 
 </form>
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
 <div id="map" class="our-map"></div>
 <div id="elevation_chart"></div>
 
-<form>
-  <button id="add-ping" name="add_ping">Add Trail Point</button>
-</form>
 
-<form>
-  <button id="submit-pings" name="submit_ping">Submit Pings</button>
-</form>
 
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>
 
