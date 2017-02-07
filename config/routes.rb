@@ -19,4 +19,6 @@ Rails.application.routes.draw do
 
   root 'trips#index'
 
+  resources :badges, only: [:index]
+
 end
