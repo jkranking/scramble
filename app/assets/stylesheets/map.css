@@ -1,3 +1,9 @@
 .our-map {
   height: 600px;
 }
+
+.li-trip-photo {
+  width: 100%;
+  max-width: 80px;
+  display: block;
+}

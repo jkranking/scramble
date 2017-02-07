@@ -1,12 +1,13 @@
 class MarkersController < ApplicationController
   def create
-    p params[:photo]
-    @photo = Photo.new(image: params[:photo])
-    p @photo.save
-    p @photo
     @trip = Trip.find(params[:trip_id])
+
+    @photo = nil
+    @photo = Photo.find(params[:photo]) if params[:photo]
+
     if user_signed_in? && @trip.user == current_user
       @marker = @trip.markers.create(marker_params)
+      @marker.photo = @photo if @photo
       respond_to do |format|
         format.json { render json: @marker }
       end

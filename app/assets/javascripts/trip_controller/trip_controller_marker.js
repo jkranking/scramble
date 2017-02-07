@@ -21,34 +21,37 @@ TripController.prototype.submitMarkerHandler = function(event) {
   if (!this.clicked){ alert('please set a location before saving your note'); return}
 
   var controller = this
-  var id = window.trip.id
+  var trip_id = window.trip.id
   var marker = this.model.markers.slice(-1)[0]
   var the_marker = marker
   var coordinates = marker.getPosition()
   var note = $('#new-note').val()
+  var photo_id
+  if (window.photo) { photo = window.photo.id }
 
   $.post({
-    url: "/trips/" + id + "/markers",
+    url: "/trips/" + trip_id + "/markers",
     data: {marker: {lat: coordinates.lat(),
                   lng: coordinates.lng(),
                   note: note},
-                  photo: $('#photo_image').val(),
+                  photo: photo_id,
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }
 
   ).done(function(response){
     $('.no-note').remove()
 
+    var img_url =  $('.uploaded-photo').attr('src')
     the_marker.setDraggable(false)
     var marker = the_marker
 
-    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<blockquote class="blockquote">lat: ' + marker.getPosition().lat() + '<br>lng: ' + marker.getPosition().lng() + '</blockquote></li>')
+    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<img class="li-trip-photo" src="' + img_url + '"><blockquote class="blockquote">lat: ' + marker.getPosition().lat() + '<br>lng: ' + marker.getPosition().lng() + '</blockquote></li>')
 
     controller.view.showAddMarkerAndEditTrip()
 
     var label = (marker.getLabel() - 1)
 
-    var content = contentString({note: note, id: response.id}, label)
+    var content = contentString({note: note, id: response.id}, label, img_url)
 
     var infowindow = new google.maps.InfoWindow({
       content: content
@@ -98,9 +101,7 @@ TripController.prototype.updateMarker = function(event) {
 
   marker = this.model.markers[marker_label]
   var coordinates = marker.getPosition()
-  console.log('label', marker_label)
   var note_content = $('#update-note-' + marker_label).val()
-  console.log('note', note_content)
 
   $.ajax({
     type: 'PUT',

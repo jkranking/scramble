@@ -1,6 +1,6 @@
-var contentString = function(marker, label){
+var contentString = function(marker, label, img_url){
   var content = '<div class=info-window-content id="note-' + label + '">' +
-  '<div class="note-content" id="note-content-' + label + '">' + marker.note + '</div>'
+  '<div class="note-content" id="note-content-' + label + '">' + marker.note + '</div>' + '<div class="image"><img class="li-trip-photo" src="' + img_url + '"></div>'
   if (window.users_trip) {
    content += editDeleteButtons(marker.id, label)
   }
@@ -32,7 +32,11 @@ function replaceListItem(label, note, marker){
 
 TripModel.prototype.loadMarkersList = function(){
   window.markers.forEach(function(marker, i){
-    var content = contentString(marker, i)
+    var img_url = ''
+
+    if (marker.photo) { img_url = marker.photo.image_url }
+
+    var content = contentString(marker, i, img_url)
     var marker_id = marker.id
 
     var infowindow = new google.maps.InfoWindow({
@@ -45,15 +49,6 @@ TripModel.prototype.loadMarkersList = function(){
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
-
-    //alternate way of displaying the info windows
-    // marker.addListener('mouseover', function() {
-    //   infowindow.open(map, marker);
-    // });
-
-    // marker.addListener('mouseout', function() {
-    //   infowindow.close();
-    // });
 
     this.markers.push(marker)
   }.bind(this))
