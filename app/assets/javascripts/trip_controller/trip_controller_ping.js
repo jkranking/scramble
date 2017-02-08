@@ -89,7 +89,7 @@ TripController.prototype.editTripHandler = function(event) {
   event.preventDefault()
   var that = this
   var name = $('#trip-name').children('h3').html()
-  $('#trip-name').html('<textarea class="form-control">' + name + '</textarea>')
+  $('#trip-name').html('<textarea class="form-control trip-name-edit">' + name + '</textarea>')
 
   this.model.pings.forEach(function(ping){
     ping.setDraggable(true);

@@ -25,6 +25,7 @@ gem 'aws-sdk', '~> 2'
 
 gem 'bootstrap-sass'
 
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'launchy'
