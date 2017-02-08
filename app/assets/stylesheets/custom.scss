@@ -7,6 +7,8 @@ body {
 
 .table.table.trip-details td {
   border-color: #4E4B4F;
+  font-size: 1.5em;
+  color: #D5D5DD;
 }
 
 .notes-show hr {
@@ -34,7 +36,8 @@ body {
 }
 
 .form-control {
-  margin-bottom: 10px;
+
+  background-color: #D5D5DD;
 }
 
 #error_explanation {
@@ -190,4 +193,38 @@ label.star:before {
 
 #image-upload {
   margin-bottom: 10px;
+}
+
+#delete-trip  {
+  background-color: #258c6a;
+  border-color: #29a079;
+}
+
+#delete-trip:hover {
+  background-color: #258c6a;
+  border-color: #258c6a;
+}
+
+#edit-trip > button {
+  background-color: #258c6a;
+  border-color: #29a079;
+}
+
+#edit-trip > button:hover {
+  background-color: #258c6a;
+  border-color: #258c6a;
+}
+
+#add-marker {
+  background-color: #258c6a;
+  border-color: #29a079;
+}
+
+#add-marker:hover {
+  background-color: #258c6a;
+  border-color: #258c6a;
+}
+
+hr {
+  border-color: #4E4B4F;
 }
