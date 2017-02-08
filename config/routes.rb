@@ -24,4 +24,6 @@ Rails.application.routes.draw do
 
   resources :badges, only: [:index]
 
+  resources :favorites, only: [:create]
+
 end

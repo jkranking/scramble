@@ -4,18 +4,30 @@
   <div id="trip-name"><h3><%= @trip.name %></h3></div>
 
 <div class="stars">
-  <form>
-    <input class="star star-5" id="5" type="radio" name="star"/>
-    <label class="star star-5" for="5"></label>
-    <input class="star star-4" id="4" type="radio" name="star"/>
-    <label class="star star-4" for="4"></label>
-    <input class="star star-3" id="3" type="radio" name="star"/>
-    <label class="star star-3" for="3"></label>
-    <input class="star star-2" id="2" type="radio" name="star"/>
-    <label class="star star-2" for="2"></label>
-    <input class="star star-1" id="1" type="radio" name="star"/>
-    <label class="star star-1" for="1"></label>
-  </form>
+  <table class="rating-stars">
+    <tr>
+      <td id="stars-cell">
+        <form>
+          <input class="star star-5" id="5" type="radio" name="star"/>
+          <label class="star star-5" for="5"></label>
+          <input class="star star-4" id="4" type="radio" name="star"/>
+          <label class="star star-4" for="4"></label>
+          <input class="star star-3" id="3" type="radio" name="star"/>
+          <label class="star star-3" for="3"></label>
+          <input class="star star-2" id="2" type="radio" name="star"/>
+          <label class="star star-2" for="2"></label>
+          <input class="star star-1" id="1" type="radio" name="star"/>
+          <label class="star star-1" for="1"></label>
+        </form>
+      </td>
+      <% unless current_users_trip || !user_signed_in? %>
+        <td id="heart-cell">
+          <input id="toggle-heart" type="checkbox" />
+          <label id="favorite-heart" for="toggle-heart">❤</label>
+        </td>
+      <% end %>
+    </tr>
+    </table>
 </div>
 
   <table class="table trip-details">
@@ -116,6 +128,8 @@
   var users_trip = <%==  (@users_trip).to_json %>
   var user_rated = <%== has_user_given_rating?(@trip).to_json %>;
   var rating = <%== rating(@trip).to_json %>;
+  var user_id = <%== current_user.try(:id).to_json %>;
+  var favorited = <%== favorited?(@trip.id, current_user.try(:id)) %>;
 </script>
 
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>
