@@ -1,6 +1,12 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.all
+    if params[:sort_by_newest] == "true"
+      @trips = Trip.order(created_at: :desc)
+    elsif params[:sort_by_rating] == "true"
+      @trips = Trip.all.sort_by{ |trip| trip.get_average_rating }.reverse!
+    else
+      @trips = Trip.all
+    end
   end
 
   def user_trips_index
@@ -26,17 +32,17 @@ class TripsController < ApplicationController
         @trip = current_user.trips.create(trip_params)
           if !BadgesUser.exists?(badge_id: 1, user_id: current_user)
             BadgesUser.create(badge_id: 1, user_id: current_user.id)
-            # flash_message = "You earned your first badge!"
+            flash[:success] = "You earned your first badge!"
           end
 
           if (current_user.trips.all.length >= 10) && !BadgesUser.exists?(badge_id: 2, user_id: current_user)
             BadgesUser.create(badge_id: 2, user_id: current_user.id)
-            # flash_message = "You earned your second badge!"
+            flash[:success] = "You earned your second badge!"
           end
 
           if (current_user.badges.length >= 2) && !BadgesUser.exists?(badge_id: 3, user_id: current_user)
             BadgesUser.create(badge_id: 3, user_id: current_user.id)
-            # flash_message = "You've gone platinum!"
+            flash[:success] = "You've gone platinum!"
           end
 
         Ping.create_multiple_pings(@trip, pings)
