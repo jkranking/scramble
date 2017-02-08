@@ -154,9 +154,9 @@ label.star:before {
   font-family: FontAwesome;
 }
 
- .add-new-ping {
-   margin-top: 10px;
- }
+.add-new-ping {
+ margin-top: 10px;
+}
 
 // Method 2) Using a Sprite
 .star-ratings-sprite {
@@ -178,4 +178,16 @@ label.star:before {
     display:block;
   }
 
+}
+
+#edit-trip {
+  margin-bottom: 10px;
+}
+
+#photo-upload-button {
+  margin-bottom: 10px;
+}
+
+#image-upload {
+  margin-bottom: 10px;
 }
