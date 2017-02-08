@@ -62,6 +62,7 @@ div.maps-show {
 }
 
 #trip-list-text {
+  font-size: 14px;
   color: #333333;
 }
 
@@ -90,6 +91,37 @@ div.maps-show {
 .trip-details {
   font-size: 12px;
 }
+
+div.stars {
+  width: 120px;
+  display: inline-block;
+}
+
+input.star { display: none; }
+
+label.star {
+  float: right;
+  padding: 2px;
+  font-size: 20px;
+  color: #444;
+  transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+label.star:hover { transform: scale(1.2); }
+
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+
  .add-new-ping {
    margin-top: 10px;
  }
@@ -97,3 +129,26 @@ div.maps-show {
  .actions {
   margin-bottom: 15px;
  }
+
+// Method 2) Using a Sprite
+.star-ratings-sprite {
+  float: left;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+  font-size: 0;
+  height: 21px;
+  line-height: 0;
+  overflow: hidden;
+  text-indent: -999em;
+  width: 110px;
+  margin: 0 auto;
+
+  &-rating {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+    background-position: 0 100%;
+    float: left;
+    height: 21px;
+    display:block;
+  }
+
+}
+

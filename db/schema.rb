@@ -68,6 +68,12 @@ ActiveRecord::Schema.define(version: 20170208011658) do
     t.index ["trip_id"], name: "index_pings_on_trip_id", using: :btree
   end
 
+  create_table "trip_ratings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "trip_id", null: false
+    t.integer "rating",  null: false
+  end
+
   create_table "trips", force: :cascade do |t|
     t.decimal  "latitude",                              null: false
     t.decimal  "longitude",                             null: false

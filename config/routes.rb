@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 
   get '/users/:id', to: 'users/users#show', as: 'user'
 
+  post '/ratings', to: 'trip_ratings#create'
+  put '/ratings', to: 'trip_ratings#update'
+
   root 'trips#index'
 
   resources :badges, only: [:index]

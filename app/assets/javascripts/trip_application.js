@@ -3,6 +3,8 @@ var initMap = function(){
   var id = window.trip.id
   var pings = window.pings
   var markers = window.markers
+  var rated = window.user_rated
+  var rating = window.rating
 
   map = setMap(window.trip)
   searchBox(map)
@@ -41,10 +43,7 @@ var initMap = function(){
   $('#map').on('click', '.edit-marker', trip.editMarker.bind(trip))
   $('#map').on('click', '.update-marker', trip.updateMarker.bind(trip))
   $('#map').on('click', '.delete-marker', trip.deleteMarker.bind(trip))
+
+  trip.addRating(rated, rating, id)
+
 }
-
-
-
-
-
-
