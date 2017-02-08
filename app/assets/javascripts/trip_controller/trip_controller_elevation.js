@@ -17,7 +17,7 @@ TripController.prototype.plotElevation = function(elevations, status) {
   }
 
   // Create a new chart in the elevation_chart DIV.
-  var chart = new google.visualization.ColumnChart(chartDiv);
+  var chart = new google.visualization.LineChart(chartDiv);
 
   // Extract the data from which to populate the chart.
   var data = new google.visualization.DataTable();
