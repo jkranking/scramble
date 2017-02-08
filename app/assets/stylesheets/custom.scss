@@ -195,40 +195,76 @@ label.star:before {
 
 #photo-upload-button {
   margin-bottom: 10px;
+  background-color: #21566d;
+}
+
+#photo-upload-button:hover {
+  margin-bottom: 10px;
+  background-color: #2b7291;
 }
 
 #image-upload {
   margin-bottom: 10px;
 }
 
+#submit-marker > button {
+  background-color: #16443e;
+  border-color: #1d5951;
+}
+
+#submit-marker > button:hover {
+  background-color: #18724b;
+  border-color: #1d5951;
+}
+
 #delete-trip  {
-  background-color: #258c6a;
-  border-color: #29a079;
+  background-color: #16443e;
+  border-color: #1d5951;
 }
 
 #delete-trip:hover {
-  background-color: #258c6a;
-  border-color: #258c6a;
+  background-color: #18724b;
+  border-color: #1d5951;
 }
 
 #edit-trip > button {
-  background-color: #258c6a;
-  border-color: #29a079;
+  background-color: #16443e;
+  border-color: #1d5951;
 }
 
 #edit-trip > button:hover {
-  background-color: #258c6a;
-  border-color: #258c6a;
+  background-color: #18724b;
+  border-color: #1d5951;
 }
 
 #add-marker {
-  background-color: #258c6a;
-  border-color: #29a079;
+  background-color: #16443e;
+  border-color: #1d5951;
 }
 
 #add-marker:hover {
-  background-color: #258c6a;
-  border-color: #258c6a;
+  background-color: #18724b;
+  border-color: #1d5951;
+}
+
+#update-trip {
+  background-color: #16443e;
+  border-color: #1d5951;
+}
+
+#update-trip:hover {
+  background-color: #18724b;
+  border-color: #1d5951;
+}
+
+#cancel-marker > button {
+  background-color: #b2ab2e;
+  border-color: #b2ab2e;
+}
+
+#cancel-marker > button:hover {
+  background-color: #ccc328;
+  border-color: #827d2c;
 }
 
 hr {
