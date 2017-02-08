@@ -3,32 +3,40 @@
 <div class="col-md-3 notes-show">
   <div id="trip-name"><h3><%= @trip.name %></h3></div>
 
-<div class="stars">
-  <table class="rating-stars">
-    <tr>
-      <td id="stars-cell">
-        <form>
-          <input class="star star-5" id="5" type="radio" name="star"/>
-          <label class="star star-5" for="5"></label>
-          <input class="star star-4" id="4" type="radio" name="star"/>
-          <label class="star star-4" for="4"></label>
-          <input class="star star-3" id="3" type="radio" name="star"/>
-          <label class="star star-3" for="3"></label>
-          <input class="star star-2" id="2" type="radio" name="star"/>
-          <label class="star star-2" for="2"></label>
-          <input class="star star-1" id="1" type="radio" name="star"/>
-          <label class="star star-1" for="1"></label>
-        </form>
-      </td>
-      <% unless current_users_trip || !user_signed_in? %>
-        <td id="heart-cell">
-          <input id="toggle-heart" type="checkbox" />
-          <label id="favorite-heart" for="toggle-heart">❤</label>
+<% if @trip.user == current_user %>
+  <% if !@trip.get_average_rating %>
+    <h5 class="star-show">Trip has not yet been rated</h5>
+  <% else %>
+    <h3 class="star-show star-ratings-sprite"><span style="width:<%=@trip.get_average_rating%>%" class="star-ratings-sprite-rating"></span></h3>
+  <% end %>
+<% else %>
+  <div class="stars">
+    <table class="rating-stars">
+      <tr>
+        <td id="stars-cell">
+          <form>
+            <input class="star star-5" id="5" type="radio" name="star"/>
+            <label class="star star-5" for="5"></label>
+            <input class="star star-4" id="4" type="radio" name="star"/>
+            <label class="star star-4" for="4"></label>
+            <input class="star star-3" id="3" type="radio" name="star"/>
+            <label class="star star-3" for="3"></label>
+            <input class="star star-2" id="2" type="radio" name="star"/>
+            <label class="star star-2" for="2"></label>
+            <input class="star star-1" id="1" type="radio" name="star"/>
+            <label class="star star-1" for="1"></label>
+          </form>
         </td>
-      <% end %>
-    </tr>
-    </table>
-</div>
+        <% unless current_users_trip || !user_signed_in? %>
+          <td id="heart-cell">
+            <input id="toggle-heart" type="checkbox" />
+            <label id="favorite-heart" for="toggle-heart">❤</label>
+          </td>
+        <% end %>
+      </tr>
+      </table>
+  </div>
+<% end %>
 
   <table class="table trip-details">
     <tbody>
@@ -62,7 +70,7 @@
             <%= f.label :image %>
             <%= f.file_field :image, id: "image-upload" %>
 
-          <%= f.submit 'Upload', class: 'btn btn-primary', id: 'photo-upload-button' %>
+          <%= f.submit 'Upload', class: 'btn btn-sm btn-primary', id: 'photo-upload-button' %>
           </div>
         <% end %>
       </div>

@@ -122,9 +122,9 @@ label.star:before {
   font-family: FontAwesome;
 }
 
- .add-new-ping {
-   margin-top: 10px;
- }
+.add-new-ping {
+ margin-top: 10px;
+}
 
  .actions {
   margin-bottom: 15px;
@@ -192,3 +192,19 @@ label.star:before {
   animation: heart 1s cubic-bezier(.17, .89, .32, 1.49);
 }
 
+.star-show {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+#edit-trip {
+  margin-bottom: 10px;
+}
+
+#photo-upload-button {
+  margin-bottom: 10px;
+}
+
+#image-upload {
+  margin-bottom: 10px;
+}
