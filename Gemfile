@@ -18,7 +18,7 @@ gem 'devise', '~> 4.2'
 gem 'rails_12factor', group: :production
 
 #photo upload and cloud storage
-gem 'rmagick'
+# gem 'rmagick'
 gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
 gem 'remotipart'
 gem 'aws-sdk', '~> 2'
