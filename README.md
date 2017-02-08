@@ -1,4 +1,9 @@
 # Scramble
+###Group members
+*Jeff Kranking
+*Jake Kelly
+*Ian Greenburg
+*Warner Nielsen
 
 ##What is it?
 
