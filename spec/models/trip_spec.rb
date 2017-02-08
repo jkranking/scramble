@@ -15,5 +15,6 @@ RSpec.describe Trip, type: :model do
   describe 'associations' do
     it { is_expected.to have_many :markers }
     it { is_expected.to have_many :pings }
+    it { is_expected.to have_many :trip_ratings }
   end
 end
