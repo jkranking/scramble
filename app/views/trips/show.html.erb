@@ -3,11 +3,9 @@
 <div class="col-md-3 notes-show">
   <div id="trip-name"><h3><%= @trip.name %></h3></div>
 
-<% if !@trip.user == current_user %>
-  <h3><%=current_user%></h3>
-  <h3><%=@trip.user%></h3>
-  <% if @trip.get_average_rating %>
-    <h5 class="star-show">Trip has not been rated</h5>
+<% if @trip.user == current_user %>
+  <% if !@trip.get_average_rating %>
+    <h5 class="star-show">Trip has not yet been rated</h5>
   <% else %>
     <h3 class="star-show star-ratings-sprite"><span style="width:<%=@trip.get_average_rating%>%" class="star-ratings-sprite-rating"></span></h3>
   <% end %>
