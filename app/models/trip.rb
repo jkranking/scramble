@@ -11,6 +11,7 @@ class Trip < ApplicationRecord
 
   def get_average_rating
     ratings = self.trip_ratings
+    return 0 if ratings.empty?
     total = ratings.inject(0) { |n, trip_rating| n + trip_rating.rating }
     average = (total / ratings.length.to_f) * 20
   end

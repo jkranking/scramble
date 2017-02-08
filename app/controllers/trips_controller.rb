@@ -1,6 +1,12 @@
 class TripsController < ApplicationController
   def index
-    @trips = Trip.all
+    if params[:sort_by_newest] == "true"
+      @trips = Trip.order(created_at: :desc)
+    elsif params[:sort_by_rating] == "true"
+      @trips = Trip.all.sort_by{ |trip| trip.get_average_rating }.reverse!
+    else
+      @trips = Trip.all
+    end
   end
 
   def user_trips_index
