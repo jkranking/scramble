@@ -2,12 +2,12 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 feature 'visiting the homepage' do
-  xscenario 'the visitor sees a list of trips and can view them' do
+  scenario 'the visitor sees a list of trips and can view them' do
     trip = FactoryGirl.create(:trip)
     visit root_path
-    within('#trip-list-text') do
+    within('.index-list') do
       expect(page).to have_content trip.name
-      # click_link("trip.name", match: :first)//not working
+      click_link(trip.name)
     end
     expect(page).to have_current_path trip_path(trip)
   end
