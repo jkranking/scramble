@@ -5,7 +5,6 @@ RSpec.describe Favorite, type: :model do
 
     it { is_expected.to validate_presence_of :trip_id }
     it { is_expected.to validate_presence_of :user_id }
-    it { is_expected.to validate_uniqueness_of :user_id, scope: :trip_id }
   end
 
   describe 'associations' do
