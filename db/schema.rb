@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170206212351) do
+ActiveRecord::Schema.define(version: 20170207060234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "badges", force: :cascade do |t|
+    t.integer  "image_id",    null: false
+    t.string   "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "badges_users", force: :cascade do |t|
+    t.integer  "badge_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "markers", force: :cascade do |t|
     t.integer  "trip_id",    null: false
@@ -24,6 +38,17 @@ ActiveRecord::Schema.define(version: 20170206212351) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.string   "title"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "marker_id"
+  end
+
   create_table "pings", force: :cascade do |t|
     t.decimal  "lat",        null: false
     t.decimal  "lng",        null: false
@@ -32,6 +57,12 @@ ActiveRecord::Schema.define(version: 20170206212351) do
     t.datetime "updated_at", null: false
     t.integer  "order"
     t.index ["trip_id"], name: "index_pings_on_trip_id", using: :btree
+  end
+
+  create_table "trip_ratings", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "trip_id", null: false
+    t.integer "rating",  null: false
   end
 
   create_table "trips", force: :cascade do |t|
@@ -59,6 +90,8 @@ ActiveRecord::Schema.define(version: 20170206212351) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "provider"
+    t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

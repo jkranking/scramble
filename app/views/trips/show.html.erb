@@ -1,5 +1,22 @@
+<% current_users_trip = users_trip(@trip) %>
+
 <div class="col-md-3 notes-show">
-  <h3><%= @trip.name %></h3>
+  <div id="trip-name"><h3><%= @trip.name %></h3></div>
+
+<div class="stars">
+  <form>
+    <input class="star star-5" id="5" type="radio" name="star"/>
+    <label class="star star-5" for="5"></label>
+    <input class="star star-4" id="4" type="radio" name="star"/>
+    <label class="star star-4" for="4"></label>
+    <input class="star star-3" id="3" type="radio" name="star"/>
+    <label class="star star-3" for="3"></label>
+    <input class="star star-2" id="2" type="radio" name="star"/>
+    <label class="star star-2" for="2"></label>
+    <input class="star star-1" id="1" type="radio" name="star"/>
+    <label class="star star-1" for="1"></label>
+  </form>
+</div>
 
   <table class="table trip-details">
     <tbody>
@@ -20,27 +37,47 @@
       </tr>
     </tbody>
   </table>
+  <% if current_users_trip %>
+    <div class="buttons">
+      <form class="user-button">
+        <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
+      </form>
 
-  <form class="user-button">
-    <button id="add-marker" name="add_marker" class="btn btn-success">Add A Note</button>
-  </form>
+      <div id="upload-photo" class="user-button">
+        <%= form_for @photo, :html => { :multipart => true }, remote: true do |f| %>
 
-  <form class="user-button">
-    <button id="submit-marker" name="submit_marker" class="btn btn-success">Save Note</button>
-  </form>
+          <div id="image-form">
+            <%= f.label :image %>
+            <%= f.file_field :image, id: "image-upload" %>
 
-  <form class="user-button">
-    <button id="cancel-marker" name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
-  </form>
+          <%= f.submit 'Upload', class: 'btn btn-primary', id: 'photo-upload-button' %>
+          </div>
+        <% end %>
+      </div>
 
-  <form class="user-button">
-    <button id="edit-trip" name="edit_trip" class="btn btn-sm btn-success">Edit Trip</button>
-  </form>
+      <form class="user-button" id="submit-marker">
+        <button name="submit_marker" class="btn btn-success">Save Note</button>
+      </form>
 
-  <form class="user-button">
-    <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
-  </form>
+      <form class="user-button" id="cancel-marker">
+        <button  name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
+      </form>
 
+      <form class="user-button" id="edit-trip">
+        <button name="edit_trip" class="btn btn-sm btn-success">Edit Trip</button>
+      </form>
+
+      <form class="user-button">
+
+        <button id="delete-trip" name="update_trip" class="btn btn-sm btn-success"><%= link_to 'Delete Trip', url_for(action: :destroy ,id: @trip.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
+      </form>
+
+
+      <form class="user-button">
+        <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
+      </form>
+    </div>
+  <% end %>
   <hr>
 
   <h3>Trip Notes:</h3>
@@ -50,11 +87,18 @@
       <% @trip.ordered_markers_by_created_at.each_with_index do |marker, i| %>
         <li class="marker" id = "marker-<%=marker.id%>"><b><%= i + 1%>.</b>
           <%= marker.note %>
+          <% if marker.photo %>
+            <%= image_tag(marker.photo.image.url, class: 'li-trip-photo') %>
+          <% end %>
           <blockquote class="blockquote">lat: <%= marker.lat %><br>
           lng: <%= marker.lng %></blockquote></li>
       <% end %>
     <% else %>
-      <span class="no-note">You Have No Notes For This Trip.</span>
+      <% if current_users_trip %>
+        <span class="no-note">You Have No Notes For This Trip.</span>
+      <% else %>
+        <span class="no-note">There Are No Notes For This Trip.</span>
+      <% end %>
     <% end %>
   </ul>
 </div>
@@ -65,10 +109,13 @@
 </div>
 
 <script type="text/javascript">
+
   var trip = <%==  @trip.to_json %>;
   var pings = <%==  @trip.pings.to_json %>;
-  var markers = <%==  @trip.ordered_markers_by_created_at.to_json %>;
+  var markers = <%==  @trip.ordered_markers_by_created_at.to_json(include: { :photo => { :only => [], :methods => :image_url } }) %>;
   var users_trip = <%==  (@users_trip).to_json %>
+  var user_rated = <%== has_user_given_rating?(@trip).to_json %>;
+  var rating = <%== rating(@trip).to_json %>;
 </script>
 
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>

@@ -6,14 +6,15 @@
 <hr>
 <div class="row index-list">
   <% @trips.each do |trip| %>
-    <%= link_to trip_path(trip) do %>
+    <%= link_to trip_path(trip), class: 'trip-link' do %>
       <div class="map-pic col-md-4">
         <img class="img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?center=<%= trip.latitude %>,<%= trip.longitude%>&zoom=<%= trip.zoom %>&size=600x300&maptype=terrain&path=geodesic:true|<%=static_path(trip)%>&key=<%=ENV['STATIC_MAPS_KEY']%>">
         <div id="trip-list-text">
-          <h3><%= trip.name %></h3>
+          <h4><%= trip.name %></h4>
           <ul class="style-ul">
-            <li>Submitted by: <%= trip.user.username %></li>
+            <li>Submitted by: <%= trip.user.try(:username) %></li>
             <li>Distance: <%= trip.distance %></li>
+            <li class="star-ratings-sprite"><span style="width:<%=trip.get_average_rating%>%" class="star-ratings-sprite-rating"></span></li>
           </ul>
         </div>
       </div>

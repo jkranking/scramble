@@ -4,4 +4,10 @@
     <h4 class="page-title"> <%= @user.email %></h4>
     <h5><%= link_to "Edit Profile", edit_user_registration_path(@user) %></h5>
   </div>
+  <div class="well">
+    <h3 class="badges-container">Your badges</h3>
+    <% @user.badges.each do |badge| %>
+      <a class="badge-show" href="/badges" ><img src="/assets/badge<%= badge.image_id %>.png"></a><p><%= badge.description%></p>
+    <%end%>
+  </div>
 </div>

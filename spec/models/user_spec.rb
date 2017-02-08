@@ -11,5 +11,9 @@ RSpec.describe User, type: :model do
     it 'has many trips' do
       should have_many(:trips)
     end
+
+    it 'has many ratings' do
+      should have_many(:trip_ratings)
+    end
   end
 end
