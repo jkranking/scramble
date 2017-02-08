@@ -161,6 +161,10 @@ label.star:before {
  margin-top: 10px;
 }
 
+ .actions {
+  margin-bottom: 15px;
+ }
+
 // Method 2) Using a Sprite
 .star-ratings-sprite {
   float: left;
@@ -181,6 +185,51 @@ label.star:before {
     display:block;
   }
 
+}
+
+.rating-stars {
+  width: 190px;
+  height: 60px;
+}
+
+#stars-cell {
+  width: 120px;
+  justify-content: left;
+}
+
+#heart-cell label {
+    display: block;
+    text-align: center;
+}
+
+[id='toggle-heart'] {
+  position: absolute;
+  left: -100vw;
+}
+
+[for='toggle-heart'] {
+  color: #aab8c2;
+}
+
+[id='toggle-heart']:checked + label {
+  color: #e2264d;
+}
+
+[for='toggle-heart'] {
+  font-size: 2em;
+  cursor: pointer;
+}
+
+@keyframes heart { 0%, 17.5% { font-size: 8px; } }
+
+[id='toggle-heart']:checked + label {
+  will-change: font-size;
+  animation: heart 1s cubic-bezier(.17, .89, .32, 1.49);
+}
+
+.star-show {
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 #edit-trip {
