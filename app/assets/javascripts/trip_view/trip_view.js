@@ -58,6 +58,7 @@ function noteForm(){
 TripView.prototype.showElevationChart = function(chart, data){
   chart.draw(data, {
     height: 150,
+    curve_type: 'function',
     legend: 'none',
     titleY: 'Elevation (f)',
   });
@@ -77,4 +78,3 @@ TripView.prototype.showElevation = function(cumulativeGain, elevations){
   var summit = (highPoint[0].elevation * 3.28084).toFixed(0)
   $("#high-point").text("High point: " + summit + " ft")
 }
-
