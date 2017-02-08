@@ -18,7 +18,7 @@ TripController.prototype.markerHandler = function(event) {
 TripController.prototype.submitMarkerHandler = function(event) {
   event.preventDefault()
 
-  if (!this.clicked){ alert('please set a location before saving your note'); return}
+  if (!this.clicked){ alert('Please set a location before saving your note'); return}
 
   var controller = this
   var trip_id = window.trip.id
@@ -66,11 +66,11 @@ TripController.prototype.submitMarkerHandler = function(event) {
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
-    alert('note saved!')
+    alert('Note saved!')
   }
 
   ).fail(function(){
-    alert('something went wrong!')
+    alert('Something went wrong!')
   })
 }
 
@@ -122,11 +122,11 @@ TripController.prototype.updateMarker = function(event) {
     marker.setDraggable(false)
     $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label))
     $('#marker-' + marker_id).html(replaceListItem(marker_label, note_content,  coordinates))
-    alert('note updated!')
+    alert('Note updated!')
   }
 
   ).fail(function(){
-    alert('something went wrong!')
+    alert('Something went wrong!')
   })
 }
 
@@ -149,6 +149,6 @@ TripController.prototype.deleteMarker = function(event) {
     $('#marker-' + marker_id).remove()
     alert('deleted!')
   }).fail(function(){
-    alert('something went wrong with the deletion!')
+    alert('Something went wrong with the deletion!')
   })
 }

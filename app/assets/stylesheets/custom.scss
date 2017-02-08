@@ -1,8 +1,43 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+body {
+    background-color: #647679;
+}
+
+.table.table.trip-details td {
+  border-color: #4E4B4F;
+  font-size: 1.5em;
+  color: #D5D5DD;
+}
+
+.notes-show hr {
+  border-color: #4E4B4F;
+}
+
+.navbar {
+  background-color: #4E4B4F;
+}
+
+.navbar.navbar-nav li a {
+  color: #dae3f2;
+}
+
+.nav.navbar-nav li a:visited {
+  color: #D5D5DD;
+}
+
+.nav.navbar-nav li a:hover {
+  color: #B4C1BE;
+}
+
+.well {
+  background-color: #B4C1BE;
+}
+
 .form-control {
-  margin-bottom: 10px;
+
+  background-color: #D5D5DD;
 }
 
 #error_explanation {
@@ -209,6 +244,11 @@ label.star:before {
   margin-bottom: 10px;
 }
 
+hr {
+  border-color: #4E4B4F;
+}
+
 #sort-by-button {
   margin-bottom: 15px;
 }
+
