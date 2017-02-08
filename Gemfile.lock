@@ -245,6 +245,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rmagick (2.16.0)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -368,6 +369,7 @@ DEPENDENCIES
   rails-controller-testing
   rails_12factor
   remotipart
+  rmagick
   rspec-html-matchers
   rspec-rails
   sass-rails (~> 5.0)
