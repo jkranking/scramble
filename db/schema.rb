@@ -22,13 +22,6 @@ ActiveRecord::Schema.define(version: 20170207060234) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "badges_images", force: :cascade do |t|
-    t.integer  "badge_id",   null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "badges_users", force: :cascade do |t|
     t.integer  "badge_id"
     t.integer  "user_id"
