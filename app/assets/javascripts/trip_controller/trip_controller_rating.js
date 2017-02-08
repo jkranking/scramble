@@ -1,6 +1,6 @@
 TripController.prototype.addRating = function(rated, rating, id){
   if (!rated) {
-    $(".stars label").click(function(event){
+    $(".stars label.star").click(function(event){
       var form = $(event.target)
       var star = form.attr('for')
       $.post('/ratings', {rating :star, trip_id :id}, function() {
@@ -10,7 +10,7 @@ TripController.prototype.addRating = function(rated, rating, id){
     var starLabel = $("input[id=" + rating + "]")
     $(starLabel).click()
 
-    $(".stars label").click(function(event){
+    $(".stars label.star").click(function(event){
       var form = $(event.target)
       var star = form.attr('for')
       $.ajax({
