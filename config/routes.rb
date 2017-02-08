@@ -5,9 +5,13 @@ Rails.application.routes.draw do
 
   resources :photos, only: [:new, :create, :delete]
 
+  get '/trips/recent', to: 'trips#recent'
+  get '/trips/reset', to: 'trips#reset'
+
   resources :trips do
     resources :markers, only: [:create, :update, :destroy]
   end
+
 
   get '/users/:user_id/trips', to: 'trips#user_trips_index', as: 'user_trips'
 
@@ -25,5 +29,6 @@ Rails.application.routes.draw do
   resources :badges, only: [:index]
 
   resources :favorites, only: [:create]
+
 
 end

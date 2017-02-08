@@ -95,6 +95,15 @@ class TripsController < ApplicationController
     end
   end
 
+  def recent
+    trips = Trip.ordered_json
+    render json: trips
+  end
+
+  def reset
+    Trip.reset
+  end
+
   private
 
   def trip_params
