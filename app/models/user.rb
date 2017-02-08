@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :badges_users
   has_many :badges, :through => :badges_users
   has_many :trip_ratings
+  has_many :favorites
+  has_many :favorite_trips, through: :favorites, source: :trip
 
   validates_presence_of :username, :email, :encrypted_password
 

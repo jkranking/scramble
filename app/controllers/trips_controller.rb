@@ -6,6 +6,7 @@ class TripsController < ApplicationController
   def user_trips_index
     user = User.find(params[:user_id])
     @trips = user.trips
+    @favorited_trips = user.favorite_trips
     render '/trips/user_trips_index.html.erb'
   end
 
