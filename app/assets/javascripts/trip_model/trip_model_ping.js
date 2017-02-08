@@ -22,7 +22,7 @@ newPing = function(location, map, draggable){
     path: google.maps.SymbolPath.CIRCLE,
     fillColor: 'blue',
     fillOpacity: .4,
-    scale: 3.5,
+    scale: 4.5,
     strokeColor: 'white',
     strokeWeight: 1
   };
