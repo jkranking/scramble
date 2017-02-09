@@ -29,6 +29,10 @@ var initMap = function(){
   trip.view.showAdd()
   trip.view.showAddMarkerAndEditTrip()
 
+
+google.maps.event.addListener(map, 'mousemove', trip.view.displayCoordinates);
+  // $('#map').mousemove(trip.view.displayCoordinates)
+
   $('#add-ping').click(trip.pingHandler.bind(trip))
   $('#submit-pings').click(trip.submitPingsHandler.bind(trip))
   $('body').on('keydown keyup',function(e){

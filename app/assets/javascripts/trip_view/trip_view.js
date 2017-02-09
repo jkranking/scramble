@@ -80,3 +80,12 @@ TripView.prototype.showElevation = function(cumulativeGain, elevations){
   var summit = (highPoint[0].elevation * 3.28084).toFixed(0)
   $("#high-point").text("High point: " + summit + " ft")
 }
+
+TripView.prototype.displayCoordinates = function(event){
+  var coordinates = event.latLng
+  $("#longitude").html("lng: " + coordinates.lng())
+  $("#latitude").html("lat: " + coordinates.lat())
+  // console.log(coordinates.lat())
+  // console.log(coordinates.lng())
+}
+
