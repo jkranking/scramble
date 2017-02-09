@@ -5,6 +5,18 @@ body {
     background-color: #647679;
 }
 
+a {
+  color: #dae3f2;
+}
+
+a:hover {
+  color: #D5D5DD;
+}
+
+a:visited {
+  color: #B4C1BE;
+}
+
 .table.table.trip-details td {
   border-color: #4E4B4F;
   font-size: 1.5em;
@@ -348,6 +360,10 @@ hr {
   font-size: 2em;
 }
 
+.reset-instructions-button {
+  margin-top: 10px;
+}
+
 #loading {
   padding-top: 50px;
   margin: 0 auto;
@@ -356,4 +372,6 @@ hr {
   height: 50%;
 }
 
-
+#new_user > div.actions > input {
+  margin-top: 10px;
+}
