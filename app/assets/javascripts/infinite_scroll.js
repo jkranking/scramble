@@ -14,7 +14,6 @@ $(document).ready(function(){
     sort = '/trips/standard_sort'
   }
 
-  getTrips()
   var $window = $(window)
 
   $window.scroll(function() {
