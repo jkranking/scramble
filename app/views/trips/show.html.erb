@@ -108,8 +108,17 @@
           <% if marker.photo %>
             <%= image_tag(marker.photo.image.url, class: 'li-trip-photo') %>
           <% end %>
-          <blockquote class="blockquote">lat: <%= marker.lat %><br>
-          lng: <%= marker.lng %></blockquote></li>
+          <div class="note-body">
+             <table>
+              <tr>
+                <td rowspan="2"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></td>
+                <td>lat: <%= marker.lat %></td>
+              </tr>
+              <tr>
+                <td>lng: <%= marker.lng %></td>
+              </tr>
+            </table>
+          </div>
       <% end %>
     <% else %>
       <% if current_users_trip %>
