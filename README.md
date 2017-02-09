@@ -1,6 +1,6 @@
 # Scramble
 ###Group members
-* Jeff Kranking
+* Jeffrey D. Kranking, Esq.
 * Jake Kelly
 * Ian Greenburg
 * Warner Nielsen
