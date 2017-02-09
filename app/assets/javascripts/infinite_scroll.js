@@ -1,26 +1,49 @@
 $(document).ready(function(){
+  if (!(window.sort_by)) {return}
+
+  var sort = '/trips/recent'
+  if (sort_by === 'rating') {
+    sort = '/trips/rating'
+  } else if (sort_by === 'newest'){
+    sort = '/trips/recent'
+  } else if (sort_by === 'none') {
+    sort = '/trips/standard_sort'
+  }
+
+
   $.ajax({url: 'trips/reset'})
+
   getTrips()
   var $window = $(window)
+
   $window.scroll(function() {
     if (($(document).height() - $window.height()) === $window.scrollTop()) {
-      getTrips()
+      $()
+      setTimeout(getTrips, 10000)
+      if ($('#loading').length === 0 && $('.trips-end').length === 0){
+        $('div.index-list').append('<img id="loading" class="img-responsive" src="/assets/goat-see.gif">')
+      }
     }
   })
-})
 
-function getTrips() {
-  $.ajax({
-    type: 'GET',
-    url: '/trips/recent'
-  }).done(function(data){
-    if (!(data)) {return;}
-    data.forEach(function(trip){
-      var html = formatTrip(trip)
-      $('div.index-list').append(html)
+  function getTrips() {
+    $.ajax({
+      type: 'GET',
+      url: sort
+    }).done(function(data){
+      $('#loading').remove()
+      if (!(data)) {
+        if ($('.trips-end').length > 0){return;}
+        $('div.index-list').parent().append('<div class="trips-end">You Have Reached The End Of The Trips')
+        return;
+      }
+      data.forEach(function(trip){
+        var html = formatTrip(trip)
+        $('div.index-list').append(html)
+      })
     })
-  })
-}
+  }
+})
 
 function formatTrip(trip) {
   var username = ''

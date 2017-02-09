@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :photos, only: [:new, :create, :delete]
 
   get '/trips/recent', to: 'trips#recent'
+  get '/trips/rating', to: 'trips#rating'
+  get '/trips/standard_sort', to: 'trips#standard_sort'
   get '/trips/reset', to: 'trips#reset'
 
   resources :trips do

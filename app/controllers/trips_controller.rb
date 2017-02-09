@@ -1,11 +1,15 @@
 class TripsController < ApplicationController
   def index
+    @sort_style = 'newest'
     if params[:sort_by_newest] == "true"
-      @trips = Trip.order(created_at: :desc)
+      @sort_style = 'newest'
+      #@trips = Trip.order(created_at: :desc)
     elsif params[:sort_by_rating] == "true"
-      @trips = Trip.all.sort_by{ |trip| trip.get_average_rating }.reverse!
-    else
-      @trips = Trip.all
+      @sort_style = 'rating'
+      #@trips = Trip.all.sort_by{ |trip| trip.get_average_rating }.reverse!
+    elsif params[:sort_by_newest] == "false"
+      @sort_style = 'none'
+      #@trips = Trip.all
     end
   end
 
@@ -103,6 +107,16 @@ class TripsController < ApplicationController
 
   def recent
     trips = Trip.ordered_json
+    render json: trips
+  end
+
+  def rating
+    trips = Trip.ordered_by_average
+    render json: trips
+  end
+
+  def standard_sort
+    trips = Trip.standard_ordered_json
     render json: trips
   end
 
