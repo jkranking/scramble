@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma'
 gem 'sass-rails', '~> 5.0'
@@ -15,6 +15,7 @@ gem 'httparty'
 gem 'dotenv-rails'
 gem 'faker'
 gem 'devise', '~> 4.2'
+#gem 'selenium-webdriver'
 gem 'rails_12factor', group: :production
 
 #photo upload and cloud storage

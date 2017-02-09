@@ -88,14 +88,6 @@ div.maps-show {
   font-size: 20px;
 }
 
-#add-marker {
-  margin-bottom: 10px;
-}
-
-#submit-marker {
-  margin-bottom: 10px;
-}
-
 #trip-list-text {
   font-size: 14px;
   color: #333333;
@@ -232,15 +224,41 @@ label.star:before {
   margin-bottom: 10px;
 }
 
+#add-marker {
+  display: none;
+  margin-bottom: 10px;
+}
+
+#add-ping {
+  display: none;
+}
+
+#submit-pings {
+  display: none;
+}
+
+#submit-marker {
+  display: none;
+  margin-bottom: 10px;
+}
+
+#cancel-marker {
+  display: none;
+  margin-bottom: 10px;
+}
+
 #edit-trip {
+  display: none;
   margin-bottom: 10px;
 }
 
-#photo-upload-button {
+#upload-photo {
+  display: none;
   margin-bottom: 10px;
 }
 
-#image-upload {
+#image-form {
+  display: none;
   margin-bottom: 10px;
 }
 
@@ -324,3 +342,18 @@ hr {
 #searchInput:focus {
     border-color: #4d90fe;
 }
+
+.trips-end {
+  text-align: center;
+  font-size: 2em;
+}
+
+#loading {
+  padding-top: 50px;
+  margin: 0 auto;
+  width: 70px;
+  display: block;
+  height: 50%;
+}
+
+
