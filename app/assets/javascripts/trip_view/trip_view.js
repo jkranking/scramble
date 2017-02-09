@@ -87,11 +87,21 @@ TripView.prototype.displayCoordinates = function(event){
   $("#latitude").html("lat: " + coordinates.lat())
 }
 
-TripView.prototype.displayMarkerError = function(event){
+TripView.prototype.displayMarkerError = function(){
   $('#flash-alerts .space').prepend('<div class="alert alert-danger">Please set a location before saving your note</div>');
   setTimeout(function(){$('.alert').remove()}, 3000);
   return
 }
 
+TripView.prototype.displayImgNote = function(){
+  console.log("hello")
+ $('.no-note').remove()
+  var img_url =  $('.uploaded-photo').attr('src')
+  if (img_url) {
+    img_url = '<img class="li-trip-photo" src="' + img_url + '">'
+  } else {
+    img_url = ''
+  }
+}
 
 

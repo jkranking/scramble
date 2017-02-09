@@ -33,13 +33,15 @@ TripController.prototype.submitMarkerHandler = function(event) {
   $.post({
     url: "/trips/" + trip_id + "/markers",
     data: {marker: {lat: coordinates.lat(),
-                  lng: coordinates.lng(),
-                  note: note},
+                    lng: coordinates.lng(),
+                   note: note},
                   photo: photo_id,
-            AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
+             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }
 
   ).done(function(response){
+
+
     $('.no-note').remove()
 
     var img_url =  $('.uploaded-photo').attr('src')
@@ -48,11 +50,12 @@ TripController.prototype.submitMarkerHandler = function(event) {
     } else {
       img_url = ''
     }
+    // this.view.displayImgNote()
+
     $('.uploaded-photo-section').remove()
     the_marker.setDraggable(false)
     var marker = the_marker
     var icon = "fa fa-map-marker fa-2x"
-
     if (img_url) {icon = "fa fa-camera-retro fa-lg"}
     $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<div class="note-body"><table><tr><td rowspan="2"><i class="' + icon + '" aria-hidden="true"></i></td><td>lat: '  + marker.getPosition().lat() + '</td></tr><tr><td>lng: ' + marker.getPosition().lng() + '</td></tr></tbody></table></div>')
 
