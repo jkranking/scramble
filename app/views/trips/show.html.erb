@@ -61,6 +61,7 @@
       </tr>
     </tbody>
   </table>
+
   <% if current_users_trip %>
     <div class="buttons">
       <form class="user-button">
@@ -111,9 +112,6 @@
       <% @trip.ordered_markers_by_created_at.each_with_index do |marker, i| %>
         <li class="marker" id = "marker-<%=marker.id%>"><b><%= i + 1%>.</b>
           <%= marker.note %>
-          <%# if marker.photo %>
-            <%#= image_tag(marker.photo.image.url, class: 'li-trip-photo') %>
-          <%# end %>
           <div class="note-body">
              <table>
               <tr>
