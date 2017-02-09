@@ -52,8 +52,10 @@ TripController.prototype.submitMarkerHandler = function(event) {
     $('.uploaded-photo-section').remove()
     the_marker.setDraggable(false)
     var marker = the_marker
+    var icon = "fa fa-map-marker fa-2x"
 
-    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + img_url + '<div class="note-body"><table><tr><td rowspan="2"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></td><td>lat: '  + marker.getPosition().lat() + '</td></tr><tr><td>lng: ' + marker.getPosition().lng() + '</td></tr></tbody></table></div>')
+    if (img_url) {icon = "fa fa-camera-retro fa-lg"}
+    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<div class="note-body"><table><tr><td rowspan="2"><i class="' + icon + '" aria-hidden="true"></i></td><td>lat: '  + marker.getPosition().lat() + '</td></tr><tr><td>lng: ' + marker.getPosition().lng() + '</td></tr></tbody></table></div>')
 
     controller.view.showAddMarkerAndEditTrip()
 
