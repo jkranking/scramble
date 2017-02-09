@@ -27,10 +27,10 @@
             <label class="star star-1" for="1"></label>
           </form>
         </td>
-          <td id="heart-cell">
-            <input id="toggle-heart" type="checkbox" />
-            <label id="favorite-heart" for="toggle-heart">❤</label>
-          </td>
+        <td id="heart-cell">
+          <input id="toggle-heart" type="checkbox" />
+          <label id="favorite-heart" for="toggle-heart">❤</label>
+        </td>
       </tr>
       </table>
   </div>
@@ -61,6 +61,7 @@
       </tr>
     </tbody>
   </table>
+
   <% if current_users_trip %>
     <div class="buttons">
       <form class="user-button">
@@ -111,13 +112,14 @@
       <% @trip.ordered_markers_by_created_at.each_with_index do |marker, i| %>
         <li class="marker" id = "marker-<%=marker.id%>"><b><%= i + 1%>.</b>
           <%= marker.note %>
-          <% if marker.photo %>
-            <%= image_tag(marker.photo.image.url, class: 'li-trip-photo') %>
-          <% end %>
           <div class="note-body">
              <table>
               <tr>
+              <% if marker.photo %>
+                <td rowspan="2"><i class="fa fa-camera-retro fa-lg" aria-hidden="true"></i></td>
+              <% else %>
                 <td rowspan="2"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></td>
+              <% end %>
                 <td>lat: <%= marker.lat %></td>
               </tr>
               <tr>
