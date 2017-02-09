@@ -88,13 +88,15 @@
         <button  name="cancel_marker" class="btn btn-sm btn-warning">Cancel Note</button>
       </form>
 
-      <form class="user-button" id="edit-trip">
-        <button name="edit_trip" class="btn btn-sm btn-warning">Edit Trip</button>
-      </form>
+      <table>
+        <form class="user-button" id="edit-trip">
+          <button name="edit_trip" class="btn btn-sm btn-warning">Edit Trip</button>
+        </form>
 
-      <form class="user-button">
-        <button id="delete-trip" name="update_trip" class="btn btn-sm btn-warning"><%= link_to 'Delete Trip', url_for(action: :destroy ,id: @trip.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
-      </form>
+        <form class="user-button" id="delete-trip">
+          <button id="delete-trip" name="update_trip" class="btn btn-sm btn-warning"><%= link_to 'Delete Trip', url_for(action: :destroy ,id: @trip.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
+        </form>
+      </table>
 
       <form class="user-button">
         <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
