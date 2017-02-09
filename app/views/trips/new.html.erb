@@ -14,20 +14,14 @@
   </form>
 </div>
 
-</form>
-
 <div class="col-md-9 maps-show">
-<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-<div id="map" class="our-map form-control"></div>
-<div id="elevation_chart"></div>
+  <input id="searchInput" class="controls form-control" type="text" placeholder="Enter a location">
+  <div id="map" class="our-map form-control"></div>
+  <div id="elevation_chart"></div>
 </div>
 
-
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>
-
-
 <script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&libraries=places&callback=initMap"></script>
-
 <script type="text/javascript">
   var trip = <%== {"latitude":"46.8712234868192", "longitude":"-121.80838644504547", "zoom":"13"}.to_json %>;
   var markers = <%==  @trip.markers.to_json %>
