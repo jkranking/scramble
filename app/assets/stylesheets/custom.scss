@@ -244,7 +244,6 @@ label.star:before {
 }
 
 #add-marker {
-  display: none;
   margin-bottom: 10px;
 }
 
@@ -262,11 +261,6 @@ label.star:before {
 }
 
 #cancel-marker {
-  display: none;
-  margin-bottom: 10px;
-}
-
-#edit-trip {
   display: none;
   margin-bottom: 10px;
 }
@@ -402,6 +396,23 @@ hr {
   padding-left: 15px;
 }
 
+#photo-upload-button {
+  margin-top: 10px;
+}
+
+.note-content {
+  text-align: center;
+}
+
+.edit-marker {
+  float: left;
+  color: blue;
+}
+
+.delete-marker {
+  float: right;
+  color: blue;
+}
 
 #footer-links > li > a {
   color: #4E4B4F;
@@ -421,4 +432,8 @@ hr {
 
 #note-container {
   color: #D5D5DD;
+}
+
+#update-trip {
+  display: none;
 }
