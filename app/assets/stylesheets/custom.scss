@@ -1,8 +1,55 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
+body {
+    background-color: #647679;
+}
+
+a {
+  color: #dae3f2;
+}
+
+a:hover {
+  color: #D5D5DD;
+}
+
+a:visited {
+  color: #B4C1BE;
+}
+
+.table.table.trip-details td {
+  border-color: #4E4B4F;
+  font-size: 1.5em;
+  color: #D5D5DD;
+}
+
+.notes-show hr {
+  border-color: #4E4B4F;
+}
+
+.navbar {
+  background-color: #4E4B4F;
+}
+
+.navbar.navbar-nav li a {
+  color: #dae3f2;
+}
+
+.nav.navbar-nav li a:visited {
+  color: #D5D5DD;
+}
+
+.nav.navbar-nav li a:hover {
+  color: #B4C1BE;
+}
+
+.well {
+  background-color: #B4C1BE;
+}
+
 .form-control {
-  margin-bottom: 10px;
+
+  background-color: #D5D5DD;
 }
 
 #error_explanation {
@@ -53,15 +100,8 @@ div.maps-show {
   font-size: 20px;
 }
 
-#add-marker {
-  margin-bottom: 10px;
-}
-
-#submit-marker {
-  margin-bottom: 10px;
-}
-
 #trip-list-text {
+  font-size: 14px;
   color: #333333;
 }
 
@@ -92,6 +132,268 @@ div.maps-show {
 }
 
 .uploaded-photo {
-  width: 100%;
-  border: solid 20px black;
+  max-width: 100%;
+}
+
+div.stars {
+  width: 120px;
+  display: inline-block;
+}
+
+input.star { display: none; }
+
+label.star {
+  float: right;
+  padding: 2px;
+  font-size: 20px;
+  color: #444;
+  transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+label.star:hover { transform: scale(1.2); }
+
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+
+.add-new-ping {
+ margin-top: 10px;
+}
+
+ .actions {
+  margin-bottom: 15px;
+ }
+
+// Method 2) Using a Sprite
+.star-ratings-sprite {
+  float: left;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+  font-size: 0;
+  height: 21px;
+  line-height: 0;
+  overflow: hidden;
+  text-indent: -999em;
+  width: 110px;
+  margin: 0 auto;
+
+  &-rating {
+    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
+    background-position: 0 100%;
+    float: left;
+    height: 21px;
+    display:block;
+  }
+
+}
+
+.rating-stars {
+  width: 190px;
+  height: 60px;
+}
+
+#stars-cell {
+  width: 120px;
+  justify-content: left;
+}
+
+#heart-cell label {
+    display: block;
+    text-align: center;
+}
+
+[id='toggle-heart'] {
+  position: absolute;
+  left: -100vw;
+}
+
+[for='toggle-heart'] {
+  color: #aab8c2;
+}
+
+[id='toggle-heart']:checked + label {
+  color: #E74C3C;
+}
+
+[for='toggle-heart'] {
+  font-size: 2em;
+  cursor: pointer;
+}
+
+@keyframes heart { 0%, 17.5% { font-size: 8px; } }
+
+[id='toggle-heart']:checked + label {
+  will-change: font-size;
+  animation: heart 1s cubic-bezier(.17, .89, .32, 1.49);
+}
+
+.star-show {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+#add-marker {
+  display: none;
+  margin-bottom: 10px;
+}
+
+#add-ping {
+  display: none;
+}
+
+#submit-pings {
+  display: none;
+}
+
+#submit-marker {
+  display: none;
+  margin-bottom: 10px;
+}
+
+#cancel-marker {
+  display: none;
+  margin-bottom: 10px;
+}
+
+#edit-trip {
+  display: none;
+  margin-bottom: 10px;
+}
+
+#upload-photo {
+  display: none;
+  margin-bottom: 10px;
+}
+
+#image-form {
+  display: none;
+  margin-bottom: 10px;
+}
+
+/* footer */
+
+footer {
+  margin-top: 50px;
+  padding-top: 5px;
+  height: 55px;
+  border-top: 1px solid #4E4B4F;
+  color: #777;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+.footer-section {
+  height: 50px;
+ }
+
+.about-us {
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.about-container {
+  padding: 50px;
+}
+
+.team-img {
+  padding-left: 35px;
+  padding-bottom:25px;
+}
+
+.personal {
+  padding-left: 10px;
+}
+
+hr {
+  border-color: #4E4B4F;
+}
+
+.index-list {
+  margin-top: 20px;
+}
+
+.navbar {
+  border-bottom: .5px solid black;
+}
+
+#searchInput {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 25%;
+}
+#searchInput:focus {
+    border-color: #4d90fe;
+}
+
+.trips-end {
+  text-align: center;
+  font-size: 2em;
+}
+
+.reset-instructions-button {
+  margin-top: 10px;
+}
+
+#loading {
+  padding-top: 50px;
+  margin: 0 auto;
+  width: 70px;
+  display: block;
+  height: 50%;
+}
+
+// #flash-alerts .space{
+//   height: 70px;
+// }
+
+
+#new_user > div.actions > input {
+  margin-top: 10px;
+}
+
+.lat-lng {
+  display: inline;
+}
+
+.fa-map-marker {
+  padding-right: 10px;
+}
+
+.note-body {
+  padding-top: 5px;
+  padding-left: 15px;
 }

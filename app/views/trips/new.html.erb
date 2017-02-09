@@ -1,26 +1,42 @@
-<%= form_for @trip do |t| %>
-  <%= t.label "Name Your Trip:" %>
-  <%= t.text_field :name %>
-<% end %>
+<div class="col-md-3 new-form">
+  <div id="trip-name-new">
+    <%= form_for @trip do |t| %>
+      <%= t.label "Name Your Trip:" %>
+      <%= t.text_field :name, :class => "form-control" %>
+    <% end %>
+  </div>
 
-</form>
-<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-<div id="map" class="our-map"></div>
-<div id="elevation_chart"></div>
+    <table class="table trip-details">
+    <tbody>
+      <tr>
+        <td id="latitude">lat: </td>
+      </tr>
+      <tr>
+        <td id="longitude">lng: </td>
+      </tr>
+    </tbody>
+  </table>
 
-<form>
-  <button id="add-ping" name="add_ping">Add Trail Point</button>
-</form>
 
-<form>
-  <button id="submit-pings" name="submit_ping">Submit Pings</button>
-</form>
+
+  <form class="user-button" >
+    <button id="add-ping" name="add_ping" class="btn btn-success add-new-ping">Start Mapping</button>
+  </form>
+
+  <form class="user-button">
+    <button id="submit-pings" name="submit_ping" class="btn btn-success add-new-ping">Submit Trail</button>
+  </form>
+</div>
+
+<div class="col-md-9 maps-show">
+  <input id="searchInput" class="controls form-control" type="text" placeholder="Enter a location">
+  <div id="map" class="our-map form-control"></div>
+  <div id="elevation_chart"></div>
+</div>
 
 <script>google.load('visualization', '1', {packages: ['columnchart']})</script>
-
 <script async defer src="https://maps.googleapis.com/maps/api/js?&key=<%=ENV['MAPS_KEY']%>&libraries=places&callback=initMap"></script>
-
 <script type="text/javascript">
-  var trip = <%== {"latitude":"47.455951443369976", "longitude":"-122.047119140625", "zoom":"7"}.to_json %>;
+  var trip = <%== {"latitude":"46.8712234868192", "longitude":"-121.80838644504547", "zoom":"13"}.to_json %>;
   var markers = <%==  @trip.markers.to_json %>
 </script>

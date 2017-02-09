@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma'
 gem 'sass-rails', '~> 5.0'
@@ -15,11 +15,18 @@ gem 'httparty'
 gem 'dotenv-rails'
 gem 'faker'
 gem 'devise', '~> 4.2'
+#gem 'selenium-webdriver'
 gem 'rails_12factor', group: :production
 
-gem 'paperclip', "~> 4.2"
+#photo upload and cloud storage
+gem 'rmagick'
+gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523bd46c768226893f23889079a7aa9c73b57d68'
+gem 'remotipart'
+gem 'aws-sdk', '~> 2'
 
 gem 'bootstrap-sass'
+
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'launchy'

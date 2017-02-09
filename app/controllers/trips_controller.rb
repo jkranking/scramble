@@ -1,11 +1,22 @@
 class TripsController < ApplicationController
   def index
+    @sort_style = 'newest'
     @trips = Trip.all
+    if params[:sort_by_newest] == "true"
+      @sort_style = 'newest'
+      @trips = Trip.order(created_at: :desc)
+    elsif params[:sort_by_rating] == "true"
+      @sort_style = 'rating'
+      @trips = Trip.all.sort_by{ |trip| trip.get_average_rating }.reverse!
+    elsif params[:sort_by_newest] == "false"
+      @sort_style = 'none'
+    end
   end
 
   def user_trips_index
     user = User.find(params[:user_id])
     @trips = user.trips
+    @favorited_trips = user.favorite_trips
     render '/trips/user_trips_index.html.erb'
   end
 
@@ -25,17 +36,17 @@ class TripsController < ApplicationController
         @trip = current_user.trips.create(trip_params)
           if !BadgesUser.exists?(badge_id: 1, user_id: current_user)
             BadgesUser.create(badge_id: 1, user_id: current_user.id)
-            # flash_message = "You earned your first badge!"
+            flash[:success] = "You earned your first badge!"
           end
 
           if (current_user.trips.all.length >= 10) && !BadgesUser.exists?(badge_id: 2, user_id: current_user)
             BadgesUser.create(badge_id: 2, user_id: current_user.id)
-            # flash_message = "You earned your second badge!"
+            flash[:success] = "You earned your second badge!"
           end
 
           if (current_user.badges.length >= 2) && !BadgesUser.exists?(badge_id: 3, user_id: current_user)
             BadgesUser.create(badge_id: 3, user_id: current_user.id)
-            # flash_message = "You've gone platinum!"
+            flash[:success] = "You've gone platinum!"
           end
 
         Ping.create_multiple_pings(@trip, pings)
@@ -56,6 +67,7 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @photo = Photo.new
     @users_trip = (@trip.user == current_user && user_signed_in?)
   end
 
@@ -66,9 +78,14 @@ class TripsController < ApplicationController
   def update
     @trip = Trip.find(params[:id])
     if user_signed_in? && @trip.user == current_user
-      @trip.update(trip_params)
-      @trip.pings.destroy_all
-      Ping.create_multiple_pings(@trip, pings)
+      if @trip.update(trip_params)
+        @trip.pings.destroy_all
+        Ping.create_multiple_pings(@trip, pings)
+      else
+        respond_to do |format|
+          format.json { render :json => Trip.find(params[:id]) , :status => 422 }
+        end
+      end
     else
       respond_to do |format|
         format.json { render :json => { :error_message => 'You don\'t have permission to alter this trip' }, :status => 401 }
@@ -91,6 +108,25 @@ class TripsController < ApplicationController
     respond_to do |format|
       format.json { render json: @trip.pings }
     end
+  end
+
+  def recent
+    trips = Trip.ordered_json
+    render json: trips
+  end
+
+  def rating
+    trips = Trip.ordered_by_average
+    render json: trips
+  end
+
+  def standard_sort
+    trips = Trip.standard_ordered_json
+    render json: trips
+  end
+
+  def reset
+    Trip.reset
   end
 
   private

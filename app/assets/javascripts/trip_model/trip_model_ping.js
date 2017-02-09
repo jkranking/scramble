@@ -1,4 +1,5 @@
 TripModel.prototype.simplePings = function(){
+  if (this.pings.length === 0) {return {empty: 'empty'}}
   return this.pings.map(function(ping){
     var coordinates = ping.getPosition()
     return new PingModel({lat: coordinates.lat(), lng: coordinates.lng()})
@@ -22,7 +23,7 @@ newPing = function(location, map, draggable){
     path: google.maps.SymbolPath.CIRCLE,
     fillColor: 'blue',
     fillOpacity: .4,
-    scale: 3.5,
+    scale: 4.5,
     strokeColor: 'white',
     strokeWeight: 1
   };

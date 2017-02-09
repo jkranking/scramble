@@ -63,7 +63,7 @@ TripController.prototype.submitPingsHandler = function(event) {
   event.preventDefault()
   this.model.updateCenter()
   var name = $('#trip_name').val()
-  var distance = this.model.calculateDistance().toString()
+  var distance = this.model.calculateDistance()
 
   $.post({
     url: "/trips",
@@ -75,10 +75,13 @@ TripController.prototype.submitPingsHandler = function(event) {
             pings: this.model.simplePings(),
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(saved_trip){
-    alert('trip saved!')
+    $('#flash-alerts .space').prepend('<div class="alert alert-success">Trip Saved!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
     window.location.href = "/trips/" + saved_trip.id;
   }).fail(function(response){
-    alert(response.responseJSON.error_message)
+    console.log(response)
+    $('#flash-alerts .space').prepend('<div class="alert alert-danger">' + response.responseJSON.error_message + '</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
   })
 
   google.maps.event.removeListener(pingListener);
@@ -89,7 +92,7 @@ TripController.prototype.editTripHandler = function(event) {
   event.preventDefault()
   var that = this
   var name = $('#trip-name').children('h3').html()
-  $('#trip-name').html('<textarea class="form-control">' + name + '</textarea>')
+  $('#trip-name').html('<textarea class="form-control trip-name-edit">' + name + '</textarea>')
 
   this.model.pings.forEach(function(ping){
     ping.setDraggable(true);
@@ -128,9 +131,14 @@ TripController.prototype.updateTripHandler = function(event) {
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(updated_trip){
     $('#trip-name').html('<h3>' + name + '</h3>')
-    alert('trip updated!')
-  }).fail(function(){
-    alert('something went wrong!')
+
+    $('#flash-alerts .space').prepend('<div class="alert alert-success">Trip Updated!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
+
+  }).fail(function(response){
+    $('#trip-name').html('<h3>' + response.responseJSON.name + '</h3>')
+    $('#flash-alerts .space').prepend('<div class="alert alert-danger">Something went wrong!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
   })
 
   this.view.showAddMarkerAndEditTrip()

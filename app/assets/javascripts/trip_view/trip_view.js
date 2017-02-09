@@ -16,6 +16,8 @@ TripView.prototype.showSubmitMarker = function(){
   $('#edit-trip').hide()
   $('#delete-trip').hide()
   $('#update-trip').hide()
+  $('#upload-photo').show()
+  $('#image-form').show()
   $('#submit-marker').show()
   $('#cancel-marker').show()
   $(noteForm()).insertAfter($('#add-marker'))
@@ -23,6 +25,7 @@ TripView.prototype.showSubmitMarker = function(){
 
 TripView.prototype.showAddMarkerAndEditTrip = function(){
   $('#submit-marker').hide()
+  $('#upload-photo').hide()
   $('#cancel-marker').hide()
   $('#note-form').remove()
   $('#update-trip').hide()
@@ -55,6 +58,9 @@ function noteForm(){
 TripView.prototype.showElevationChart = function(chart, data){
   chart.draw(data, {
     height: 150,
+    curve_type: 'function',
+    backgroundColor: '#B4C1BE',
+    colors: ['#40b0c9'],
     legend: 'none',
     titleY: 'Elevation (f)',
   });
@@ -73,5 +79,13 @@ TripView.prototype.showElevation = function(cumulativeGain, elevations){
 
   var summit = (highPoint[0].elevation * 3.28084).toFixed(0)
   $("#high-point").text("High point: " + summit + " ft")
+}
+
+TripView.prototype.displayCoordinates = function(event){
+  var coordinates = event.latLng
+  $("#longitude").html("lng: " + coordinates.lng())
+  $("#latitude").html("lat: " + coordinates.lat())
+  // console.log(coordinates.lat())
+  // console.log(coordinates.lng())
 }
 

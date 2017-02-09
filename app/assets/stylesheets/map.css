@@ -2,6 +2,12 @@
   height: 600px;
 }
 
+.li-trip-photo {
+  width: 100%;
+  max-width: 80px;
+  display: block;
+}
+
 #delete-trip a, #delete-trip a:hover, #delete-trip a:link {
   color: white;
   text-decoration: none;
@@ -12,4 +18,14 @@
   display: inline-block;
 }
 
+.trip-name-edit {
+  font-size: 1.5em;
+}
+
+.facebook-blue {
+  color: white;
+  background-color: #3B5998;
+  margin-top: 20px;
+  font-family: "Lucida Grande";
+}
 

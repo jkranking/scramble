@@ -3,6 +3,8 @@ var initMap = function(){
   var id = window.trip.id
   var pings = window.pings
   var markers = window.markers
+  var rated = window.user_rated
+  var rating = window.rating
 
   map = setMap(window.trip)
   searchBox(map)
@@ -27,8 +29,14 @@ var initMap = function(){
   trip.view.showAdd()
   trip.view.showAddMarkerAndEditTrip()
 
+
+  google.maps.event.addListener(map, 'mousemove', trip.view.displayCoordinates);
+
   $('#add-ping').click(trip.pingHandler.bind(trip))
   $('#submit-pings').click(trip.submitPingsHandler.bind(trip))
+  $('body').on('keydown keyup',function(e){
+      if(e.which==13){e.preventDefault();}
+    });
 
   $('#add-marker').click(trip.markerHandler.bind(trip))
   $('#submit-marker').click(trip.submitMarkerHandler.bind(trip))
@@ -41,10 +49,7 @@ var initMap = function(){
   $('#map').on('click', '.edit-marker', trip.editMarker.bind(trip))
   $('#map').on('click', '.update-marker', trip.updateMarker.bind(trip))
   $('#map').on('click', '.delete-marker', trip.deleteMarker.bind(trip))
+
+  trip.addRating(rated, rating, id)
+
 }
-
-
-
-
-
-
