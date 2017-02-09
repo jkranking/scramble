@@ -120,7 +120,7 @@ TripController.prototype.updateMarker = function(event) {
     $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label))
     $('#marker-' + marker_id).html(replaceListItem(marker_label, note_content,  coordinates))
 
-    $('#flash-alerts .space').prepend('<div class="alert alert-danger">Note updated!</div>')
+    $('#flash-alerts .space').prepend('<div class="alert alert-success">Note updated!</div>')
     setTimeout(function(){$('.alert').remove()}, 3000)
   }
 

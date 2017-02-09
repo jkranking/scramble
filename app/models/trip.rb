@@ -43,10 +43,25 @@ class Trip < ApplicationRecord
 
   def self.ordered_by_average
     @@counter += 1
+    Trip.all.sort_by{ |trip| trip.get_average_rating }.reverse[0..19]
+  end
+
+  def self.recent_ordered
+    @@counter += 1
+    order("created_at DESC")[0..19]
+  end
+
+  def self.standard_ordered
+    @@counter += 1
+    order("created_at ASC")[0..19]
+  end
+
+  def self.ordered_by_average_json
+    @@counter += 1
     Trip.all.sort_by{ |trip| trip.get_average_rating }.reverse[0+(@@counter*20)..19+(@@counter*20)].to_json(methods: [:user, :get_average_rating, :static_path, :static_key])
   end
 
-  def self.ordered_json
+  def self.recent_ordered_json
     @@counter += 1
     order("created_at DESC")[0+(@@counter*20)..19+(@@counter*20)].to_json(methods: [:user, :get_average_rating, :static_path, :static_key])
   end
