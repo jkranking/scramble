@@ -1,15 +1,15 @@
 class TripsController < ApplicationController
   def index
     @sort_style = 'newest'
+    @trips = Trip.all
     if params[:sort_by_newest] == "true"
       @sort_style = 'newest'
-      #@trips = Trip.order(created_at: :desc)
+      @trips = Trip.order(created_at: :desc)
     elsif params[:sort_by_rating] == "true"
       @sort_style = 'rating'
-      #@trips = Trip.all.sort_by{ |trip| trip.get_average_rating }.reverse!
+      @trips = Trip.all.sort_by{ |trip| trip.get_average_rating }.reverse!
     elsif params[:sort_by_newest] == "false"
       @sort_style = 'none'
-      #@trips = Trip.all
     end
   end
 
