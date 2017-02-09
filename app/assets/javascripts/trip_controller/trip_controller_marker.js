@@ -18,7 +18,9 @@ TripController.prototype.markerHandler = function(event) {
 TripController.prototype.submitMarkerHandler = function(event) {
   event.preventDefault()
 
-  if (!this.clicked){ alert('Please set a location before saving your note'); return}
+  if (!this.clicked){ $('#flash-alerts .space').prepend('<div class="alert alert-danger">Please set a location before saving your note</div>');
+    setTimeout(function(){$('.alert').remove()}, 3000);
+     return}
 
   var controller = this
   var trip_id = window.trip.id
@@ -66,11 +68,13 @@ TripController.prototype.submitMarkerHandler = function(event) {
     marker.addListener('click', function() {
       infowindow.open(map, marker);
     });
-    alert('Note saved!')
+    $('#flash-alerts .space').prepend('<div class="alert alert-success">Note saved!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
   }
 
   ).fail(function(){
-    alert('Something went wrong!')
+    $('#flash-alerts .space').prepend('<div class="alert alert-danger">Somthing went wrong with your note!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
   })
 }
 
@@ -122,11 +126,14 @@ TripController.prototype.updateMarker = function(event) {
     marker.setDraggable(false)
     $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label))
     $('#marker-' + marker_id).html(replaceListItem(marker_label, note_content,  coordinates))
-    alert('Note updated!')
+
+    $('#flash-alerts .space').prepend('<div class="alert alert-danger">Note updated!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
   }
 
   ).fail(function(){
-    alert('Something went wrong!')
+    $('#flash-alerts .space').prepend('<div class="alert alert-danger">Something went wrong!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
   })
 }
 
@@ -147,8 +154,10 @@ TripController.prototype.deleteMarker = function(event) {
     var marker = markers[marker_label]
     marker.setMap(null)
     $('#marker-' + marker_id).remove()
-    alert('deleted!')
+        $('#flash-alerts .space').prepend('<div class="alert alert-success">Note deleted!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
   }).fail(function(){
-    alert('Something went wrong with the deletion!')
+    $('#flash-alerts .space').prepend('<div class="alert alert-danger">Something went wrong!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
   })
 }
