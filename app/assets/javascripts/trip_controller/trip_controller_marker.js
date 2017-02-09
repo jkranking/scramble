@@ -53,7 +53,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
     the_marker.setDraggable(false)
     var marker = the_marker
 
-    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + img_url + '<blockquote class="blockquote">lat: ' + marker.getPosition().lat() + '<br>lng: ' + marker.getPosition().lng() + '</blockquote></li>')
+    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + img_url + '<div class="note-body"><table><tr><td rowspan="2"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></td><td>lat: '  + marker.getPosition().lat() + '</td></tr><tr><td>lng: ' + marker.getPosition().lng() + '</td></tr></tbody></table></div>')
 
     controller.view.showAddMarkerAndEditTrip()
 

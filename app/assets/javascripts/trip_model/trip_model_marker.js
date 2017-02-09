@@ -26,8 +26,8 @@ function editNoteForm(content, label, id){
 function replaceListItem(label, note, marker){
   label++
   return '<b>' + label + '.</b>' + note +
-    '<blockquote class="blockquote">lat: ' + marker.lat() + '<br>' +
-    'lng: ' + marker.lng() + '</blockquote>'
+    '<div class="note-body"><table><tr><td rowspan="2"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></td><td>lat: '
+    + marker.lat() + '</td></tr><tr><td>lng: ' + marker.lng() + '</td></tr></tbody></table></div>'
 }
 
 TripModel.prototype.loadMarkersList = function(){
@@ -44,7 +44,6 @@ TripModel.prototype.loadMarkersList = function(){
     });
 
     var marker = newMarker({lat: Number(marker.lat), lng: Number(marker.lng)}, this.map, false)
-
 
     marker.addListener('click', function() {
       infowindow.open(map, marker);
