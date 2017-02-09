@@ -63,7 +63,7 @@ TripController.prototype.submitPingsHandler = function(event) {
   event.preventDefault()
   this.model.updateCenter()
   var name = $('#trip_name').val()
-  var distance = this.model.calculateDistance().toString()
+  var distance = this.model.calculateDistance()
 
   $.post({
     url: "/trips",
@@ -79,6 +79,7 @@ TripController.prototype.submitPingsHandler = function(event) {
     setTimeout(function(){$('.alert').remove()}, 3000)
     window.location.href = "/trips/" + saved_trip.id;
   }).fail(function(response){
+    console.log(response)
     $('#flash-alerts .space').prepend('<div class="alert alert-danger">' + response.responseJSON.error_message + '</div>')
     setTimeout(function(){$('.alert').remove()}, 3000)
   })
@@ -134,7 +135,8 @@ TripController.prototype.updateTripHandler = function(event) {
     $('#flash-alerts .space').prepend('<div class="alert alert-success">Trip Updated!</div>')
     setTimeout(function(){$('.alert').remove()}, 3000)
 
-  }).fail(function(){
+  }).fail(function(response){
+    $('#trip-name').html('<h3>' + response.responseJSON.name + '</h3>')
     $('#flash-alerts .space').prepend('<div class="alert alert-danger">Something went wrong!</div>')
     setTimeout(function(){$('.alert').remove()}, 3000)
   })
