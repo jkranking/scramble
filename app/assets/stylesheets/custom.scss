@@ -127,6 +127,14 @@ div.maps-show {
   font-size: 12px;
 }
 
+.trip-details {
+  font-size: 12px;
+}
+
+.uploaded-photo {
+  max-width: 100%;
+}
+
 div.stars {
   width: 120px;
   display: inline-block;
@@ -165,7 +173,6 @@ label.star:before {
   margin-bottom: 15px;
  }
 
-// Method 2) Using a Sprite
 .star-ratings-sprite {
   float: left;
   background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/2605/star-rating-sprite.png") repeat-x;
@@ -347,6 +354,7 @@ hr {
     text-overflow: ellipsis;
     width: 25%;
 }
+
 #searchInput:focus {
     border-color: #4d90fe;
 }
@@ -367,11 +375,6 @@ hr {
   display: block;
   height: 50%;
 }
-
-// #flash-alerts .space{
-//   height: 70px;
-// }
-
 
 #new_user > div.actions > input {
   margin-top: 10px;
@@ -394,4 +397,3 @@ hr {
   padding-top: 5px;
   padding-left: 15px;
 }
-
