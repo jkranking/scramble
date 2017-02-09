@@ -32,7 +32,7 @@ var initMap = function(){
   $('#add-ping').click(trip.pingHandler.bind(trip))
   $('#submit-pings').click(trip.submitPingsHandler.bind(trip))
   $('body').on('keydown keyup',function(e){
-      if(code==13)e.preventDefault();
+      if(e.which==13){e.preventDefault();}
     });
 
   $('#add-marker').click(trip.markerHandler.bind(trip))
