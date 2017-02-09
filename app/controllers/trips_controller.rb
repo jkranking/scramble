@@ -1,5 +1,7 @@
 class TripsController < ApplicationController
   def index
+    Trip.reset
+
     @sort_style = 'newest'
     @trips = Trip.recent_ordered
     if params[:sort_by_newest] == "true"

@@ -15,7 +15,7 @@ $(document).ready(function(){
   }
 
 
-  $.ajax({url: 'trips/reset'})
+  // $.ajax({url: 'trips/reset'})
 
   getTrips()
   var $window = $(window)
