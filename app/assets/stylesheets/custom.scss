@@ -6,15 +6,19 @@ body {
 }
 
 a {
-  color: #dae3f2;
+  color: #19171C;
 }
 
 a:hover {
-  color: #D5D5DD;
+  text-decoration: none;
+}
+
+a:visited:hover {
+  color: #A4A9A8;
 }
 
 a:visited {
-  color: #B4C1BE;
+  color: #666464;
 }
 
 .table.table.trip-details td {
@@ -394,3 +398,19 @@ hr {
   padding-left: 15px;
 }
 
+#footer-links > li > a {
+  color: #4E4B4F;
+}
+
+#footer-links > li:nth-child(1) > a:hover {
+  color: #B4C1BE;
+}
+
+#footer-links > li:nth-child(2) > a:hover {
+  color: #B4C1BE;
+}
+
+#footer-links > li > a:visited {
+  color: #D5D5DD;
+}
+// #dae3f2
