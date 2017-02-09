@@ -6,7 +6,6 @@
     <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag 'application' %>
     <script src="https://www.google.com/jsapi"></script>
-  </head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= favicon_link_tag 'favicon_mountain.ico' %>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -15,6 +14,7 @@
 
     <%= render 'layouts/header' %>
     <div class="container" id="flash-alerts">
+      <div class='space'></div>
       <% if notice %>
         <div class="alert alert-success"><%= notice %></div>
       <% end %>
