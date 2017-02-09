@@ -204,7 +204,7 @@ label.star:before {
 }
 
 [id='toggle-heart']:checked + label {
-  color: #e2264d;
+  color: #E74C3C;
 }
 
 [for='toggle-heart'] {
@@ -268,7 +268,7 @@ footer {
   margin-top: 50px;
   padding-top: 5px;
   height: 55px;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid #4E4B4F;
   color: #777;
 }
 
@@ -324,6 +324,25 @@ hr {
   margin-top: 20px;
 }
 
+.navbar {
+  border-bottom: .5px solid black;
+}
+
+#searchInput {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 25%;
+}
+#searchInput:focus {
+    border-color: #4d90fe;
+}
+
 .trips-end {
   text-align: center;
   font-size: 2em;
@@ -336,4 +355,5 @@ hr {
   display: block;
   height: 50%;
 }
+
 
