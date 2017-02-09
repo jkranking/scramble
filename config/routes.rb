@@ -32,5 +32,5 @@ Rails.application.routes.draw do
 
   resources :favorites, only: [:create]
 
-
+  get '/about', to: 'about#show', as: 'about'
 end

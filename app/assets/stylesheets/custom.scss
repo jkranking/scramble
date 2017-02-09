@@ -88,14 +88,6 @@ div.maps-show {
   font-size: 20px;
 }
 
-#add-marker {
-  margin-bottom: 10px;
-}
-
-#submit-marker {
-  margin-bottom: 10px;
-}
-
 #trip-list-text {
   font-size: 14px;
   color: #333333;
@@ -232,24 +224,104 @@ label.star:before {
   margin-bottom: 10px;
 }
 
+#add-marker {
+  display: none;
+  margin-bottom: 10px;
+}
+
+#add-ping {
+  display: none;
+}
+
+#submit-pings {
+  display: none;
+}
+
+#submit-marker {
+  display: none;
+  margin-bottom: 10px;
+}
+
+#cancel-marker {
+  display: none;
+  margin-bottom: 10px;
+}
+
 #edit-trip {
+  display: none;
   margin-bottom: 10px;
 }
 
-#photo-upload-button {
+#upload-photo {
+  display: none;
   margin-bottom: 10px;
 }
 
-#image-upload {
+#image-form {
+  display: none;
   margin-bottom: 10px;
+}
+
+/* footer */
+
+footer {
+  margin-top: 50px;
+  padding-top: 5px;
+  height: 55px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+.footer-section {
+  height: 50px;
+ }
+
+.about-us {
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.about-container {
+  padding: 50px;
+}
+
+.team-img {
+  padding-left: 35px;
+  padding-bottom:25px;
+}
+
+.personal {
+  padding-left: 10px;
 }
 
 hr {
   border-color: #4E4B4F;
 }
 
-#sort-by-button {
-  margin-bottom: 15px;
+.index-list {
+  margin-top: 20px;
 }
 
 .trips-end {
@@ -263,3 +335,4 @@ hr {
   display: block;
   height: 50%;
 }
+

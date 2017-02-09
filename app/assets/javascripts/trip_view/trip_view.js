@@ -59,6 +59,8 @@ TripView.prototype.showElevationChart = function(chart, data){
   chart.draw(data, {
     height: 150,
     curve_type: 'function',
+    backgroundColor: '#B4C1BE',
+    colors: ['#40b0c9'],
     legend: 'none',
     titleY: 'Elevation (f)',
   });
