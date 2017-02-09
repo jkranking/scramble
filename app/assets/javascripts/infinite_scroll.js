@@ -1,3 +1,7 @@
+function getRandom(min, max) {
+    return min + Math.floor(Math.random() * (max - min + 1));
+}
+
 $(document).ready(function(){
   if (!(window.sort_by)) {return}
 
@@ -19,9 +23,18 @@ $(document).ready(function(){
   $window.scroll(function() {
     if (($(document).height() - $window.height()) === $window.scrollTop()) {
       $()
-      setTimeout(getTrips, 10000)
+      setTimeout(getTrips, 2000)
+
+      var rand = getRandom(0, 69)
+      var pic;
+      if (rand === 69) {
+        pic = 'goat-see'
+      } else {
+        pic = 'spinner-mobile'
+      }
+
       if ($('#loading').length === 0 && $('.trips-end').length === 0){
-        $('div.index-list').append('<img id="loading" class="img-responsive" src="/assets/goat-see.gif">')
+        $('div.index-list').append('<img id="loading" class="img-responsive" src="/assets/' + pic + '.gif">')
       }
     }
   })
