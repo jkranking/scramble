@@ -85,7 +85,13 @@ TripView.prototype.displayCoordinates = function(event){
   var coordinates = event.latLng
   $("#longitude").html("lng: " + coordinates.lng())
   $("#latitude").html("lat: " + coordinates.lat())
-  // console.log(coordinates.lat())
-  // console.log(coordinates.lng())
 }
+
+TripView.prototype.displayMarkerError = function(event){
+  $('#flash-alerts .space').prepend('<div class="alert alert-danger">Please set a location before saving your note</div>');
+  setTimeout(function(){$('.alert').remove()}, 3000);
+  return
+}
+
+
 
