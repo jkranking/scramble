@@ -244,7 +244,6 @@ label.star:before {
 }
 
 #add-marker {
-  display: none;
   margin-bottom: 10px;
 }
 
@@ -264,14 +263,6 @@ label.star:before {
 #cancel-marker {
   display: none;
   margin-bottom: 10px;
-}
-
-#edit-trip {
-  margin-bottom: 10px;
-}
-
-#delete-trip {
-  margin-left: 10px;
 }
 
 #upload-photo {
@@ -441,4 +432,8 @@ hr {
 
 #note-container {
   color: #D5D5DD;
+}
+
+#update-trip {
+  display: none;
 }
