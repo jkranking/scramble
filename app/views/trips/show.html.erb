@@ -88,14 +88,12 @@
       </form>
 
       <form class="user-button" id="edit-trip">
-        <button name="edit_trip" class="btn btn-sm btn-success">Edit Trip</button>
+        <button name="edit_trip" class="btn btn-sm btn-warning">Edit Trip</button>
       </form>
 
       <form class="user-button">
-
-        <button id="delete-trip" name="update_trip" class="btn btn-sm btn-success"><%= link_to 'Delete Trip', url_for(action: :destroy ,id: @trip.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
+        <button id="delete-trip" name="update_trip" class="btn btn-sm btn-warning"><%= link_to 'Delete Trip', url_for(action: :destroy ,id: @trip.id), method: :delete, data: {confirm: "Are you sure?"} %></button>
       </form>
-
 
       <form class="user-button">
         <button id="update-trip" name="update_trip" class="btn btn-success">Update Trip</button>
