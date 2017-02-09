@@ -83,8 +83,8 @@ TripView.prototype.showElevation = function(cumulativeGain, elevations){
 
 TripView.prototype.displayCoordinates = function(event){
   var coordinates = event.latLng
-  $("#longitude").html("lng: " + coordinates.lng())
-  $("#latitude").html("lat: " + coordinates.lat())
+  $("#longitude").html("lng: " + coordinates.lng().toFixed(4))
+  $("#latitude").html("lat: " + coordinates.lat().toFixed(4))
 }
 
 TripView.prototype.displayMarkerError = function(){
