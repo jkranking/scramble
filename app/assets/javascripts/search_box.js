@@ -1,6 +1,6 @@
 var searchBox = function(map) {
   // Create the search box and link it to the UI element.
-  var input = document.getElementById('pac-input');
+  var input = document.getElementById('searchInput');
   if (input) {
     var searchBox = new google.maps.places.SearchBox(input);
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
