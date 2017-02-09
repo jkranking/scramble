@@ -14,9 +14,6 @@ $(document).ready(function(){
     sort = '/trips/standard_sort'
   }
 
-
-  // $.ajax({url: 'trips/reset'})
-
   getTrips()
   var $window = $(window)
 
