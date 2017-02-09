@@ -41,23 +41,12 @@ TripController.prototype.submitMarkerHandler = function(event) {
 
   ).done(function(response){
 
+    img_url = controller.view.displayImgNote()
+    controller.view.updateTripNotes(the_marker, response, note)
 
-    $('.no-note').remove()
-
-    var img_url =  $('.uploaded-photo').attr('src')
-    if (img_url) {
-      img_url = '<img class="li-trip-photo" src="' + img_url + '">'
-    } else {
-      img_url = ''
-    }
-    // this.view.displayImgNote()
-
-    $('.uploaded-photo-section').remove()
-    the_marker.setDraggable(false)
     var marker = the_marker
-    var icon = "fa fa-map-marker fa-2x"
-    if (img_url) {icon = "fa fa-camera-retro fa-lg"}
-    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<div class="note-body"><table><tr><td rowspan="2"><i class="' + icon + '" aria-hidden="true"></i></td><td>lat: '  + marker.getPosition().lat() + '</td></tr><tr><td>lng: ' + marker.getPosition().lng() + '</td></tr></tbody></table></div>')
+
+    // this is where we are at
 
     controller.view.showAddMarkerAndEditTrip()
 
