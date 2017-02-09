@@ -267,8 +267,11 @@ label.star:before {
 }
 
 #edit-trip {
-  display: none;
   margin-bottom: 10px;
+}
+
+#delete-trip {
+  margin-left: 10px;
 }
 
 #upload-photo {
@@ -402,6 +405,23 @@ hr {
   padding-left: 15px;
 }
 
+#photo-upload-button {
+  margin-top: 10px;
+}
+
+#note-content-1 {
+  text-align: center;
+}
+
+#edit-marker-1 {
+  float: left;
+  color: blue;
+}
+
+#delete-marker-1 {
+  float: right;
+  color: blue;
+}
 
 #footer-links > li > a {
   color: #4E4B4F;
