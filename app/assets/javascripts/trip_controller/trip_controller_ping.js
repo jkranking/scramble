@@ -75,10 +75,12 @@ TripController.prototype.submitPingsHandler = function(event) {
             pings: this.model.simplePings(),
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(saved_trip){
-    alert('Trip saved!')
+    $('#flash-alerts .space').prepend('<div class="alert alert-success">Trip Saved!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
     window.location.href = "/trips/" + saved_trip.id;
   }).fail(function(response){
-    alert(response.responseJSON.error_message)
+    $('#flash-alerts .space').prepend('<div class="alert alert-danger">' + response.responseJSON.error_message + '</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
   })
 
   google.maps.event.removeListener(pingListener);
@@ -127,11 +129,14 @@ TripController.prototype.updateTripHandler = function(event) {
             pings: this.model.simplePings(),
             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }).done(function(updated_trip){
-    // $('#flash-alerts').html('<h1> IT WORKS<?h1>')
     $('#trip-name').html('<h3>' + name + '</h3>')
-    alert('Trip updated!')
+
+    $('#flash-alerts .space').prepend('<div class="alert alert-success">Trip Updated!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
+
   }).fail(function(){
-    alert('Something went wrong!')
+    $('#flash-alerts .space').prepend('<div class="alert alert-danger">Something went wrong!</div>')
+    setTimeout(function(){$('.alert').remove()}, 3000)
   })
 
   this.view.showAddMarkerAndEditTrip()
