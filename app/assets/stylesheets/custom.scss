@@ -19,7 +19,7 @@ a:visited {
 
 .table.table.trip-details td {
   border-color: #4E4B4F;
-  font-size: 1.5em;
+  font-size: 13px;
   color: #D5D5DD;
 }
 
@@ -124,10 +124,6 @@ div.maps-show {
 }
 
 .blockquote {
-  font-size: 12px;
-}
-
-.trip-details {
   font-size: 12px;
 }
 
@@ -385,8 +381,13 @@ hr {
   display: inline;
 }
 
+.fa-camera-retro {
+  padding-right: 10px;
+}
+
 .fa-map-marker {
   padding-right: 10px;
+  padding-left: 2px;
 }
 
 .note-body {
