@@ -46,8 +46,6 @@ TripController.prototype.submitMarkerHandler = function(event) {
 
     var marker = the_marker
 
-    // this is where we are at
-
     controller.view.showAddMarkerAndEditTrip()
 
     var label = (marker.getLabel() - 1)
