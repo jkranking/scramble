@@ -96,12 +96,17 @@ TripController.prototype.cancelNewMarker = function(event) {
 
 TripController.prototype.editMarker = function(event) {
   event.preventDefault()
+  console.log('parent', $(event.target).parent().parent().children('.trip-image').children().attr('src'))
+  var img_url = $(event.target).parent().parent().children('.trip-image').children().attr('src')
   var marker = $(event.target)
   var marker_id = marker.attr('href').match(/\d+$/)[0]
   var marker_label = marker.attr('id').match(/\d+$/)[0]
+  if ($(event.target))
   var note_content = $('#note-content-' + marker_label).html()
   $('#note-' + marker_label).html(editNoteForm(note_content, marker_label, marker_id))
   marker = this.model.markers[marker_label]
+  if (img_url) { marker.img_url = img_url }
+
   marker.setDraggable(true)
 }
 
@@ -126,10 +131,14 @@ TripController.prototype.updateMarker = function(event) {
 
   ).done(function(response){
     marker.setDraggable(false)
-    $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label))
+    var img_url = ''
+    if (marker.img_url) { img_url = '<img src="' + marker.img_url + '">' }
+
+
+    $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label, img_url))
     $('#marker-' + marker_id).html(replaceListItem(marker_label, note_content,  coordinates))
 
-    $('#flash-alerts .space').prepend('<div class="alert alert-danger">Note updated!</div>')
+    $('#flash-alerts .space').prepend('<div class="alert alert-success">Note updated!</div>')
     setTimeout(function(){$('.alert').remove()}, 3000)
   }
 
