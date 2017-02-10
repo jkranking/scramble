@@ -85,6 +85,33 @@ TripView.prototype.displayCoordinates = function(event){
   var coordinates = event.latLng
   $("#longitude").html("lng: " + coordinates.lng().toFixed(4))
   $("#latitude").html("lat: " + coordinates.lat().toFixed(4))
-  // console.log(coordinates.lat())
-  // console.log(coordinates.lng())
 }
+
+TripView.prototype.displayMarkerError = function(){
+  $('#flash-alerts .space').prepend('<div class="alert alert-danger">Please set a location before saving your note</div>');
+  setTimeout(function(){$('.alert').remove()}, 3000);
+  return
+}
+
+TripView.prototype.displayImgNote = function(){
+ $('.no-note').remove()
+  var img_url =  $('.uploaded-photo').attr('src')
+  if (img_url) {
+    img_url = '<img class="li-trip-photo" src="' + img_url + '">'
+  } else {
+    img_url = ''
+  }
+  return img_url
+}
+
+TripView.prototype.updateTripNotes = function(the_marker, response, note){
+  $('.uploaded-photo-section').remove()
+  the_marker.setDraggable(false)
+  var marker = the_marker
+  var icon = "fa fa-map-marker fa-2x"
+  if (img_url) {icon = "fa fa-camera-retro fa-lg"}
+  $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<div class="note-body"><table><tr><td rowspan="2"><i class="' + icon + '" aria-hidden="true"></i></td><td>lat: '  + marker.getPosition().lat().toFixed(4) + '</td></tr><tr><td>lng: ' + marker.getPosition().lng().toFixed(4) + '</td></tr></tbody></table></div>')
+}
+
+
+
