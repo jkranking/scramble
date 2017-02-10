@@ -18,9 +18,10 @@ TripController.prototype.markerHandler = function(event) {
 TripController.prototype.submitMarkerHandler = function(event) {
   event.preventDefault()
 
-  if (!this.clicked){ $('#flash-alerts .space').prepend('<div class="alert alert-danger">Please set a location before saving your note</div>');
-    setTimeout(function(){$('.alert').remove()}, 3000);
-     return}
+  if (!this.clicked) { $('#flash-alerts .space').prepend('<div class="alert alert-danger">Please set a location before saving your note</div>');
+    setTimeout(function(){$('.alert').remove()}, 3000)}
+
+  if (!this.clicked){return}
 
   var controller = this
   var trip_id = window.trip.id
