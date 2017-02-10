@@ -72,6 +72,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
 TripController.prototype.cancelNewMarker = function(event) {
   event.preventDefault()
   $('.uploaded-photo-section').remove()
+  window.photo = null
   google.maps.event.removeListener(submitMarkerListener)
   this.view.showAddMarkerAndEditTrip()
   if (this.clicked) {
