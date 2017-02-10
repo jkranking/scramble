@@ -50,6 +50,9 @@ group :development, :test do
   gem 'magic_lamp'
 
   gem "teaspoon-jasmine"
+
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 group :development do

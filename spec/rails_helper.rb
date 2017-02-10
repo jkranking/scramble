@@ -11,6 +11,7 @@ require 'rack_session_access/capybara'
 require 'devise'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -29,6 +30,12 @@ require 'devise'
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.javascript_driver = :chrome
 
 RSpec.configure do |config|
   config.after :each do
