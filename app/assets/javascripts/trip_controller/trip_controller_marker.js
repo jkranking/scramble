@@ -19,7 +19,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
   event.preventDefault()
 
 
-  if (!this.clicked){this.view.displayMarkerError()}
+  if (!this.clicked){this.view.displayMarkerError(); return}
 
   var controller = this
   var trip_id = window.trip.id
