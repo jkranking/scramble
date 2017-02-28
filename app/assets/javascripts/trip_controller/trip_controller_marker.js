@@ -18,10 +18,7 @@ TripController.prototype.markerHandler = function(event) {
 TripController.prototype.submitMarkerHandler = function(event) {
   event.preventDefault()
 
-  if (!this.clicked) { $('#flash-alerts .space').prepend('<div class="alert alert-danger">Please set a location before saving your note</div>');
-    setTimeout(function(){$('.alert').remove()}, 3000)}
-
-  if (!this.clicked){return}
+  if (!this.clicked){this.view.displayMarkerError(); return}
 
   var controller = this
   var trip_id = window.trip.id
@@ -35,28 +32,18 @@ TripController.prototype.submitMarkerHandler = function(event) {
   $.post({
     url: "/trips/" + trip_id + "/markers",
     data: {marker: {lat: coordinates.lat(),
-                  lng: coordinates.lng(),
-                  note: note},
+                    lng: coordinates.lng(),
+                   note: note},
                   photo: photo_id,
-            AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
+             AUTH_TOKEN: $('meta[name=csrf-token]').attr('content')}
   }
 
   ).done(function(response){
-    $('.no-note').remove()
 
-    var img_url =  $('.uploaded-photo').attr('src')
-    if (img_url) {
-      img_url = '<img class="li-trip-photo" src="' + img_url + '">'
-    } else {
-      img_url = ''
-    }
-    $('.uploaded-photo-section').remove()
-    the_marker.setDraggable(false)
+    img_url = controller.view.displayImgNote()
+    controller.view.updateTripNotes(the_marker, response, note)
+
     var marker = the_marker
-    var icon = "fa fa-map-marker fa-2x"
-
-    if (img_url) {icon = "fa fa-camera-retro fa-lg"}
-    $('#note-container').append('<b><li class="marker" id="marker-' + response.id + '">' + marker.getLabel() + '.</b> ' + note + '<div class="note-body"><table><tr><td rowspan="2"><i class="' + icon + '" aria-hidden="true"></i></td><td>lat: '  + marker.getPosition().lat() + '</td></tr><tr><td>lng: ' + marker.getPosition().lng() + '</td></tr></tbody></table></div>')
 
     controller.view.showAddMarkerAndEditTrip()
 
@@ -84,6 +71,7 @@ TripController.prototype.submitMarkerHandler = function(event) {
 TripController.prototype.cancelNewMarker = function(event) {
   event.preventDefault()
   $('.uploaded-photo-section').remove()
+  window.photo = null
   google.maps.event.removeListener(submitMarkerListener)
   this.view.showAddMarkerAndEditTrip()
   if (this.clicked) {

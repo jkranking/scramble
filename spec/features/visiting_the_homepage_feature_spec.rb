@@ -2,7 +2,7 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 feature 'visiting the homepage' do
-  xscenario 'the visitor sees a list of trips and can view them', js: true do
+  scenario 'the visitor sees a list of trips and can view them', js: true do
     trip = FactoryGirl.create(:trip)
     visit root_path
     within('.index-list') do
@@ -88,4 +88,3 @@ feature 'visiting the homepage' do
   end
 
 end
-

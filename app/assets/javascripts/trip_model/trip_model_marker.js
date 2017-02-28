@@ -27,7 +27,7 @@ function replaceListItem(label, note, marker, icon){
   label++
   return '<b>' + label + '.</b>' + note +
     '<div class="note-body"><table><tr><td rowspan="2"><i class="' + icon + '" aria-hidden="true"></i></td><td>lat: '
-    + marker.lat() + '</td></tr><tr><td>lng: ' + marker.lng() + '</td></tr></tbody></table></div>'
+    + marker.lat().toFixed(4) + '</td></tr><tr><td>lng: ' + marker.lng().toFixed(4) + '</td></tr></tbody></table></div>'
 }
 
 TripModel.prototype.loadMarkersList = function(){
