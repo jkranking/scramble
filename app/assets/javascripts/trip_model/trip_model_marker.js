@@ -23,10 +23,10 @@ function editNoteForm(content, label, id){
          '</div>'
 }
 
-function replaceListItem(label, note, marker){
+function replaceListItem(label, note, marker, icon){
   label++
   return '<b>' + label + '.</b>' + note +
-    '<div class="note-body"><table><tr><td rowspan="2"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></td><td>lat: '
+    '<div class="note-body"><table><tr><td rowspan="2"><i class="' + icon + '" aria-hidden="true"></i></td><td>lat: '
     + marker.lat().toFixed(4) + '</td></tr><tr><td>lng: ' + marker.lng().toFixed(4) + '</td></tr></tbody></table></div>'
 }
 

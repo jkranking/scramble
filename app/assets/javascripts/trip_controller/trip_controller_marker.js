@@ -18,7 +18,6 @@ TripController.prototype.markerHandler = function(event) {
 TripController.prototype.submitMarkerHandler = function(event) {
   event.preventDefault()
 
-
   if (!this.clicked){this.view.displayMarkerError(); return}
 
   var controller = this
@@ -122,11 +121,12 @@ TripController.prototype.updateMarker = function(event) {
   ).done(function(response){
     marker.setDraggable(false)
     var img_url = ''
-    if (marker.img_url) { img_url = '<img src="' + marker.img_url + '">' }
+    var icon = 'fa fa-map-marker fa-2x'
+    if (marker.img_url) { img_url = '<img src="' + marker.img_url + '">'; icon = "fa fa-camera-retro fa-lg" }
 
 
     $('#note-' + marker_label).html(contentString({note: note_content, id: marker_id}, marker_label, img_url))
-    $('#marker-' + marker_id).html(replaceListItem(marker_label, note_content,  coordinates))
+    $('#marker-' + marker_id).html(replaceListItem(marker_label, note_content,  coordinates, icon))
 
     $('#flash-alerts .space').prepend('<div class="alert alert-success">Note updated!</div>')
     setTimeout(function(){$('.alert').remove()}, 3000)
