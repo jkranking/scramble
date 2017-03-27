@@ -8,4 +8,5 @@ class TripRatingsController < ApplicationController
     rating = TripRating.find_by(trip_id: params[:trip_id], user_id: current_user.id)
     rating.update(rating: params[:rating])
   end
+  
  end

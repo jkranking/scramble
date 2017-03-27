@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
+  
   def create
-    p params
     @favorite = Favorite.new(favorite_params)
     if @favorite.valid?
       @favorite.save
