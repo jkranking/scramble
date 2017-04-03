@@ -44,7 +44,6 @@
 * JSON
 * HTML
 * Bootstrap
-* 
 * AWS S3 for photo storage
 * Heroku for deployment
 * CircleCI for continuous integration
