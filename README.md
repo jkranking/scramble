@@ -36,13 +36,18 @@
 ![User Profile](https://cloud.githubusercontent.com/assets/20080850/23086488/00ea0ac4-f522-11e6-87e1-9b5c9310cb7d.png)
 
 ##What did we use to code it?
-* Ruby version 2.3.1
-* Rails 5.0.1
+* Ruby
+* Ruby on Rails
 * JavaScript
+* JQuery
+* Ajax
+* JSON
 * HTML
 * Bootstrap
-* AWS for photo storage
+* 
+* AWS S3 for photo storage
 * Heroku for deployment
+* CircleCI for continuous integration
 * Googlemaps API
 
 ###Gems we used:
